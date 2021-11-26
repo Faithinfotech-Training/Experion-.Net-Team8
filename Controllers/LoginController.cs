@@ -49,7 +49,7 @@ namespace Clinic_Management_System_8.Controllers
 
         private Login AuthenticateUser(string username, string password)
         {
-            //Validate the user credentials
+            //-- Validate the user credentials --//
             Login user = contextDB.Login.FirstOrDefault(us => us.UserName == username && us.Password == password);
             if (user != null)
                 return user;
@@ -57,7 +57,7 @@ namespace Clinic_Management_System_8.Controllers
                 return null;
         }
 
-        private object GenerateJWT(string username, string password)
+        private string GenerateJWT(string username, string password)
         {
             //--- getting security ---//
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));

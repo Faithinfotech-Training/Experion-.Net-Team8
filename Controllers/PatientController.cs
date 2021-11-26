@@ -1,4 +1,5 @@
 ﻿using Clinic_Management_System_8.Models;
+using Clinic_Management_System_8.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,10 @@ namespace Clinic_Management_System_8.Controllers
     [ApiController]
     public class PatientController : ControllerBase
     {
-        IPatientRepo patientRepo;
-        public PatientController(IPatientRepo _patientRepo)
+        IPatient patientRepo;
+        public PatientController(IPatient _patientRepo)
         {
-            patientRepo = patientRepo;
+            patientRepo = _patientRepo;
         }
 
         //--- add a patient ---//
@@ -75,5 +76,31 @@ namespace Clinic_Management_System_8.Controllers
             return BadRequest();
         }
         #endregion
+
+
+        //--- View all Patients ---//
+        #region ViewPatients
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> ViewAllPatients()
+        {
+            try
+            {
+                var hobbies = await patientRepo.ViewAllPatients();
+                if (hobbies != null)
+                {
+                    return Ok(hobbies);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        #endregion
+
     }
 }

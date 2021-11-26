@@ -1,3 +1,4 @@
+using Clinic_Management_System_8.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,8 @@ namespace Clinic_Management_System_8
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddScoped<IDoctor, Doctor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

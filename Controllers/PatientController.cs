@@ -33,7 +33,7 @@ namespace Clinic_Management_System_8.Controllers
                 try
                 {
                     var newPatient = await patientRepo.AddPatient(patient);
-                    if (newPatient != null)
+                    if (newPatient > 0)
                     {
                         return Ok(newPatient);
                     }

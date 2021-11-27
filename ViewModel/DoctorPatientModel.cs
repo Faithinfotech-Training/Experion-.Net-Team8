@@ -7,5 +7,6 @@ namespace Clinic_Management_System_8.ViewModel
 {
     public class DoctorPatientModel
     {
+
     }
 }

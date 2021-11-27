@@ -39,8 +39,9 @@ namespace Clinic_Management_System_8
                 item => item.UseSqlServer(Configuration.GetConnectionString("ConStr"))
                 );
 
-            //--- add dependency injection for PatientRepo ---//
+            //--- add dependency injection ---//
             services.AddScoped<IPatient, Patient>();
+            services.AddScoped<IDoctor, Doctor>();
 
             services.AddControllers().AddNewtonsoftJson(
                     options =>

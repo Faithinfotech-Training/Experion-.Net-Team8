@@ -103,6 +103,27 @@ namespace Clinic_Management_System_8.Repository
             return null;
         }
 
+        public async  Task<List<PrescriptionViewModel>> GetPrescriptionForPeriod(DateTime date)
+        {
+            if (_db != null)
+            {
+                //LINQ
+                return await(from p in _db.Prescriptions
+                             from e in _db.Employees
+                             from t in _db.Patients
+                             where p.EmployeeId == e.EmployeeId && p.PatientId == t.PatientId&& p.PrescriptionDate<date
+                             select new PrescriptionViewModel
+                             {
+                                 PrescriptionId = p.PrescriptionId,
+                                 Prescription = p.Prescription,
+                                 PrescriptionDate = p.PrescriptionDate,
+                                 DoctorName = e.EmployeeName,
+                                 PatientName = t.PatientName
+                             }).ToListAsync();
+            }
+            return null;
+        }
+
         public async Task UpdatePrescription(Prescriptions note)
         {
             if (_db != null)

@@ -15,6 +15,8 @@ namespace Clinic_Management_System_8.Repository
        
         Task<PrescriptionViewModel> GetPrescriptionByPatientId(int id);
         Task<PrescriptionViewModel> GetPrescriptionByDate(DateTime date);
+        Task<List<PrescriptionViewModel>> GetPrescriptionForPeriod(DateTime date);
+
 
     }
 }

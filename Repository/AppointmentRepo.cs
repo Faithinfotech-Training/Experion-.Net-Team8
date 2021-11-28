@@ -119,5 +119,40 @@ namespace Clinic_Management_System_8.Repository
 
         #endregion
 
+
+        //--- View Appointments for a particular doctor ---//
+        #region ViewAppointmentForDoctor
+
+        public async Task<List<AppointmentViewModel>> ViewAppointmentForDoctor(int id)
+        {
+            //--- get appointment by Doctorid ---//
+            if (dbContext != null)
+            {
+                //-- LINQ --//
+                //-- joining Appointments, AppointmentTypes, Patients and Employees  --//
+                return await (from a in dbContext.Appointments
+                              from at in dbContext.AppointmentTypes
+                              from p in dbContext.Patients
+                              from e in dbContext.Employees
+                              where a.AppointmentTypeId == at.AppointmentTypeId &&
+                              at.AppointmentType == "Doctor" &&
+                              a.EmployeeId == id
+
+                              select new AppointmentViewModel
+                              {
+                                  AppointmentId = a.AppointmentId,
+                                  AppointmentType = at.AppointmentType,
+                                  PatientName = p.PatientName,
+                                  EmployeeName = e.EmployeeName,
+                                  AppointmentStatus = a.AppointmentStatus,
+                                  AppointmentDate = a.AppointmentDate
+                              }).ToListAsync();
+            }
+            return null;
+        }
+
+
+        #endregion
+
     }
 }

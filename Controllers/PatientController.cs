@@ -102,5 +102,54 @@ namespace Clinic_Management_System_8.Controllers
 
         #endregion
 
+
+        //--- View Patient by Id ---//
+        #region ViewPatientById
+
+        [HttpGet("{id}")]
+        [Authorize]
+        public async Task<IActionResult> ViewPatientById(int id)
+        {
+            try
+            {
+                var patient = await patientRepo.ViewPatientById(id);
+                if (patient != null)
+                {
+                    return Ok(patient);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        #endregion
+
+
+        //--- View Patient by Date ---//
+        #region ViewPatientByDate
+
+        [HttpGet("{date}")]
+        [Authorize]
+        public async Task<IActionResult> ViewPatientByDate(DateTime date)
+        {
+            try
+            {
+                var patients = await patientRepo.ViewPatientByDate(date);
+                if (patients != null)
+                {
+                    return Ok(patients);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        #endregion
     }
 }

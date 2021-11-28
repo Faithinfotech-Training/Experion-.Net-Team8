@@ -44,6 +44,7 @@ namespace Clinic_Management_System_8
             services.AddScoped<ITestReport, TestReport>();
             services.AddScoped<IPrescription, Prescription>();
             services.AddScoped<IAppointment, AppointmentRepo>();
+            services.AddScoped<IPayment, Payment>();
 
             services.AddControllers().AddNewtonsoftJson(
                     options =>

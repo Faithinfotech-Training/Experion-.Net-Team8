@@ -13,10 +13,10 @@ namespace Clinic_Management_System_8.Controllers
     [ApiController]
     public class PrescriptionController : ControllerBase
     {
-        IPrescription postRepository;
+        IPrescription preRepo;
         public PrescriptionController(IPrescription _p)
         {
-            postRepository = _p;
+            preRepo = _p;
         }
 
         #region Get all Prescription
@@ -27,7 +27,7 @@ namespace Clinic_Management_System_8.Controllers
         {
             try
             {
-                var notes = await postRepository.GetPrescriptionDetails();
+                var notes = await preRepo.GetPrescriptionDetails();
                 if (notes == null)
                 {
                     return NotFound();
@@ -41,6 +41,27 @@ namespace Clinic_Management_System_8.Controllers
 
         }
         #endregion
+        #region Prescription for a period
+        [HttpGet]
+        [Route("Upto")]
+        public async Task<IActionResult> GetPrescriptionForPeriod(DateTime date)
+        {
+            try
+            {
+                var prescription = await preRepo.GetPrescriptionForPeriod(date);
+                if (prescription == null)
+                {
+                    return NotFound();
+                }
+                return Ok(prescription);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+        }
+#endregion
         #region Add prescription
         [HttpPost]
         //[Authorize]
@@ -51,7 +72,7 @@ namespace Clinic_Management_System_8.Controllers
             {
                 try
                 {
-                    var postId = await postRepository.AddPrescription(note);
+                    var postId = await preRepo.AddPrescription(note);
                     if (postId > 0)
                     {
                         return Ok(postId);
@@ -80,7 +101,7 @@ namespace Clinic_Management_System_8.Controllers
             {
                 try
                 {
-                    await postRepository.UpdatePrescription(note);
+                    await preRepo.UpdatePrescription(note);
                     return Ok();
                 }
                 catch (Exception)
@@ -98,7 +119,7 @@ namespace Clinic_Management_System_8.Controllers
         {
             try
             {
-                var patient = await postRepository.GetPrescriptionByPatientId(id); ;
+                var patient = await preRepo.GetPrescriptionByPatientId(id); ;
                 if (patient != null)
                 {
                     return Ok(patient);
@@ -117,7 +138,7 @@ namespace Clinic_Management_System_8.Controllers
         {
             try
             {
-                var patient = await postRepository.GetPrescriptionByDate(date);
+                var patient = await preRepo.GetPrescriptionByDate(date);
                 if (patient != null)
                 {
                     return Ok(patient);

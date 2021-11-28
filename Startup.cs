@@ -39,7 +39,7 @@ namespace Clinic_Management_System_8
                 item => item.UseSqlServer(Configuration.GetConnectionString("ConStr"))
                 );
 
-            //--- add dependency injection ---//
+            //--- add dependency injection for StudentRepo ---//
             services.AddScoped<IPatient, Patient>();
             services.AddScoped<IDoctor, Doctor>();
 

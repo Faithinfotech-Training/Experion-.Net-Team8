@@ -20,5 +20,8 @@ namespace Clinic_Management_System_8.Repository
 
         //--- View All Appointments of a day ---//
         Task<AppointmentViewModel> ViewAppointmentByDate(DateTime date);
+
+        //--- View Appointments for a particular doctor ---//
+        Task<List<AppointmentViewModel>> ViewAppointmentForDoctor(int id);
     }
 }

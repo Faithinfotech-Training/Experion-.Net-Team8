@@ -8,12 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PaymentService {
-  insertEmployee(value: any) {
-    throw new Error('Method not implemented.');
-  }
-  updateEmployee(value: any) {
-    throw new Error('Method not implemented.');
-  }
+  
   formData:Payment=new Payment();
   patient:Patient[];
  payments: Payment[];

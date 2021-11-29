@@ -1,8 +1,10 @@
+import { PaymentlistComponent } from './paymentlist/paymentlist.component';
 import { AuthGuard } from './shared/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -13,6 +15,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { role: '1' },
   },
+  { path: 'payment',component: PaymentComponent},
+  { path: 'paymentlist',component: PaymentlistComponent}
 ];
 
 @NgModule({

@@ -1,12 +1,12 @@
 <form name="paymentform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
     <!--Payment Id-->
-    <input type="" name="PaymentId" [(ngModel)]="payService.formData.PaymentId" />
+    <input type="hidden" name="PaymentId" [(ngModel)]="payService.formData.PaymentId" />
 
     <!--Payment-->
     <div class="form-group">
         <label>Total Amount :</label>
         <input name="Amount" #Amount="ngModel" [(ngModel)]="payService.formData.Amount"
-            class="form-control" placeholder="Enter Total Amount" minlength="10" maxlength="25" required
+            class="form-control" placeholder="Enter Total Amount" minlength="1" maxlength="25" required
             [ngClass]="{ 'is-invalid': Amount.touched && Amount.invalid }" />
         <div class="validation-error" *ngIf="Amount.touched && Amount.invalid">
             <div *ngIf="Amount.errors.required">Amount required</div>

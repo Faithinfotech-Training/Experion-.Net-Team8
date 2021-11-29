@@ -6,18 +6,21 @@ import { PaymentService } from './../shared/payment.service';
 @Component({
   selector: 'app-paymentlist',
   templateUrl: './paymentlist.component.html',
-  styleUrls: ['./paymentlist.component.scss']
+  styleUrls: ['./paymentlist.component.scss'],
 })
 export class PaymentlistComponent implements OnInit {
   page: number = 1;
   filter: string;
-  constructor(public payService: PaymentService,
+  constructor(
+    public payService: PaymentService,
     private toastr: ToastrService,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.payService.bindListPayments();
   }
-  populateForm(payment:Payment) {
+  populateForm(payment: Payment) {
     console.log(payment);
     this.payService.formData = Object.assign({}, payment);
   }

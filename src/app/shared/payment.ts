@@ -1,8 +1,7 @@
-
-
 export class Payment {
-    PaymentId :number;
-    Amount :number=0;
-    PatientId:number;
-    PaymentDate=new Date;
+  PaymentId: number;
+  Amount: number = 0;
+  //PatientId: number;
+  PatientName: string;
+  PaymentDate: Date = new Date();
 }

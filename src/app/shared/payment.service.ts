@@ -33,7 +33,7 @@ export class PaymentService {
     
 
   }
-  //get all employee
+  //get all Payment
   bindListPayments(){
     this.httpClient.get(environment.apiUrl+"/api/payment")
     .toPromise().then(response => 

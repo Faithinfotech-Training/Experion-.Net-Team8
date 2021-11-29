@@ -84,5 +84,27 @@ namespace Clinic_Management_System_8.Models
             }
         }
         #endregion
+        #region Payment by id
+        public async Task<PaymentViewModel> GetPaymentById(int id)
+        {
+            //--- get payment by patient id   ---//
+
+            if (_db != null)
+            {
+                //LINQ
+                return await(from p in _db.Payments
+                             from t in _db.Patients
+                             where p.PatientId == t.PatientId && p.PaymentId == id
+                             select new PaymentViewModel
+                             {
+                                 PaymentId = p.PaymentId,
+                                 Amount = p.Amount,
+                                 PatientName = t.PatientName,
+                                 PaymentDate = p.PaymentDate
+                             }).FirstOrDefaultAsync();
+            }
+            return null;
+        }
+        #endregion
     }
 }

@@ -30,7 +30,7 @@ namespace Clinic_Management_System_8.Controllers
                 {
                     return NotFound();
                 }
-                return Ok(pay);
+                return Ok(pays);
             }
             catch (Exception)
             {
@@ -90,7 +90,9 @@ namespace Clinic_Management_System_8.Controllers
         }
         #endregion
         #region Get payment by patient id 
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("Id")]
+
         public async Task<IActionResult> GetPaymentByPatientId(int id)
         {
             try
@@ -108,6 +110,27 @@ namespace Clinic_Management_System_8.Controllers
             }
         }
         #endregion
+        #region Get payment by id
+
+        [HttpGet("{id}")]
         
+        public async Task<IActionResult> GetPaymentById(int id)
+        {
+            try
+            {
+                var post = await pay.GetPaymentById(id);
+                if (post != null)
+                {
+                    return Ok(post);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+        #endregion
+
     }
 }

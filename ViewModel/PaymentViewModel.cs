@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Clinic_Management_System_8.Models
+namespace Clinic_Management_System_8.ViewModel
 {
-    public partial class Payments
+    public class PaymentViewModel
     {
         public int PaymentId { get; set; }
         public decimal Amount { get; set; }
-        public int PatientId { get; set; }
+        public string PatientName { get; set; }
         public DateTime? PaymentDate { get; set; }
-
-        public virtual Patients Patient { get; set; }
     }
 }

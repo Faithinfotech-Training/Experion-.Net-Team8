@@ -12,27 +12,28 @@ namespace Clinic_Management_System_8.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PatientController : ControllerBase
+    public class AppointmentController : ControllerBase
     {
-        IPatient patientRepo;
-        public PatientController(IPatient _patientRepo)
+
+        IAppointment appointmentRepo;
+        public AppointmentController(IAppointment _appointmentRepo)
         {
-            patientRepo = _patientRepo;
+            appointmentRepo = _appointmentRepo;
         }
 
-        //--- add a patient ---//
-        #region AddPatient
+        //--- add an appointment ---//
+        #region AddAppointment
 
         [HttpPost]
         [Authorize]
 
-        public async Task<IActionResult> AddPatient(Patients patient)
+        public async Task<IActionResult> AddAppointment(Appointments appointment)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var newPatient = await patientRepo.AddPatient(patient);
+                    var newPatient = await appointmentRepo.AddAppointment(appointment);
                     if (newPatient > 0)
                     {
                         return Ok(newPatient);
@@ -53,20 +54,27 @@ namespace Clinic_Management_System_8.Controllers
         #endregion
 
 
-        //--- Update Patient ---//
-        #region UpdatePatient
+        //--- update an appointment ---//
+        #region UpdateAppointment
 
         [HttpPut]
         [Authorize]
-        public async Task<IActionResult> UpdatePatient([FromBody] Patients patient)
+
+        public async Task<IActionResult> UpdateAppointment(Appointments appointment)
         {
-            //Check the validation of body
             if (ModelState.IsValid)
             {
                 try
                 {
-                    await patientRepo.UpdatePatient(patient);
-                    return Ok();
+                    var newPatient = await appointmentRepo.UpdateAppointment(appointment);
+                    if (newPatient != null)
+                    {
+                        return Ok(newPatient);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
                 catch (Exception)
                 {
@@ -75,72 +83,24 @@ namespace Clinic_Management_System_8.Controllers
             }
             return BadRequest();
         }
-        #endregion
-
-
-        //--- View all Patients ---//
-        #region ViewPatients
-
-        [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> ViewAllPatients()
-        {
-            try
-            {
-                var hobbies = await patientRepo.ViewAllPatients();
-                if (hobbies != null)
-                {
-                    return Ok(hobbies);
-                }
-                return NotFound();
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
 
         #endregion
 
 
-        //--- View Patient by Id ---//
-        #region ViewPatientById
-
-        [HttpGet("{id}")]
-        [Authorize]
-        public async Task<IActionResult> ViewPatientById(int id)
-        {
-            try
-            {
-                var patient = await patientRepo.ViewPatientById(id);
-                if (patient != null)
-                {
-                    return Ok(patient);
-                }
-                return NotFound();
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        #endregion
-
-
-        //--- View Patient by Date ---//
-        #region ViewPatientByDate
+        //--- View appointment by date ---//
+        #region ViewAppointmentByDate
 
         [HttpGet("{date}")]
         [Authorize]
-        public async Task<IActionResult> ViewPatientByDate(DateTime date)
+
+        public async Task<IActionResult> ViewAppointmentByDate(DateTime date)
         {
             try
             {
-                var patients = await patientRepo.ViewPatientByDate(date);
-                if (patients != null)
+                var appointment = await appointmentRepo.ViewAppointmentByDate(date);
+                if (appointment != null)
                 {
-                    return Ok(patients);
+                    return Ok(appointment);
                 }
                 return NotFound();
             }
@@ -151,5 +111,57 @@ namespace Clinic_Management_System_8.Controllers
         }
 
         #endregion
+
+
+        //--- View all Appointments ---//
+        #region ViewAllAppointments
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> ViewAllAppointments()
+        {
+            try
+            {
+                var appointments = await appointmentRepo.ViewAllAppointments();
+                if (appointments != null)
+                {
+                    return Ok(appointments);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        #endregion
+
+
+        //--- View Appointment For Doctor ---//
+        #region ViewAppointmentForDoctor
+
+        [HttpGet("{id}")]
+        [Authorize]
+
+        public async Task<IActionResult> ViewAppointmentForDoctor(int id)
+        {
+            try
+            {
+                var appointments = await appointmentRepo.ViewAppointmentForDoctor(id);
+                if (appointments != null)
+                {
+                    return Ok(appointments);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        #endregion
+
     }
 }

@@ -2,10 +2,18 @@ import { Patient } from './patient';
 import { Payment } from './payment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
+  insertEmployee(value: any) {
+    throw new Error('Method not implemented.');
+  }
+  updateEmployee(value: any) {
+    throw new Error('Method not implemented.');
+  }
   formData:Payment=new Payment();
   patient:Patient[];
  payments: Payment[];
@@ -18,29 +26,29 @@ export class PaymentService {
       .then((response) => (this.patient = response as Patient[]));
   }
   //insert a employee
-  insertEmployee(employee: Employee):Observable<any> {
-    return this.httpClient.post(environment.apiUrl+"/api/emp/addemployee",employee);
+  insertPayment(payment: Payment):Observable<any> {
+    return this.httpClient.post(environment.apiUrl+"/api/payment",payment);
 
 
   }
-  updateEmployee(employee: Employee):Observable<any> {
-    return this.httpClient.put(environment.apiUrl+"/api/emp/updateemployee",employee);
+  updatePayment(payment: Payment):Observable<any> {
+    return this.httpClient.put(environment.apiUrl+"/api/payment",payment);
     
 
   }
   //get all employee
-  bindListEmployees(){
-    this.httpClient.get(environment.apiUrl+"/api/emp/getallemployee")
+  bindListPayments(){
+    this.httpClient.get(environment.apiUrl+"/api/payment")
     .toPromise().then(response => 
-    this.employees= response as Employee[]);
+    this.payments= response as Payment[]);
   }
   //particular employee from
 
-  getEmployee(empId: number): Observable<any> {
+  getPaymentPatientId(patientId: number): Observable<any> {
 
     return this.httpClient.get(
 
-      environment.apiUrl + '/api/emp/getemployeebyid?id=' + empId
+      environment.apiUrl + '/api/payment/' + patientId
 
     );
 

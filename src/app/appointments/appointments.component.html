@@ -1,0 +1,37 @@
+<form name="appointmentform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+
+<!--Appointment Id-->
+<input type="" name="AppoinmentId" [(ngModel)]="appointmentService.formData.AppoinmentId" />
+
+
+<!--ApoinmentType-->
+
+<br />
+
+<div class="form-group">
+    <div>
+        <input type="radio" name="ApoinmentType" id="ApoinmentType" #ApoinmentType="ngModel" value= 1
+            [(ngModel)]="appointmentService.formData.AppointmentTypeId" class="form-check-input" />
+        <label class="col-md-4">Doctor</label>
+        &nbsp;
+        <input type="radio" name="ApoinmentType" id="ApoinmentType" #ApoinmentType="ngModel" value= 2
+            [(ngModel)]="appointmentService.formData.AppointmentTypeId" class="form-check-input" />
+        <label class="col-md-4">Lab Technician</label>
+    </div>
+</div>
+
+<!--Doctor-->
+<br>
+<div class="form-group">
+    <label class="col-md-4">Doctor:</label>
+    <select class="form-control" name="EmployeeId" id="EmployeeId" #EmployeeId="ngModel"
+        [(ngModel)]="appointmentService.formData.EmployeeId" required>
+        <option value=1>Choose a Department</option>
+        <option *ngFor="let dept of appointmentService.departments" value="{{dept.Id}}">{{dept.Name}}
+        </option>
+
+    </select>
+    <div class="validation-error" *ngIf="DepartmentId.touched && DepartmentId.invalid">
+        <div *ngIf="DepartmentId.errors.required">Department name is required</div>
+    </div>
+</div>

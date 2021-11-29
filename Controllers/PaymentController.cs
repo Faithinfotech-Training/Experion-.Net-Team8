@@ -24,13 +24,13 @@ namespace Clinic_Management_System_8.Controllers
         public async Task<IActionResult> GetPaymentDetails()
         {
             try
-            {
-                var posts = await pay.GetPaymentDetails();
-                if (posts == null)
+           {
+                var pays = await pay.GetPaymentDetails();
+                if (pays == null)
                 {
                     return NotFound();
                 }
-                return Ok(posts);
+                return Ok(pay);
             }
             catch (Exception)
             {

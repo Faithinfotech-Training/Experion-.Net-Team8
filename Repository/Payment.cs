@@ -38,7 +38,7 @@ namespace Clinic_Management_System_8.Models
                 //LINQ
                 return await(from p in _db.Payments
                              from t in _db.Patients
-                             where p.PatientId==t.PatientId
+                             where t.PatientId==p.PatientId
                              select new PaymentViewModel
                              {
                                  PaymentId=p.PaymentId,

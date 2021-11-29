@@ -4,6 +4,7 @@ import { Employee } from './employee';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { Roles } from './roles';
 
 @Injectable({
   providedIn: 'root',
@@ -13,15 +14,23 @@ export class EmployeeService {
   formData: Employee = new Employee();
   departments: Department[];
   employees: Employee[];
-
+  roles: Roles[];
   constructor(private httpClient: HttpClient) {}
 
   //GET department for binding
   getAllDepartments() {
     this.httpClient
-      .get(environment.apiUrl + '/api/department/getalldepartments')
+      .get(environment.apiUrl + '/api/department')
       .toPromise()
       .then((response) => (this.departments = response as Department[]));
+  }
+
+  //GET department for binding
+  getAllRoles() {
+    this.httpClient
+      .get(environment.apiUrl + '/api/roles')
+      .toPromise()
+      .then((response) => (this.roles = response as Roles[]));
   }
 
   //insert employee

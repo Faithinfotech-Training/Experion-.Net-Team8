@@ -20,7 +20,10 @@ export class EmployeeComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.empService.getAllDepartments();
+    this.empService.getAllRoles();
+  }
 
   //onSubmit function
   onSubmit(form: NgForm) {

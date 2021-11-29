@@ -1,54 +1,90 @@
-<form name="paymentform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
-    <!--Payment Id-->
-    <input type="" name="PaymentId" [(ngModel)]="payService.formData.PaymentId" />
+<form
+  name="paymentform"
+  #form="ngForm"
+  autocomplete="off"
+  (ngSubmit)="onSubmit(form)"
+>
+  <!--Payment Id-->
+  <input
+    type="hidden"
+    name="PaymentId"
+    [(ngModel)]="payService.formData.PaymentId"
+  />
 
-    <!--Payment-->
-    <div class="form-group">
-        <label>Total Amount :</label>
-        <input name="Amount" #Amount="ngModel" [(ngModel)]="payService.formData.Amount"
-            class="form-control" placeholder="Enter Total Amount" minlength="10" maxlength="25" required
-            [ngClass]="{ 'is-invalid': Amount.touched && Amount.invalid }" />
-        <div class="validation-error" *ngIf="Amount.touched && Amount.invalid">
-            <div *ngIf="Amount.errors.required">Amount required</div>
-        </div>
+  <!--Payment-->
+  <div class="form-group">
+    <label>Total Amount :</label>
+    <input
+      name="Amount"
+      #Amount="ngModel"
+      [(ngModel)]="payService.formData.Amount"
+      class="form-control"
+      placeholder="Enter Total Amount"
+      minlength="1"
+      maxlength="25"
+      required
+      [ngClass]="{ 'is-invalid': Amount.touched && Amount.invalid }"
+    />
+    <div class="validation-error" *ngIf="Amount.touched && Amount.invalid">
+      <div *ngIf="Amount.errors.required">Amount required</div>
     </div>
+  </div>
 
-    <!--PatientId-->
-    <br />
-    <div class="form-group">
-        <label>Patient Id:</label>
-        <input name="PatientId" placeholder="PatientId" #PatientId="ngModel"
-            [(ngModel)]="payService.formData.PatientId" class="form-control" placeholder="Enter PatientId"
-            maxlength="25" required [ngClass]="{ 'is-invalid': PatientId.touched && PatientId.invalid }" />
-        <div class="validation-error" *ngIf="PatientId.touched && PatientId.invalid">
-            <div *ngIf="PatientId.errors.required">PatientId is required</div>
-        </div>
+  <!--PatientName-->
+  <br />
+  <div class="form-group">
+    <label>Patient Id:</label>
+    <input
+      name="PatientName"
+      placeholder="PatientName"
+      #PatientName="ngModel"
+      [(ngModel)]="payService.formData.PatientName"
+      class="form-control"
+      placeholder="Enter PatientName"
+      maxlength="25"
+      required
+      [ngClass]="{ 'is-invalid': PatientName.touched && PatientName.invalid }"
+    />
+    <div
+      class="validation-error"
+      *ngIf="PatientName.touched && PatientName.invalid"
+    >
+      <div *ngIf="PatientName.errors.required">PatientName is required</div>
     </div>
+  </div>
 
-    <!--Date of payment generation-->
-    <br />
-    <div class="form-group">
-        <label>Date of joining:</label>
-        <input type="date" class="form-control" name="PaymentDate" #PaymentDate="ngModel"
-            [(ngModel)]="payService.formData.PaymentDate" required [ngClass]="{
+  <!--Date of payment generation-->
+  <br />
+  <div class="form-group">
+    <label>Date of joining:</label>
+    <input
+      type="date"
+      class="form-control"
+      name="PaymentDate"
+      #PaymentDate="ngModel"
+      [(ngModel)]="payService.formData.PaymentDate"
+      required
+      [ngClass]="{
         'is-invalid': PaymentDate.touched && PaymentDate.invalid
-      }" />
-        <div class="validation-error" *ngIf="PaymentDate.touched && PaymentDate.invalid">
-            <div *ngIf="PaymentDate.errors.required">
-                Date of payment is required
-            </div>
-        </div>
+      }"
+    />
+    <div
+      class="validation-error"
+      *ngIf="PaymentDate.touched && PaymentDate.invalid"
+    >
+      <div *ngIf="PaymentDate.errors.required">Date of payment is required</div>
     </div>
+  </div>
 
-   
-
-   
-
-    <!--Submit button-->
-    <br />
-    <div class="form-group">
-        <button type="submit" [disabled]="!(form.valid && form.dirty)" class="btn btn-primary form-control">
-            Submit
-        </button>
-    </div>
+  <!--Submit button-->
+  <br />
+  <div class="form-group">
+    <button
+      type="submit"
+      [disabled]="!(form.valid && form.dirty)"
+      class="btn btn-primary form-control"
+    >
+      Submit
+    </button>
+  </div>
 </form>

@@ -24,8 +24,8 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit(): void {
  //get departments
- this.payService.BindCmbPatients();
- this.patientId = this.route.snapshot.params['patientId'];
+ //this.payService.BindCmbPatients();
+ this.patientId = this.route.snapshot.params['paymentId'];
  //this.resetform()
  if (this.patientId != 0 || this.patientId != null) {
    //getPayment

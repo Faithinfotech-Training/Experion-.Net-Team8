@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="header">
+    <h5>Payment Information</h5>
+    <!--search-->
+    <div class="form-control">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Search....."
+        [(ngModel)]="filter"
+      />
+      <!--button also we can use here-->
+      <!--Button-->
+      <a
+        [routerLink]="['customer']"
+        class="btn btn-primary"
+        style="float: right"
+        >Refresh</a
+      >
+    </div>
+    <a [routerLink]="['../payment']" class="btn btn-primary">Add Payment</a>
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>PaymentId</th>
+
+          <th>Amount</th>
+
+          <th>Patient Name</th>
+
+          <th>Payment date</th>
+
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let c of payService.payments
+              | filter: filter
+              | paginate: { itemsPerPage: 5, currentPage: page }
+          "
+        >
+          <td (click)="populateForm(c)">{{ c.PaymentId }}</td>
+
+          <td (click)="populateForm(c)">{{ c.Amount }}</td>
+
+          <td (click)="populateForm(c)">{{ c.PatientName }}</td>
+
+          <td (click)="populateForm(c)">{{ c.PaymentDate }}</td>
+          <td>
+            <button
+              (click)="updatePayment(c.PaymentId)"
+              class="btn btn-info"
+              style="margin-left: 10px"
+            >
+              Edit
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="footer">
+      <!--paginatiom control-->
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

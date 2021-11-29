@@ -8,16 +8,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PaymentService {
-  insertEmployee(value: any) {
-    throw new Error('Method not implemented.');
-  }
-  updateEmployee(value: any) {
-    throw new Error('Method not implemented.');
-  }
+  
   formData:Payment=new Payment();
   patient:Patient[];
  payments: Payment[];
   constructor(private httpClient:HttpClient) { }
+ 
   //get patients for binding
   BindCmbPatients() {
     this.httpClient
@@ -25,6 +21,7 @@ export class PaymentService {
       .toPromise()
       .then((response) => (this.patient = response as Patient[]));
   }
+  
   //insert a employee
   insertPayment(payment: Payment):Observable<any> {
     return this.httpClient.post(environment.apiUrl+"/api/payment",payment);
@@ -36,7 +33,7 @@ export class PaymentService {
     
 
   }
-  //get all employee
+  //get all Payment
   bindListPayments(){
     this.httpClient.get(environment.apiUrl+"/api/payment")
     .toPromise().then(response => 

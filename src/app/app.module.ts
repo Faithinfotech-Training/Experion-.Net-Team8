@@ -14,9 +14,12 @@ import { AdminComponent } from './admin/admin.component';
 import { AuthService } from './shared/auth.service';
 import { AuthGuard } from './shared/auth.guard';
 import{PaymentComponent} from './payment/payment.component';
+import { AppointmentsComponent } from './appointments/appointments.component';
+import { AppointmentsListComponent } from './appointments-list/appointments-list.component';
+import { PrescriptionComponent } from './prescription/prescription.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, AdminComponent,PaymentComponent],
+  declarations: [AppComponent, LoginComponent, AdminComponent,PaymentComponent, AppointmentsComponent, AppointmentsListComponent, PrescriptionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

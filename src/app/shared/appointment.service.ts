@@ -9,6 +9,8 @@ import { Appointment } from './appointment';
 })
 export class AppointmentService {
 
+  //create instance
+  formData: Appointment = new Appointment();      
   appointments: Appointment[];
   constructor(private httpClient: HttpClient) { }
 

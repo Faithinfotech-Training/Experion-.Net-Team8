@@ -41,6 +41,7 @@ namespace Clinic_Management_System_8
 
             //--- add dependency injection ---//
             services.AddScoped<IPatient, Patient>();
+
             services.AddScoped<ITestReport, TestReport>();
             services.AddScoped<IPrescription, Prescription>();
             services.AddScoped<IAppointment, AppointmentRepo>();

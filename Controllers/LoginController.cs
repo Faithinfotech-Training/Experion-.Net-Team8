@@ -41,7 +41,7 @@ namespace Clinic_Management_System_8.Controllers
             if (user != null)
             {
                 var tokenString = GenerateJWT(username, password);
-                response = Ok(new { username = user.UserName, RoleId = user.RoleId, Token = tokenString });
+                response = Ok(new { UserName = user.UserName, RoleId = user.RoleId, Token = tokenString });
                 return response;
             }
             return response;

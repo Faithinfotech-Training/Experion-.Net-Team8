@@ -20,12 +20,15 @@ export class PaymentlistComponent implements OnInit {
   ngOnInit(): void {
     this.payService.bindListPayments();
   }
+  reloadSearch() { 
+      window.location.reload(); 
+   }
   populateForm(payment: Payment) {
     console.log(payment);
     this.payService.formData = Object.assign({}, payment);
   }
   //update
-  updateCustomer(payId: number) {
+  updatePayment(payId: number) {
     console.log(payId);
     this.router.navigate(['payment', payId]);
   }

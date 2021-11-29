@@ -48,7 +48,7 @@
 
           <td (click)="populateForm(c)">{{ c.PatientName }}</td>
 
-          <td (click)="populateForm(c)">{{ c.PaymentDate }}</td>
+          <td (click)="populateForm(c)">{{ c.PaymentDate | date:"dd-MM-yyyy"}}</td>
           <td>
             <button
               (click)="updatePayment(c.PaymentId)"

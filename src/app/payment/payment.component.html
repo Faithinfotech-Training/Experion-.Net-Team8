@@ -31,27 +31,28 @@
   </div>
 
   <!--PatientName-->
-  <br />
-  <div class="form-group">
-    <label>Patient Id:</label>
-    <input
-      name="PatientName"
-      placeholder="PatientName"
-      #PatientName="ngModel"
-      [(ngModel)]="payService.formData.PatientName"
-      class="form-control"
-      placeholder="Enter PatientName"
-      maxlength="25"
-      required
-      [ngClass]="{ 'is-invalid': PatientName.touched && PatientName.invalid }"
-    />
-    <div
-      class="validation-error"
-      *ngIf="PatientName.touched && PatientName.invalid"
-    >
-      <div *ngIf="PatientName.errors.required">PatientName is required</div>
+  <!--<div class="form-group">
+    <label class="col-md-4">Patient Name:</label>
+    <select class="form-control" name="PatientId" id="PatientId" #PatientId="ngModel"
+        [(ngModel)]="payService.formData.PatientId" required>
+        <option value=0 disabled>Choose a Patient</option>
+        <option *ngFor="let patient of payService.patients" 
+        value="{{patient.PatientId}}">{{patient.PatientName}}</option>
+    </select>
+    <div class="validation-error" *ngIf="PatientId.touched && PatientId.invalid">
+        <div *ngIf="PatientId.errors.required">PatientId is required</div>
     </div>
-  </div>
+</div>-->
+<br />
+    <div class="form-group">
+        <label>PatientId:</label>
+        <input name="PatientId" placeholder="PatientId" #PatientId="ngModel"
+            [(ngModel)]="payService.formData.PatientId" class="form-control" placeholder="Enter PatientId"
+            maxlength="50" required [ngClass]="{ 'is-invalid': PatientId.touched && PatientId.invalid }" />
+        <div class="validation-error" *ngIf="PatientId.touched && PatientId.invalid">
+            <div *ngIf="PatientId.errors.required">PatientId is required</div>
+        </div>
+    </div>
 
   <!--Date of payment generation-->
   <br />

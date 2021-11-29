@@ -57,30 +57,19 @@ export class LoginComponent implements OnInit {
             console.log('Admin');
 
             //storing in localStorage/sessionStorage
-            localStorage.setItem('username', this.jwtResponse.username);
+            localStorage.setItem('username', this.jwtResponse.UserName);
             localStorage.setItem(
               'ACCESS_ROLE',
               this.jwtResponse.RoleId.toString()
             );
-            sessionStorage.setItem('username', this.jwtResponse.username);
-            this.router.navigateByUrl('/manager');
-          } else if (this.jwtResponse.RoleId === 2) {
-            //logged as Manager
-            console.log('HR');
-          } else if (this.jwtResponse.RoleId === 3) {
-            //logged as Administrator
-            console.log('Software Engineer');
-          } else if (this.jwtResponse.RoleId === 1) {
-            //logged as Administrator
-            console.log('Administrator');
-            //storing in localStorage/sessionStorage
-            localStorage.setItem('username', this.jwtResponse.username);
-            localStorage.setItem(
-              'ACCESS_ROLE',
-              this.jwtResponse.RoleId.toString()
-            );
-            sessionStorage.setItem('username', this.jwtResponse.username);
+            sessionStorage.setItem('username', this.jwtResponse.UserName);
             this.router.navigateByUrl('/admin');
+          } else if (this.jwtResponse.RoleId === 2) {
+            //logged as Patient
+            console.log('patient');
+          } else if (this.jwtResponse.RoleId === 3) {
+            //logged as Employee
+            console.log('Employee');
           } else {
             this.error =
               'Sorry! not allowed to access ... Invalid authorization';

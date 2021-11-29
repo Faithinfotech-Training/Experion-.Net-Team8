@@ -1,3 +1,4 @@
+import { EmployeeService } from './shared/employee.service';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -13,11 +14,14 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthService } from './shared/auth.service';
 import { AuthGuard } from './shared/auth.guard';
+import { EmployeeComponent } from './employee/employee.component';
 import{PaymentComponent} from './payment/payment.component';
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
 
+
+
 @NgModule({
-  declarations: [AppComponent, LoginComponent, AdminComponent,PaymentComponent, PaymentlistComponent],
+  declarations: [AppComponent, LoginComponent, AdminComponent,PaymentComponent, PaymentlistComponent,EmployeeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +34,7 @@ import { PaymentlistComponent } from './paymentlist/paymentlist.component';
     ReactiveFormsModule,
   ],
   providers: [
+    EmployeeService,
     AuthService,
     AuthGuard,
     {

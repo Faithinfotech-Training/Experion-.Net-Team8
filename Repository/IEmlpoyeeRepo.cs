@@ -24,6 +24,6 @@ namespace Clinic_Management_System_8.Repository
 
         //--- delete Employee by id---//
 
-        Task<Employees> DeleteEmployee(int id);
+        Task DeleteEmployee(int id);
     }
 }

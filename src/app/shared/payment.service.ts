@@ -13,6 +13,7 @@ export class PaymentService {
   patient:Patient[];
  payments: Payment[];
   constructor(private httpClient:HttpClient) { }
+ 
   //get patients for binding
   BindCmbPatients() {
     this.httpClient
@@ -20,6 +21,7 @@ export class PaymentService {
       .toPromise()
       .then((response) => (this.patient = response as Patient[]));
   }
+  
   //insert a employee
   insertPayment(payment: Payment):Observable<any> {
     return this.httpClient.post(environment.apiUrl+"/api/payment",payment);

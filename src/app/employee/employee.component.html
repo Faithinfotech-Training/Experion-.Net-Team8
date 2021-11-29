@@ -32,7 +32,7 @@
       <div *ngIf="EmployeeName.errors.required">Name is required</div>
     </div>
   </div>
-
+  <br />
   <!--Emloyee Age-->
   <div class="form-group">
     <label>Age:</label>
@@ -51,6 +51,7 @@
     </div>
   </div>
 
+  <br />
   <!--Emloyee Mobile Number-->
   <div class="form-group">
     <label>Mobile Number:</label>
@@ -69,10 +70,12 @@
     </div>
   </div>
 
+  <br />
   <!--Gender-->
   <br />
   <div class="form-group">
     <div>
+      <label>Gender:</label>
       <input
         type="radio"
         name="Gender"
@@ -82,7 +85,7 @@
         [(ngModel)]="empService.formData.Gender"
         class="form-check-input"
       />
-      <label class="col-md-4">Male</label>
+      <label class="col-md-4"> Male</label>
       &nbsp;
       <input
         type="radio"
@@ -93,7 +96,7 @@
         [(ngModel)]="empService.formData.Gender"
         class="form-check-input"
       />
-      <label class="col-md-4">Female</label>
+      <label class="col-md-4"> Female</label>
     </div>
   </div>
 

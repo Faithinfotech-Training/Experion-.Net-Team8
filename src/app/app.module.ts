@@ -15,13 +15,18 @@ import { AdminComponent } from './admin/admin.component';
 import { AuthService } from './shared/auth.service';
 import { AuthGuard } from './shared/auth.guard';
 import { EmployeeComponent } from './employee/employee.component';
-import{PaymentComponent} from './payment/payment.component';
+import { PaymentComponent } from './payment/payment.component';
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
 
-
-
 @NgModule({
-  declarations: [AppComponent, LoginComponent, AdminComponent,PaymentComponent, PaymentlistComponent,EmployeeComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    AdminComponent,
+    PaymentComponent,
+    PaymentlistComponent,
+    EmployeeComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -20,7 +20,7 @@ namespace Clinic_Management_System_8.Repository
         Task<List<PatientViewModel>> ViewAllPatients();
 
         //--- View Patient by Id---//
-        Task<PatientViewModel> ViewPatientById(int Id);
+        Task<Patients> ViewPatientById(int Id);
 
         //--- View Patient by Id---//
         Task<List<PatientViewModel>> ViewPatientByDate(DateTime date);

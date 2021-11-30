@@ -17,6 +17,7 @@ namespace Clinic_Management_System_8.Controllers
         {
             pay = _p;
         }
+        //Get payment details
         #region Get payment details
 
         [HttpGet]
@@ -39,8 +40,10 @@ namespace Clinic_Management_System_8.Controllers
 
         }
         #endregion
+        //add a payment details
         #region Add payment details
         [HttpPost]
+
         //[Authorize]
         public async Task<IActionResult> AddPayment(Payments payment)
         {
@@ -49,10 +52,10 @@ namespace Clinic_Management_System_8.Controllers
             {
                 try
                 {
-                    var postId = await pay.AddPayment(payment);
-                    if (postId > 0)
+                    var payId = await pay.AddPayment(payment);
+                    if (payId > 0)
                     {
-                        return Ok(postId);
+                        return Ok(payId);
                     }
                     else
                     {
@@ -68,6 +71,7 @@ namespace Clinic_Management_System_8.Controllers
         }
 
         #endregion
+        //update payment by passing id
         #region update payment details
         [HttpPut]
         //[Authorize]
@@ -89,6 +93,7 @@ namespace Clinic_Management_System_8.Controllers
             return BadRequest();
         }
         #endregion
+        //get payment by patient  id
         #region Get payment by patient id 
         [HttpGet]
         [Route("Id")]
@@ -97,10 +102,10 @@ namespace Clinic_Management_System_8.Controllers
         {
             try
             {
-                var post = await pay.GetPaymentByPatientId(id);
-                if (post != null)
+                var payment = await pay.GetPaymentByPatientId(id);
+                if (payment != null)
                 {
-                    return Ok(post);
+                    return Ok(payment);
                 }
                 return NotFound();
             }
@@ -110,6 +115,7 @@ namespace Clinic_Management_System_8.Controllers
             }
         }
         #endregion
+        //get payment by id
         #region Get payment by id
 
         [HttpGet("{id}")]
@@ -118,10 +124,10 @@ namespace Clinic_Management_System_8.Controllers
         {
             try
             {
-                var post = await pay.GetPaymentById(id);
-                if (post != null)
+                var payment = await pay.GetPaymentById(id);
+                if (payment != null)
                 {
-                    return Ok(post);
+                    return Ok(payment);
                 }
                 return NotFound();
             }

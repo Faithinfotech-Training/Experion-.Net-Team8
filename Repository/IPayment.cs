@@ -14,6 +14,6 @@ namespace Clinic_Management_System_8.Models
         Task UpdatePayment(Payments payment);
 
         Task<PaymentViewModel> GetPaymentByPatientId(int id);
-        Task<PaymentViewModel> GetPaymentById(int id);
+        Task<Payments> GetPaymentById(int id);
     }
 }

@@ -1,35 +1,47 @@
-.form-group > input {
-    font-weight: bolder;
-  }
-  
-  .form-group > select {
-    font-weight: bolder;
-  }
-  
-  .form-group input placeholder {
-    color: antiquewhite;
-  }
-  
-  table tobody tr:hover {
-    background-color: rgb(201, 201, 201);
-  
-    cursor: pointer;
-  }
-  
-  input.invalid {
-    border-color: red;
-  }
-  
-  div.validation-error {
-    width: 100%;
-  
-    color: red;
-  
-    margin-top: 0.3em;
-  
-    font-size: 80%;
-  }
-  table tr:hover {
-    background-color: rgba(0, 119, 255, 0.301);
-  }
-  
+label {
+  font-weight: bolder;
+  margin-bottom: 3px;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+  margin-left: 15px;
+}
+
+.form-group > select {
+  font-weight: bolder;
+}
+
+.form-group input placeholder {
+  color: antiquewhite;
+}
+
+table tobody tr:hover {
+  background-color: rgb(201, 201, 201);
+
+  cursor: pointer;
+}
+
+input.invalid {
+  border-color: red;
+}
+
+div.validation-error {
+  width: 100%;
+
+  color: red;
+
+  margin-top: 0.3em;
+
+  font-size: 80%;
+}
+table tr:hover {
+  background-color: rgba(0, 119, 255, 0.301);
+}
+
+.nav-link {
+  border: 1px solid blue;
+  padding: 0.2em 0.5em;
+  border-radius: 0.25em;
+  margin: 1em;
+}

@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           this.jwtResponse = data;
           sessionStorage.setItem('jwtToken', this.jwtResponse.Token);
           //Check the role--based on TRoleIdit redirect to the respective component
-          if (this.jwtResponse.RoleId === 1) {
+          if (this.jwtResponse.RoleId === 3) {
             //logged as Admin
             console.log('Admin');
 

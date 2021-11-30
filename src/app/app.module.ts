@@ -17,6 +17,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { EmployeeComponent } from './employee/employee.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { PaymentlistComponent } from './paymentlist/paymentlist.component';
     PaymentComponent,
     PaymentlistComponent,
     EmployeeComponent,
+    EmployeeListComponent,
   ],
   imports: [
     BrowserModule,

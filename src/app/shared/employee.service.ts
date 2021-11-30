@@ -25,7 +25,7 @@ export class EmployeeService {
       .then((response) => (this.departments = response as Department[]));
   }
 
-  //GET department for binding
+  //GET roles for binding
   getAllRoles() {
     this.httpClient
       .get(environment.apiUrl + '/api/roles')

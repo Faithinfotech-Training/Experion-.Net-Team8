@@ -24,5 +24,6 @@ namespace Clinic_Management_System_8.Repository
 
         //--- View Patient by Id---//
         Task<List<PatientViewModel>> ViewPatientByDate(DateTime date);
+
     }
 }

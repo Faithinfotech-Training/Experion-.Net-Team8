@@ -25,5 +25,8 @@ namespace Clinic_Management_System_8.Repository
         //--- delete Employee by id---//
 
         Task DeleteEmployee(int id);
+
+        //-- View All Doctors Details --//
+        Task<List<DoctorModel>> GetAllDoctors();
     }
 }

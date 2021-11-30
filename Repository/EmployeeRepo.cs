@@ -129,5 +129,32 @@ namespace Clinic_Management_System_8.Repository
         }
         #endregion
 
+        //--- member function to get all doctors ---//
+        #region GetAllDoctors
+        public async Task<List<DoctorModel>> GetAllDoctors()
+        {
+            if (db != null)
+            {
+                return await (from e in db.Employees
+                              from r in db.Roles
+                              from es in db.EmployeeSpecializations
+                              from s in db.Specializations
+                              where e.RoleId == r.RoleId && e.EmployeeId == es.EmployeeId && es.SpecializationId == s.SpecializationId && r.RoleName == "Doctor"
+                              select new DoctorModel
+                              {
+                                  EmployeeId = e.EmployeeId,
+                                  EmployeeName = e.EmployeeName,
+                                  Age = e.Age,
+                                  MobileNo = e.MobileNo,
+                                  Gender = e.Gender,
+                                  DateOfJoining = e.DateOfJoining,
+                                  Specialization = s.SpecializationName,
+                                  IsActive = e.IsActive
+                              }).ToListAsync();
+            }
+            return null;
+        }
+        #endregion
+
     }
 }

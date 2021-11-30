@@ -129,6 +129,8 @@ namespace Clinic_Management_System_8.Controllers
         }
         #endregion
 
+
+        //--- Delete a Employee -- //
         #region delete user 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deleteuser(int id)
@@ -149,6 +151,30 @@ namespace Clinic_Management_System_8.Controllers
             return BadRequest();
         }
         #endregion
+
+        //-- Get All Doctors -- //
+        #region GetAllDoctors
+        [HttpGet]
+        //[Authorize]
+        //[Route("GetEmployees")]
+        public async Task<IActionResult> GetAllDoctors()
+        {
+            try
+            {
+                var doctors = await employeeRepo.GetAllDoctors();
+                if (doctors != null)
+                {
+                    return Ok(doctors);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+        #endregion
+
 
 
     }

@@ -21,6 +21,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { PatientComponent } from './patient/patient.component';
+import { ReceptionistComponent } from './receptionist/receptionist.component';
 
 @NgModule({
   declarations: [
@@ -33,9 +34,9 @@ import { PatientComponent } from './patient/patient.component';
     EmployeeListComponent,
     AppointmentsComponent,
     PatientComponent,
+    ReceptionistComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     FormsModule,
     NgxPaginationModule,

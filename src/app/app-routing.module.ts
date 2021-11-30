@@ -8,6 +8,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { PaymentComponent } from './payment/payment.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { ReceptionistComponent } from './receptionist/receptionist.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -22,7 +23,12 @@ const routes: Routes = [
   { path: 'paymentlist', component: PaymentlistComponent },
   { path: 'payment/:paymentId', component: PaymentComponent },
   { path: 'employee', component: EmployeeComponent },
-  { path: 'appointments', component: AppointmentsComponent },
+  {
+    path: 'receptionist',
+    component: ReceptionistComponent,
+    canActivate: [AuthGuard],
+    data: { role: '4' },
+  }
 ];
 
 @NgModule({

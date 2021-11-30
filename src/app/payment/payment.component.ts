@@ -79,7 +79,7 @@ export class PaymentComponent implements OnInit {
 
       this.toastrService.success(
         'Payment record has been inserted',
-        'EmApp v2021'
+        'Clinic v2021'
       );
     });
   }
@@ -96,7 +96,7 @@ export class PaymentComponent implements OnInit {
 
       this.toastrService.success(
         'Payment record has been updated',
-        'EmApp v2021'
+        'Clinic v2021'
       );
     });
 

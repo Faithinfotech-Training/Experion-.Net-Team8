@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeService } from './shared/employee.service';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
@@ -6,7 +7,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -31,12 +31,12 @@ import { PaymentlistComponent } from './paymentlist/paymentlist.component';
     BrowserModule,
     AppRoutingModule,
     NgxPaginationModule,
-    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
     Ng2SearchPipeModule,
-    ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     EmployeeService,

@@ -131,7 +131,7 @@ namespace Clinic_Management_System_8.Repository
 
         //--- member function to get all doctors ---//
         #region GetAllDoctors
-        public async Task<List<DoctorModel>> GetAllDoctors()
+        public async Task<List<DoctorModel>> GetAllDoctors(int id)
         {
             if (db != null)
             {
@@ -139,7 +139,7 @@ namespace Clinic_Management_System_8.Repository
                               from r in db.Roles
                               from es in db.EmployeeSpecializations
                               from s in db.Specializations
-                              where e.RoleId == r.RoleId && e.EmployeeId == es.EmployeeId && es.SpecializationId == s.SpecializationId && r.RoleName == "Doctor"
+                              where e.RoleId == r.RoleId && e.EmployeeId == es.EmployeeId && es.SpecializationId == s.SpecializationId && r.RoleId == id
                               select new DoctorModel
                               {
                                   EmployeeId = e.EmployeeId,

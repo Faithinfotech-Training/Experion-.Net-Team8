@@ -27,6 +27,6 @@ namespace Clinic_Management_System_8.Repository
         Task DeleteEmployee(int id);
 
         //-- View All Doctors Details --//
-        Task<List<DoctorModel>> GetAllDoctors();
+        Task<List<DoctorModel>> GetAllDoctors(int id);
     }
 }

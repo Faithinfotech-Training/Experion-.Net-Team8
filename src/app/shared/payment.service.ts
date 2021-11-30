@@ -8,10 +8,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PaymentService {
-  
   formData:Payment=new Payment();
   patients:Patient[];
- payments: Payment[];
+  payments: Payment[];
   constructor(private httpClient:HttpClient) { }
  
   //get patients for binding
@@ -20,6 +19,8 @@ export class PaymentService {
       .get(environment.apiUrl + '/api/patient')
       .toPromise()
       .then((response) => (this.patients = response as Patient[]));
+      console.log("Hai heloo");
+      console.log(this.patients);
   }
   
   //insert a employee
@@ -36,7 +37,7 @@ export class PaymentService {
   //get all Payment
   bindListPayments(){
     this.httpClient.get(environment.apiUrl+"/api/payment")
-    .toPromise().then(response => 
+    .toPromise().then((response )=> 
     this.payments= response as Payment[]);
   }
   //particular employee from

@@ -13,7 +13,6 @@ import { NgForm } from '@angular/forms';
 })
 export class PaymentComponent implements OnInit {
   payId: number;
-  
   payment: Payment = new Payment();
   constructor(
     public payService: PaymentService,
@@ -24,8 +23,10 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit(): void {
  //get departments
- //this.payService.BindCmbPatients();
+ this.payService.BindCmbPatients();
+ 
  this.payId = this.route.snapshot.params['paymentId'];
+ console.log("payId"+this.payId);
  //this.resetform()
  if (this.payId != 0 || this.payId != null) {
    //getPayment
@@ -37,7 +38,6 @@ export class PaymentComponent implements OnInit {
        'yyyy-MM-dd'
      );
      data.PaymentDate = formatedDate;
-     this.payService.formData = Object.assign({}, data);
      this.payService.formData = data;
      this.payService.formData = Object.assign({}, data);
    });

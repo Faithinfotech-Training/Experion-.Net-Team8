@@ -34,7 +34,7 @@ import { ReceptionistComponent } from './receptionist/receptionist.component';
     EmployeeListComponent,
     ReceptionistComponent,
     AppointmentsComponent,
-    PatientComponent,
+    PatientComponent
   ],
   imports: [
     AppRoutingModule,

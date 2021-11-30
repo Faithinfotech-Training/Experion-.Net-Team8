@@ -1,4 +1,5 @@
-﻿using Clinic_Management_System_8.Repository;
+﻿using Clinic_Management_System_8.Models;
+using Clinic_Management_System_8.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,44 @@ namespace Clinic_Management_System_8.Controllers
                 if (departments != null)
                 {
                     return Ok(departments);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("getSpecializations")]
+        //[Authorize]
+        public async Task<IActionResult> GetSpecializations()
+        {
+            try
+            {
+                var departments = await deptRepo.GetSpecializations();
+                if (departments != null)
+                {
+                    return Ok(departments);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddSpecializations(EmployeeSpecializations specializations)
+        {
+            try
+            {
+                var specializationId = await deptRepo.AddSpecializations(specializations);
+                if (specializationId >0)
+                {
+                    return Ok(specializationId);
                 }
                 return NotFound();
             }

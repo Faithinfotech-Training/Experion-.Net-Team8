@@ -18,6 +18,7 @@ namespace Clinic_Management_System_8.Controllers
         {
             postRepository = _p;
         }
+        //Get test reports
         #region Get test report
 
         [HttpGet]
@@ -26,12 +27,12 @@ namespace Clinic_Management_System_8.Controllers
         {
             try
             {
-                var posts = await postRepository.GetTestReport();
-                if (posts == null)
+                var tests = await postRepository.GetTestReport();
+                if (tests == null)
                 {
                     return NotFound();
                 }
-                return Ok(posts);
+                return Ok(tests);
             }
             catch (Exception)
             {
@@ -40,8 +41,10 @@ namespace Clinic_Management_System_8.Controllers
 
         }
         #endregion
+        //add one test report 
         #region Add test report
         [HttpPost]
+        [Route("add")]
         //[Authorize]
         public async Task<IActionResult> AddTestReport(TestReports test)
         {
@@ -50,10 +53,10 @@ namespace Clinic_Management_System_8.Controllers
             {
                 try
                 {
-                    var postId = await postRepository.AddTestReport(test);
-                    if (postId>0)
+                    var testId = await postRepository.AddTestReport(test);
+                    if (testId>0)
                     {
-                        return Ok(postId);
+                        return Ok(testId);
                     }
                     else
                     {
@@ -69,6 +72,7 @@ namespace Clinic_Management_System_8.Controllers
         }
 
         #endregion
+        //update test report by passing id
         #region update test report
         [HttpPut]
         //[Authorize]
@@ -90,16 +94,18 @@ namespace Clinic_Management_System_8.Controllers
             return BadRequest();
         }
         #endregion
+        //get report by id
         #region Getreport by id
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("GetTestReportById")]
         public async Task<IActionResult> GetTestReportById(int id)
         {
             try
             {
-                var post = await postRepository.GetTestReportById(id);
-                if (post != null)
+                var test = await postRepository.GetTestReportById(id);
+                if (test != null)
                 {
-                    return Ok(post);
+                    return Ok(test);
                 }
                 return NotFound();
             }
@@ -109,16 +115,17 @@ namespace Clinic_Management_System_8.Controllers
             }
         }
         #endregion
+        //get report by passing date
         #region Getreport by date
         [HttpGet("{date}")]
         public async Task<IActionResult> GetTestReportByDate(DateTime date)
         {
             try
             {
-                var post = await postRepository.GetTestReportByDate(date);
-                if (post != null)
+                var test = await postRepository.GetTestReportByDate(date);
+                if (test != null)
                 {
-                    return Ok(post);
+                    return Ok(test);
                 }
                 return NotFound();
             }
@@ -128,6 +135,8 @@ namespace Clinic_Management_System_8.Controllers
             }
         }
         #endregion
+        //delete by using id
+        #region delete by using id
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTestReport(int id)
         {
@@ -146,5 +155,6 @@ namespace Clinic_Management_System_8.Controllers
             }
             return BadRequest();
         }
+        #endregion
     }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Appointment } from './appointment';
+import { Employee } from './employee';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,13 @@ export class AppointmentService {
   //create instance
   formData: Appointment = new Appointment();      
   appointments: Appointment[];
+  employees: Employee[];
   constructor(private httpClient: HttpClient) { }
 
+  GetAllDoctors(id: number){
+    this.httpClient.get(environment.apiUrl + '/api/employee' + id).toPromise()
+    .then((response) => (this.employees = response as Employee[]));
+  }
 
   //Add appointment i.e insert appointment
   InsertAppoinment(appointment: Appointment):Observable<any>{

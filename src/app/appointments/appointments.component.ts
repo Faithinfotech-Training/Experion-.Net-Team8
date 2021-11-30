@@ -13,4 +13,10 @@ export class AppointmentsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  GetAllDoctors(id: number){
+    this.appointmentService.GetAllDoctors(id);
+  }
+
+
+
 }

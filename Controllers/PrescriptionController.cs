@@ -18,7 +18,7 @@ namespace Clinic_Management_System_8.Controllers
         {
             preRepo = _p;
         }
-
+        //--- Get all Prescription ---//
         #region Get all Prescription
 
         [HttpGet]
@@ -41,8 +41,12 @@ namespace Clinic_Management_System_8.Controllers
 
         }
         #endregion
+
+        //--- Prescription for a period ---//
         #region Prescription for a period
+
         [HttpGet]
+        //[Authorize]
         [Route("Upto")]
         public async Task<IActionResult> GetPrescriptionForPeriod(DateTime date)
         {
@@ -62,6 +66,8 @@ namespace Clinic_Management_System_8.Controllers
 
         }
 #endregion
+
+        //--- Add prescription ---//
         #region Add prescription
         [HttpPost]
         //[Authorize]
@@ -72,10 +78,10 @@ namespace Clinic_Management_System_8.Controllers
             {
                 try
                 {
-                    var postId = await preRepo.AddPrescription(note);
-                    if (postId > 0)
+                    var prescription = await preRepo.AddPrescription(note);
+                    if (prescription > 0)
                     {
-                        return Ok(postId);
+                        return Ok(prescription);
                     }
                     else
                     {
@@ -91,6 +97,8 @@ namespace Clinic_Management_System_8.Controllers
         }
 
         #endregion
+
+        //--- Update Prescription ---//
         #region update prescription
         [HttpPut]
         //[Authorize]
@@ -112,9 +120,11 @@ namespace Clinic_Management_System_8.Controllers
             return BadRequest();
         }
        #endregion
-       
+
+        //--- Get Prescription By PatientId  ---//
         #region Get Prescription By PatientId 
         [HttpGet("{id}")]
+        //[Authorize]
         public async Task<IActionResult> GetPrescriptionByPatientId(int id)
         {
             try
@@ -132,8 +142,11 @@ namespace Clinic_Management_System_8.Controllers
             }
         }
         #endregion
+
+        //--- Get prescription by date ---//
         #region Get Prescription By date
         [HttpGet("{date}")]
+        //[Authorize]
         public async Task<IActionResult> GetPrescriptionByDate(DateTime date)
         {
             try

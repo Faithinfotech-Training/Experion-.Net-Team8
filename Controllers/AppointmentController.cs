@@ -25,7 +25,7 @@ namespace Clinic_Management_System_8.Controllers
         #region AddAppointment
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
 
         public async Task<IActionResult> AddAppointment(Appointments appointment)
         {
@@ -58,7 +58,7 @@ namespace Clinic_Management_System_8.Controllers
         #region UpdateAppointment
 
         [HttpPut]
-        [Authorize]
+        //[Authorize]
 
         public async Task<IActionResult> UpdateAppointment(Appointments appointment)
         {

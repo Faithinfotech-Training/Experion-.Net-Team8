@@ -1,9 +1,10 @@
-import { Appoinmenttypes } from './appoinmenttypes';
+import { Appointmenttypes } from './appointmenttypes';
+
 import { Employee } from './employee';
 import { Patient } from './patient';
 export class Appointment {
-    AppoinmentId: number;
-    AppoinmentDate: Date = new Date();
+    AppointmentId: number;
+    AppointmentDate: Date = new Date();
     PatientId: number;
     EmployeeId: number;
     AppointmentStatus: boolean = false;
@@ -14,6 +15,6 @@ export class Appointment {
     //object oriented model
     Patient:Patient;
     Employee:Employee;
-    Appoinmenttypes:Appoinmenttypes;
+    Appointmenttypes:Appointmenttypes;
 
 }

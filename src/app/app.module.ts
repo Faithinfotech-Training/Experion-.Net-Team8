@@ -20,6 +20,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { PatientComponent } from './patient/patient.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ReceptionistComponent } from './receptionist/receptionist.component';
     EmployeeComponent,
     EmployeeListComponent,
     ReceptionistComponent,
-    AppointmentsComponent
+    AppointmentsComponent,
+    PatientComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -14,7 +14,9 @@ export class AppointmentsComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.appointmentService.GetAllPatients();
+  }
 
   GetAllDoctors(id: number) {
     this.appointmentService.GetAllDoctors(id);

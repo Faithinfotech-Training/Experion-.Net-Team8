@@ -25,7 +25,7 @@ namespace Clinic_Management_System_8.Controllers
         #region AddAppointment
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
 
         public async Task<IActionResult> AddAppointment(Appointments appointment)
         {
@@ -58,7 +58,7 @@ namespace Clinic_Management_System_8.Controllers
         #region UpdateAppointment
 
         [HttpPut]
-        [Authorize]
+        //[Authorize]
 
         public async Task<IActionResult> UpdateAppointment(Appointments appointment)
         {
@@ -91,7 +91,7 @@ namespace Clinic_Management_System_8.Controllers
         #region ViewAppointmentByDate
 
         [HttpGet("{date}")]
-        [Authorize]
+        //[Authorize]
 
         public async Task<IActionResult> ViewAppointmentByDate(DateTime date)
         {
@@ -117,7 +117,7 @@ namespace Clinic_Management_System_8.Controllers
         #region ViewAllAppointments
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> ViewAllAppointments()
         {
             try
@@ -141,8 +141,9 @@ namespace Clinic_Management_System_8.Controllers
         //--- View Appointment For Doctor ---//
         #region ViewAppointmentForDoctor
 
-        [HttpGet("{id}")]
-        [Authorize]
+        [HttpGet]
+        [Route("GetByDoctor")]
+        //[Authorize]
 
         public async Task<IActionResult> ViewAppointmentForDoctor(int id)
         {

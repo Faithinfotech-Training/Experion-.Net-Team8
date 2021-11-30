@@ -10,5 +10,11 @@ namespace Clinic_Management_System_8.Repository
     {
         //--- get all departments ---//
         Task<List<Departments>> GetDepartments();
+
+        //--- get all specialization ---//
+        Task<List<Specializations>> GetSpecializations();
+
+        //--- add specialization ---//
+        Task<int> AddSpecializations(EmployeeSpecializations specializations);
     }
 }

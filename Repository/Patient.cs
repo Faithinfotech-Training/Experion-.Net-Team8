@@ -66,7 +66,8 @@ namespace Clinic_Management_System_8.Repository
                               from e in contextDB.Employees
                               from at in contextDB.AppointmentTypes
                               where a.EmployeeId == e.EmployeeId &&
-                              a.AppointmentTypeId == at.AppointmentTypeId
+                              a.AppointmentTypeId == at.AppointmentTypeId &&
+                              a.PatientId==p.PatientId
                               select new PatientViewModel
                               {
                                   PatientId = p.PatientId,

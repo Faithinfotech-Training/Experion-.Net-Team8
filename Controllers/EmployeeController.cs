@@ -85,7 +85,7 @@ namespace Clinic_Management_System_8.Controllers
                 try
                 {
                     var newEmployee = await employeeRepo.AddEmployee(employee);
-                    if (newEmployee != null)
+                    if (newEmployee > 0)
                     {
                         return Ok(newEmployee);
 
@@ -108,7 +108,7 @@ namespace Clinic_Management_System_8.Controllers
         //--- update a Employee ---//
         #region UpdateEmployee
 
-        [HttpPost]
+        [HttpPut]
         [Route("UpdateEmployee")]
         public async Task<IActionResult> UpdateEmployee([FromBody] Employees employee)
         {
@@ -128,7 +128,6 @@ namespace Clinic_Management_System_8.Controllers
             return BadRequest();
         }
         #endregion
-
 
         //--- Delete a Employee -- //
         #region delete user 

@@ -82,7 +82,7 @@ namespace Clinic_Management_System_8.Controllers
         #region ViewPatients
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> ViewAllPatients()
         {
             try

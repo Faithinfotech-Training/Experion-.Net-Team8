@@ -6,7 +6,6 @@ import { Patient } from './patient';
 })
 export class PatientService {
 
-  //create an instance
-  formData: Patient = new Patient();
+  
   constructor() { }
 }

@@ -70,7 +70,19 @@ export class LoginComponent implements OnInit {
           } else if (this.jwtResponse.RoleId === 3) {
             //logged as Employee
             console.log('Employee');
-          } else {
+          }
+          else if(this.jwtResponse.RoleId ===4)
+          { 
+            //logged  as receptionist
+            localStorage.setItem('username', this.jwtResponse.UserName);
+            localStorage.setItem(
+              'ACCESS_ROLE',
+              this.jwtResponse.RoleId.toString()
+            );
+            sessionStorage.setItem('username', this.jwtResponse.UserName);
+            this.router.navigateByUrl('/receptionist');
+          }
+           else {
             this.error =
               'Sorry! not allowed to access ... Invalid authorization';
           }

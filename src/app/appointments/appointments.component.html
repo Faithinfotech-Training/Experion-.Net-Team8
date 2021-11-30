@@ -12,7 +12,7 @@
         <div>
             <input type="radio" name="ApoinmentType" id="ApoinmentType" #ApoinmentType="ngModel" value=1
                 [(ngModel)]="appointmentService.formData.AppointmentTypeId" class="form-check-input"
-                (click)="GetAllDoctors(appointmentService.formData.AppointmentTypeId)" />
+                 />
             <label class="col-md-4">Doctor</label>
             &nbsp;
             <input type="radio" name="ApoinmentType" id="ApoinmentType" #ApoinmentType="ngModel" value=2
@@ -27,8 +27,8 @@
     <div class="form-group">
         <label class="col-md-4">Employee:</label>
         <select class="form-control" name="EmployeeId" id="EmployeeId" #EmployeeId="ngModel"
-            [(ngModel)]="appointmentService.formData.EmployeeId" required>
-            <option value=1>Choose a Employee</option>
+            [(ngModel)]="appointmentService.formData.EmployeeId" (click)="GetAllDoctors(appointmentService.formData.AppointmentTypeId)"required>
+            <option disabled>Choose a Employee</option>
             <option *ngFor="let emp of appointmentService.employees" value="{{emp.EmployeeId}}">{{emp.EmployeeName}}
             </option>
 

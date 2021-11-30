@@ -1,3 +1,5 @@
+import { AppointmentsComponent } from './appointments/appointments.component';
+import { AppointmentService } from './shared/appointment.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeService } from './shared/employee.service';
 import { AuthInterceptor } from './shared/auth.interceptor';
@@ -28,20 +30,22 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
     PaymentlistComponent,
     EmployeeComponent,
     EmployeeListComponent,
+    AppointmentsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     NgxPaginationModule,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
     Ng2SearchPipeModule,
-    FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     EmployeeService,
+    AppointmentService,
     AuthService,
     AuthGuard,
     {

@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'paymentlist', component: PaymentlistComponent },
   { path: 'payment/:paymentId', component: PaymentComponent },
   { path: 'employee', component: EmployeeComponent },
-  
+  { path: 'appointments', component: AppointmentsComponent },
 ];
 
 @NgModule({

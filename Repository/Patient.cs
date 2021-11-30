@@ -89,29 +89,12 @@ namespace Clinic_Management_System_8.Repository
         //--- View Patient by id ---//
         #region ViewPatientById
 
-        public async Task<PatientViewModel> ViewPatientById(int id)
+        public async Task<Patients> ViewPatientById(int id)
         {
             if (contextDB != null)
             {
                 //LINQ
-                return await (from p in contextDB.Patients
-                              from a in contextDB.Appointments
-                              from e in contextDB.Employees
-                              from at in contextDB.AppointmentTypes
-                              where p.PatientId == id &&
-                              a.EmployeeId == e.EmployeeId &&
-                              a.AppointmentTypeId == at.AppointmentTypeId
-                              select new PatientViewModel
-                              {
-                                  PatientId = p.PatientId,
-                                  PatientName = p.PatientName,
-                                  Age = p.Age,
-                                  Address = p.Address,
-                                  MobileNo = p.MobileNo,
-                                  Gender = p.Gender,
-                                  ConsultingDoctor = e.EmployeeName,
-                                  AppointedDate = a.AppointmentDate
-                              }).FirstOrDefaultAsync();
+                return await contextDB.Patients.FirstOrDefaultAsync(p=>p.PatientId==id);
             }
             return null;
         }

@@ -107,7 +107,7 @@ namespace Clinic_Management_System_8.Controllers
         #region ViewPatientById
 
         [HttpGet("{id}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> ViewPatientById(int id)
         {
             try

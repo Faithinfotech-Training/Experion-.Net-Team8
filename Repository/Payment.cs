@@ -15,6 +15,7 @@ namespace Clinic_Management_System_8.Models
         {
             _db = db;
         }
+        //add payment
         #region Add Payment
 
         public async  Task<int> AddPayment(Payments payment)
@@ -28,6 +29,7 @@ namespace Clinic_Management_System_8.Models
             return 0;
         }
         #endregion
+        //get payment
         #region Get payment
         public async Task<List<PaymentViewModel>> GetPaymentDetails()
         {
@@ -50,6 +52,7 @@ namespace Clinic_Management_System_8.Models
             return null;
         }
         #endregion
+        //get payment by using patient id
         #region Get payment details by patient id
 
        
@@ -74,6 +77,7 @@ namespace Clinic_Management_System_8.Models
             return null;
         }
         #endregion
+        //update payment 
         #region Update payment      
         public async Task UpdatePayment(Payments payment)
         {
@@ -84,24 +88,15 @@ namespace Clinic_Management_System_8.Models
             }
         }
         #endregion
+        //payment by id
         #region Payment by id
-        public async Task<PaymentViewModel> GetPaymentById(int id)
+        public async Task<Payments> GetPaymentById(int id)
         {
             //--- get payment by patient id   ---//
 
             if (_db != null)
             {
-                //LINQ
-                return await(from p in _db.Payments
-                             from t in _db.Patients
-                             where p.PatientId == t.PatientId && p.PaymentId == id
-                             select new PaymentViewModel
-                             {
-                                 PaymentId = p.PaymentId,
-                                 Amount = p.Amount,
-                                 PatientName = t.PatientName,
-                                 PaymentDate = p.PaymentDate
-                             }).FirstOrDefaultAsync();
+                return await _db.Payments.FirstOrDefaultAsync(p => p.PaymentId == id);
             }
             return null;
         }

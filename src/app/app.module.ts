@@ -22,6 +22,7 @@ import { PaymentlistComponent } from './paymentlist/paymentlist.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { PatientComponent } from './patient/patient.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
+import { PatientService } from './shared/patient.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ReceptionistComponent } from './receptionist/receptionist.component';
     PatientComponent,
   ],
   imports: [
+    BrowserModule,
     AppRoutingModule,
     FormsModule,
     NgxPaginationModule,
@@ -49,6 +51,7 @@ import { ReceptionistComponent } from './receptionist/receptionist.component';
   providers: [
     EmployeeService,
     AppointmentService,
+    PatientService,
     AuthService,
     AuthGuard,
     {

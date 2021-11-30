@@ -14,7 +14,7 @@ export class AppointmentService {
   formData: Appointment = new Appointment();
   appointments: Appointment[];
   employees: Employee[];
-  patients: Patient[];
+  //patients: Patient[];
   constructor(private httpClient: HttpClient) {}
 
   //Get all doctors
@@ -27,17 +27,18 @@ export class AppointmentService {
   }
 
   //GET patients for binding
-  GetAllPatients() {
-    this.httpClient
-      .get(environment.apiUrl + '/api/patient')
-      .toPromise()
-      .then((response) => (this.patients = response as Patient[]));
-      console.log(this.patients);
+  // GetAllPatients() {
+  //   this.httpClient
+  //     .get(environment.apiUrl + '/api/patient')
+  //     .toPromise()
+  //     .then((response) => (this.patients = response as Patient[]));
+  //     console.log(this.patients);
   
-  }
+  // }
 
   //Add appointment i.e insert appointment
   InsertAppoinment(appointment: Appointment): Observable<any> {
+    console.log(appointment)
     return this.httpClient.post(
       environment.apiUrl + '/api/appointment',
       appointment

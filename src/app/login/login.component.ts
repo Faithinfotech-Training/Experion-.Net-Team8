@@ -70,9 +70,7 @@ export class LoginComponent implements OnInit {
           } else if (this.jwtResponse.RoleId === 3) {
             //logged as Employee
             console.log('Employee');
-          }
-          else if(this.jwtResponse.RoleId ===4)
-          { 
+          } else if (this.jwtResponse.RoleId === 4) {
             //logged  as receptionist
             localStorage.setItem('username', this.jwtResponse.UserName);
             localStorage.setItem(
@@ -80,9 +78,8 @@ export class LoginComponent implements OnInit {
               this.jwtResponse.RoleId.toString()
             );
             sessionStorage.setItem('username', this.jwtResponse.UserName);
-            this.router.navigateByUrl('/receptionist');
-          }
-           else {
+            this.router.navigateByUrl('/patient');
+          } else {
             this.error =
               'Sorry! not allowed to access ... Invalid authorization';
           }

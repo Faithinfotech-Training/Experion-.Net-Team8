@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { PaymentComponent } from './payment/payment.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
+import { PatientComponent } from './patient/patient.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,6 +24,9 @@ const routes: Routes = [
   { path: 'paymentlist', component: PaymentlistComponent },
   { path: 'payment/:paymentId', component: PaymentComponent },
   { path: 'employee', component: EmployeeComponent },
+  { path: 'patient', component: PatientComponent },
+  { path: 'appointments', component: AppointmentsComponent },
+  { path: 'appointments/:patientid', component: AppointmentsComponent },
   {
     path: 'receptionist',
     component: ReceptionistComponent,

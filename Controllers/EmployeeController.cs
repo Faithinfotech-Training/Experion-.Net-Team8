@@ -154,14 +154,14 @@ namespace Clinic_Management_System_8.Controllers
 
         //-- Get All Doctors -- //
         #region GetAllDoctors
-        [HttpGet]
+        [HttpGet("{id}")]
         //[Authorize]
         //[Route("GetEmployees")]
-        public async Task<IActionResult> GetAllDoctors()
+        public async Task<IActionResult> GetAllDoctors(int id)
         {
             try
             {
-                var doctors = await employeeRepo.GetAllDoctors();
+                var doctors = await employeeRepo.GetAllDoctors(id);
                 if (doctors != null)
                 {
                     return Ok(doctors);

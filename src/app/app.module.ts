@@ -1,3 +1,6 @@
+import { AppointmentsComponent } from './appointments/appointments.component';
+import { AppointmentService } from './shared/appointment.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeService } from './shared/employee.service';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
@@ -6,7 +9,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
@@ -17,6 +19,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { EmployeeComponent } from './employee/employee.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 
 @NgModule({
@@ -27,13 +30,13 @@ import { ReceptionistComponent } from './receptionist/receptionist.component';
     PaymentComponent,
     PaymentlistComponent,
     EmployeeComponent,
-    ReceptionistComponent,
+    EmployeeListComponent,
+    ReceptionistComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    NgxPaginationModule,
     FormsModule,
+    NgxPaginationModule,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
@@ -42,6 +45,7 @@ import { ReceptionistComponent } from './receptionist/receptionist.component';
   ],
   providers: [
     EmployeeService,
+    AppointmentService,
     AuthService,
     AuthGuard,
     {

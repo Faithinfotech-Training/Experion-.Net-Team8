@@ -1,37 +1,39 @@
 <form name="appointmentform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
 
-<!--Appointment Id-->
-<input type="" name="AppoinmentId" [(ngModel)]="appointmentService.formData.AppoinmentId" />
+    <!--Appointment Id-->
+    <input type="" name="AppoinmentId" [(ngModel)]="appointmentService.formData.AppoinmentId" />
 
 
-<!--ApoinmentType-->
+    <!--ApoinmentType-->
 
-<br />
+    <br />
 
-<div class="form-group">
-    <div>
-        <input type="radio" name="ApoinmentType" id="ApoinmentType" #ApoinmentType="ngModel" value= 1
-            [(ngModel)]="appointmentService.formData.AppointmentTypeId" class="form-check-input" />
-        <label class="col-md-4">Doctor</label>
-        &nbsp;
-        <input type="radio" name="ApoinmentType" id="ApoinmentType" #ApoinmentType="ngModel" value= 2
-            [(ngModel)]="appointmentService.formData.AppointmentTypeId" class="form-check-input" />
-        <label class="col-md-4">Lab Technician</label>
+    <div class="form-group">
+        <div>
+            <input type="radio" name="ApoinmentType" id="ApoinmentType" #ApoinmentType="ngModel" value=1
+                [(ngModel)]="appointmentService.formData.AppointmentTypeId" class="form-check-input"
+                 />
+            <label class="col-md-4">Doctor</label>
+            &nbsp;
+            <input type="radio" name="ApoinmentType" id="ApoinmentType" #ApoinmentType="ngModel" value=2
+                [(ngModel)]="appointmentService.formData.AppointmentTypeId" class="form-check-input"
+                (click)="GetAllDoctors(appointmentService.formData.AppointmentTypeId)" />
+            <label class="col-md-4">Lab Technician</label>
+        </div>
     </div>
-</div>
 
-<!--Doctor-->
-<br>
-<div class="form-group">
-    <label class="col-md-4">Doctor:</label>
-    <select class="form-control" name="EmployeeId" id="EmployeeId" #EmployeeId="ngModel"
-        [(ngModel)]="appointmentService.formData.EmployeeId" required>
-        <option value=1>Choose a Department</option>
-        <option *ngFor="let dept of appointmentService.departments" value="{{dept.Id}}">{{dept.Name}}
-        </option>
+    <!--Employee-->
+    <br>
+    <div class="form-group">
+        <label class="col-md-4">Employee:</label>
+        <select class="form-control" name="EmployeeId" id="EmployeeId" #EmployeeId="ngModel"
+            [(ngModel)]="appointmentService.formData.EmployeeId" (click)="GetAllDoctors(appointmentService.formData.AppointmentTypeId)"required>
+            <option disabled>Choose a Employee</option>
+            <option *ngFor="let emp of appointmentService.employees" value="{{emp.EmployeeId}}">{{emp.EmployeeName}}
+            </option>
 
-    </select>
-    <div class="validation-error" *ngIf="DepartmentId.touched && DepartmentId.invalid">
-        <div *ngIf="DepartmentId.errors.required">Department name is required</div>
+        </select>
+        <div class="validation-error" *ngIf="EmployeeId.touched && EmployeeId.invalid">
+            <div *ngIf="EmployeeId.errors.required">Employee name is required</div>
+        </div>
     </div>
-</div>

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class PaymentService {
   
   formData:Payment=new Payment();
-  patient:Patient[];
+  patients:Patient[];
  payments: Payment[];
   constructor(private httpClient:HttpClient) { }
  
@@ -19,7 +19,7 @@ export class PaymentService {
     this.httpClient
       .get(environment.apiUrl + '/api/patient')
       .toPromise()
-      .then((response) => (this.patient = response as Patient[]));
+      .then((response) => (this.patients = response as Patient[]));
   }
   
   //insert a employee
@@ -45,7 +45,16 @@ export class PaymentService {
 
     return this.httpClient.get(
 
-      environment.apiUrl + '/api/payment/' + patientId
+      environment.apiUrl + '/api/payment/id?' + patientId
+
+    );
+
+  }
+  getPaymentById(payId: number): Observable<any> {
+
+    return this.httpClient.get(
+
+      environment.apiUrl + '/api/payment/' + payId
 
     );
 

@@ -21,6 +21,9 @@ import { PaymentComponent } from './payment/payment.component';
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { SpecializationComponent } from './specialization/specialization.component';
+import { PatientComponent } from './patient/patient.component';
+import { ReceptionistComponent } from './receptionist/receptionist.component';
+import { PatientService } from './shared/patient.service';
 
 @NgModule({
   declarations: [
@@ -31,8 +34,10 @@ import { SpecializationComponent } from './specialization/specialization.compone
     PaymentlistComponent,
     EmployeeComponent,
     EmployeeListComponent,
+    ReceptionistComponent,
     AppointmentsComponent,
     SpecializationComponent,
+    PatientComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +53,7 @@ import { SpecializationComponent } from './specialization/specialization.compone
   providers: [
     EmployeeService,
     AppointmentService,
+    PatientService,
     AuthService,
     AuthGuard,
     {

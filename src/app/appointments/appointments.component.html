@@ -1,7 +1,7 @@
 <form name="appointmentform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
 
     <!--Appointment Id-->
-    <input type="" name="AppoinmentId" [(ngModel)]="appointmentService.formData.AppoinmentId" />
+    <input type="hidden" name="AppointmentId" [(ngModel)]="appointmentService.formData.AppointmentId" />
 
 
     <!--ApoinmentType-->
@@ -10,15 +10,15 @@
 
     <div class="form-group">
         <div>
-            <input type="radio" name="ApoinmentType" id="ApoinmentType" #ApoinmentType="ngModel" value=1
-                [(ngModel)]="appointmentService.formData.AppointmentTypeId" class="form-check-input"
-                 />
-            <label class="col-md-4">Doctor</label>
+            <label>Appoinment Type: </label>
+            <input type="radio" name="ApointmentTypeId" id="ApointmentTypeId" #ApointmentTypeId="ngModel" value=1
+                [(ngModel)]="appointmentService.formData.AppointmentTypeId" class="form-check-input" />
+            Doctor
             &nbsp;
-            <input type="radio" name="ApoinmentType" id="ApoinmentType" #ApoinmentType="ngModel" value=2
+            <input type="radio" name="ApointmentTypeId" id="ApointmentTypeId" #ApointmentTypeId="ngModel" value=2
                 [(ngModel)]="appointmentService.formData.AppointmentTypeId" class="form-check-input"
                 (click)="GetAllDoctors(appointmentService.formData.AppointmentTypeId)" />
-            <label class="col-md-4">Lab Technician</label>
+            Lab Technician
         </div>
     </div>
 
@@ -27,7 +27,8 @@
     <div class="form-group">
         <label class="col-md-4">Employee:</label>
         <select class="form-control" name="EmployeeId" id="EmployeeId" #EmployeeId="ngModel"
-            [(ngModel)]="appointmentService.formData.EmployeeId" (click)="GetAllDoctors(appointmentService.formData.AppointmentTypeId)"required>
+            [(ngModel)]="appointmentService.formData.EmployeeId"
+            (click)="GetAllDoctors(appointmentService.formData.AppointmentTypeId)" required>
             <option disabled>Choose a Employee</option>
             <option *ngFor="let emp of appointmentService.employees" value="{{emp.EmployeeId}}">{{emp.EmployeeName}}
             </option>
@@ -37,3 +38,50 @@
             <div *ngIf="EmployeeId.errors.required">Employee name is required</div>
         </div>
     </div>
+
+    <!--Patient-->
+    <!-- <br>
+    <div class="form-group">
+        <label class="col-md-4">Patient:</label>
+        <select class="form-control" name="PatientId" id="PatientId" #PatientId="ngModel"
+            [(ngModel)]="appointmentService.formData.PatientId" required>
+            <option value=1>Choose a Patient</option>
+            <option *ngFor="let patient of appointmentService.patients" value="{{patient.PatientId}}">{{patient.PatientName}}
+            </option>
+
+        </select>
+        <div class="validation-error" *ngIf="PatientId.touched && PatientId.invalid">
+            <div *ngIf="PatientId.errors.required">Patient name is required</div>
+        </div>
+    </div> -->
+
+    <!--Date of Appointment-->
+    <br>
+    <div class="form-group">
+        <label>Appointment Date:</label>
+        <input type="date" class="form-control" name="AppointmentDate" #AppointmentDate="ngModel"
+            [(ngModel)]="appointmentService.formData.AppointmentDate" required
+            [ngClass]="{'is-invalid': AppointmentDate.touched && AppointmentDate.invalid}" />
+        <div class="validation-error" *ngIf="AppointmentDate.touched && AppointmentDate.invalid">
+            <div *ngIf="AppointmentDate.errors.required">Date of Appointment is required</div>
+        </div>
+    </div>
+
+
+    <!--Appoinment Status-->
+    <br>
+    <div class="form-group">
+        <div class="form-check">
+            <label class="col-md-4">Appointment Status</label>
+            <input type="checkbox" name="AppointmentStatus" id="AppointmentStatus" #AppointmentStatus="ngModel"
+                [(ngModel)]="appointmentService.formData.AppointmentStatus" class="form-check-input">
+        </div>
+    </div>
+
+    <!--Submit button-->
+    <br>
+    <div class="form-group">
+        <button type="submit" [disabled]="!(form.valid && form.dirty)"
+            class="btn btn-primary form-control">Submit</button>
+    </div>
+</form>

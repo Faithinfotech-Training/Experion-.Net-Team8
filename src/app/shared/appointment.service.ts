@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Appointment } from './appointment';
 import { Employee } from './employee';
+import { Patient } from './patient';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,10 @@ export class AppointmentService {
   formData: Appointment = new Appointment();
   appointments: Appointment[];
   employees: Employee[];
+  //patients: Patient[];
   constructor(private httpClient: HttpClient) {}
 
+  //Get all doctors
   GetAllDoctors(id: number) {
     this.httpClient
       .get(environment.apiUrl + '/api/employee/' + id)
@@ -23,8 +26,19 @@ export class AppointmentService {
     console.log(this.employees);
   }
 
+  //GET patients for binding
+  // GetAllPatients() {
+  //   this.httpClient
+  //     .get(environment.apiUrl + '/api/patient')
+  //     .toPromise()
+  //     .then((response) => (this.patients = response as Patient[]));
+  //     console.log(this.patients);
+  
+  // }
+
   //Add appointment i.e insert appointment
   InsertAppoinment(appointment: Appointment): Observable<any> {
+    console.log(appointment)
     return this.httpClient.post(
       environment.apiUrl + '/api/appointment',
       appointment

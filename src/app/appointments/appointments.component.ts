@@ -2,6 +2,7 @@ import { AppointmentService } from './../shared/appointment.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-appointments',
@@ -9,12 +10,17 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./appointments.component.scss'],
 })
 export class AppointmentsComponent implements OnInit {
+
+  patientid: number;
   constructor(
     public appointmentService: AppointmentService,
-    private toastr: ToastrService
+    private toastr: ToastrService,private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.patientid = this.route.snapshot.params['patientid'];
+    //this.appointmentService.GetAllPatients();
+  }
 
   GetAllDoctors(id: number) {
     this.appointmentService.GetAllDoctors(id);
@@ -23,7 +29,8 @@ export class AppointmentsComponent implements OnInit {
   //onSubmit function
   onSubmit(form: NgForm) {
     console.log(form.value);
-    let addId = this.appointmentService.formData.EmployeeId;
+    form.value.PatientId = this.patientid;
+    let addId = this.appointmentService.formData.AppointmentId;
     //insert
     if (addId == 0 || addId == null) {
       this.insertAppointment(form);
@@ -42,7 +49,7 @@ export class AppointmentsComponent implements OnInit {
 
   //Insert
   insertAppointment(form?: NgForm) {
-    console.log('Iserting a record...');
+    console.log('Inserting a record...');
     this.appointmentService.InsertAppoinment(form.value).subscribe((data) => {
       console.log(data);
       this.resetForm(form);

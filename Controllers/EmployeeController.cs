@@ -27,7 +27,7 @@ namespace Clinic_Management_System_8.Controllers
 
         [HttpGet]
         //[Authorize]
-        [Route("GetEmployees")]
+        //[Route("GetEmployees")]
         public async Task<IActionResult> GetEmployees()
         {
             try
@@ -51,9 +51,9 @@ namespace Clinic_Management_System_8.Controllers
         //--- Get  Employee by id ---//
         #region GetEmployeeById
 
-        [HttpGet]
+        [HttpGet("{id}")]
         //[Authorize]
-        [Route("GetEmployeeById")]
+        //[Route("GetEmployeeById")]
         public async Task<IActionResult> GetEmployeeById(int id)
         {
             try
@@ -76,7 +76,7 @@ namespace Clinic_Management_System_8.Controllers
         //--- add a new employee ---//
         #region AddEmployee
         [HttpPost]
-        [Route("AddEmployee")]
+        //[Route("AddEmployee")]
         public async Task<IActionResult> AddEmployee(Employees employee)
         {
             //check the validation of body
@@ -108,8 +108,8 @@ namespace Clinic_Management_System_8.Controllers
         //--- update a Employee ---//
         #region UpdateEmployee
 
-        [HttpPost]
-        [Route("UpdateEmployee")]
+        [HttpPut]
+        //[Route("UpdateEmployee")]
         public async Task<IActionResult> UpdateEmployee([FromBody] Employees employee)
         {
             //Check the validation of body
@@ -129,6 +129,7 @@ namespace Clinic_Management_System_8.Controllers
         }
         #endregion
 
+        //--- delete a Employee ---//
         #region delete user 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deleteuser(int id)

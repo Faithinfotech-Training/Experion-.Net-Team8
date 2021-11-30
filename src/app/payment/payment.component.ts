@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
-  patientId: number;
+  payId: number;
   
   payment: Payment = new Payment();
   constructor(
@@ -25,18 +25,18 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
  //get departments
  //this.payService.BindCmbPatients();
- this.patientId = this.route.snapshot.params['paymentId'];
+ this.payId = this.route.snapshot.params['paymentId'];
  //this.resetform()
- if (this.patientId != 0 || this.patientId != null) {
+ if (this.payId != 0 || this.payId != null) {
    //getPayment
-   this.payService.getPaymentPatientId(this.patientId).subscribe((data) => {
+   this.payService.getPaymentById(this.payId).subscribe((data) => {
      console.log(data);
      var datePipe = new DatePipe('en-UK');
      let formatedDate: any = datePipe.transform(
-       data.DateOfJoining,
+       data.PaymentDate,
        'yyyy-MM-dd'
      );
-     data.DateOfJoining = formatedDate;
+     data.PaymentDate = formatedDate;
      this.payService.formData = Object.assign({}, data);
      this.payService.formData = data;
      this.payService.formData = Object.assign({}, data);
@@ -82,7 +82,6 @@ export class PaymentComponent implements OnInit {
         'EmApp v2021'
       );
     });
-    //Update
   }
 
   //Update

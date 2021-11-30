@@ -1,3 +1,5 @@
+import { AppointmentsComponent } from './appointments/appointments.component';
+
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
 import { AuthGuard } from './shared/auth.guard';
 import { NgModule } from '@angular/core';
@@ -20,6 +22,7 @@ const routes: Routes = [
   { path: 'paymentlist', component: PaymentlistComponent },
   { path: 'payment/:paymentId', component: PaymentComponent },
   { path: 'employee', component: EmployeeComponent },
+  
 ];
 
 @NgModule({

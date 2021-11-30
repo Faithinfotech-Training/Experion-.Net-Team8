@@ -1,0 +1,57 @@
+<h3>Specializations</h3>
+<hr />
+<form
+  name="specializationform"
+  #form="ngForm"
+  autocomplete="off"
+  (ngSubmit)="onSubmit(form)"
+>
+  <!--Specialization Id-->
+  <input
+    type="hidden"
+    name="ESId"
+    [(ngModel)]="empService.specializationForm.ESId"
+  />
+
+  <!--Specialization Id-->
+  <br />
+  <div class="form-group">
+    <label class="col-md-4">Specialization:</label>
+    <select
+      class="form-control"
+      name="SpecializationId"
+      id="SpecializationId"
+      #SpecializationId="ngModel"
+      [(ngModel)]="empService.specializationForm.SpecializationId"
+      required
+    >
+      <option value="0" disabled>Choose a Specialization</option>
+      <option
+        *ngFor="let s of empService.specializations"
+        value="{{ s.SpecializationId }}"
+      >
+        {{ s.SpecializationName }}
+      </option>
+    </select>
+    <div
+      class="validation-error"
+      *ngIf="SpecializationId.touched && SpecializationId.invalid"
+    >
+      <div *ngIf="SpecializationId.errors.required">
+        Specialization is required
+      </div>
+    </div>
+  </div>
+
+  <!--Submit button-->
+  <br />
+  <div class="form-group">
+    <button
+      type="submit"
+      [disabled]="!(form.valid && form.dirty)"
+      class="btn btn-primary form-control"
+    >
+      Submit
+    </button>
+  </div>
+</form>

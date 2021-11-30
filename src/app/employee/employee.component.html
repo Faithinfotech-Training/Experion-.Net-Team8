@@ -1,3 +1,5 @@
+<h3>Register Employee</h3>
+<hr />
 <form name="empform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
   <!--Employee Id-->
   <input type="hidden" name="EmployeeId" [(ngModel)]="empService.formData.EmployeeId" />
@@ -27,8 +29,8 @@
   <!--Emloyee Mobile Number-->
   <div class="form-group">
     <label>Mobile Number:</label>
-    <input type="number" name="MobileNo" #MobileNo="ngModel" [(ngModel)]="empService.formData.MobileNo"
-      class="form-control" placeholder="Enter your MobileNo" required
+    <input type="tel" name="MobileNo" #MobileNo="ngModel" [(ngModel)]="empService.formData.MobileNo"
+      class="form-control" placeholder="Enter your MobileNo (eg:1234567892)" required pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
       [ngClass]="{ 'is-invalid': MobileNo.touched && MobileNo.invalid }" />
     <div class="validation-error" *ngIf="MobileNo.touched && MobileNo.invalid">
       <div *ngIf="MobileNo.errors.required">MobileNo is required</div>
@@ -37,17 +39,16 @@
 
   <br />
   <!--Gender-->
-  <br />
+
   <div class="form-group">
     <div>
-      <label>Gender:</label>
+      <label>Gender :</label>
       <input type="radio" name="Gender" id="Gender" #Gender="ngModel" value="male"
         [(ngModel)]="empService.formData.Gender" class="form-check-input" />
-      <label class="col-md-4"> Male</label>
-      &nbsp;
+      Male&nbsp;&nbsp;
       <input type="radio" name="Gender" id="Gender" #Gender="ngModel" value="female"
         [(ngModel)]="empService.formData.Gender" class="form-check-input" />
-      <label class="col-md-4"> Female</label>
+      Female
     </div>
   </div>
 

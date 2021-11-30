@@ -4,6 +4,7 @@ import { EmployeeService } from '../shared/employee.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-employee',
@@ -21,8 +22,29 @@ export class EmployeeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    //geting departments and roles for binding
     this.empService.getAllDepartments();
     this.empService.getAllRoles();
+    //get empId from activated route
+    this.empId = this.route.snapshot.params['empId'];
+    //this.resetform();
+    if (this.empId != 0 || this.empId != null) {
+      //get employee
+      this.empService.getEmployee(this.empId).subscribe(
+        (data) => {
+          console.log(data);
+          //date format
+          var datePipe = new DatePipe('en-UK');
+          let formatDate: any = datePipe.transform(
+            data.DateOfJoining,
+            'yyyy-MM-dd'
+          );
+          data.DateOfJoining = formatDate;
+          this.empService.formData = data;
+        },
+        (error) => console.log(error)
+      );
+    }
   }
 
   //onSubmit function
@@ -51,7 +73,8 @@ export class EmployeeComponent implements OnInit {
     this.empService.insertEmployee(form.value).subscribe((data) => {
       console.log(data);
       this.resetForm(form);
-      this.toastr.success('Employee added', 'EmpApp v2021');
+      this.toastr.success('Employee added', 'CMSApp v2021');
+      this.router.navigate(['specialization', data]);
     });
   }
 
@@ -61,7 +84,7 @@ export class EmployeeComponent implements OnInit {
     this.empService.updateEmployee(form.value).subscribe((data) => {
       console.log(data);
       this.resetForm(form);
-      this.toastr.success('Employee updated', 'EmpApp v2021');
+      this.toastr.success('Employee updated', 'CMSApp v2021');
     });
   }
 }

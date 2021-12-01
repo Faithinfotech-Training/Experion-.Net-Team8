@@ -15,6 +15,7 @@ import { PatientComponent } from './patient/patient.component';
 import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import { DoctorComponent } from './doctor/doctor.component';
+import { LabTechnicianComponent } from './lab-technician/lab-technician.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'appointments/:patientid', component: AppointmentsComponent },
   { path: 'signup/:empId/:roleId', component: SignupComponent },
   { path: 'prescription/:patientId/:empId', component: PrescriptionComponent },
+
   {
     path: 'receptionist/:empId',
     component: ReceptionistComponent,
@@ -48,6 +50,12 @@ const routes: Routes = [
     component: DoctorComponent,
     canActivate: [AuthGuard],
     data: { role: '1' },
+  },
+  {
+    path: 'labtechnician/:empId',
+    component: LabTechnicianComponent,
+    canActivate: [AuthGuard],
+    data: { role: '2' },
   },
 ];
 

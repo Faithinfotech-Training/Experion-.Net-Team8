@@ -28,7 +28,6 @@ import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { TestreportComponent } from './testreport/testreport.component';
-import { TestreportListComponent } from './testreport-list/testreport-list.component';
 import { LabTechnicianComponent } from './lab-technician/lab-technician.component';
 
 @NgModule({
@@ -48,7 +47,6 @@ import { LabTechnicianComponent } from './lab-technician/lab-technician.componen
     PrescriptionComponent,
     DoctorComponent,
     TestreportComponent,
-    TestreportListComponent,
     LabTechnicianComponent,
   ],
   imports: [

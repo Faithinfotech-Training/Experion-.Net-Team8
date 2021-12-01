@@ -52,7 +52,7 @@ export class PrescriptionComponent implements OnInit {
 
   //Insert
   insertPrescription(form?: NgForm) {
-    console.log('Iserting a record...');
+    console.log('Inserting a record...');
     form.value.PatientId = this.patientId;
     form.value.EmployeeId = this.empId;
     var datePipe = new DatePipe('en-UK');
@@ -62,7 +62,7 @@ export class PrescriptionComponent implements OnInit {
     this.preService.AddPrescription(form.value).subscribe((data) => {
       console.log(data);
       this.toastr.success('Prescription added', 'CMSApp v2021');
-      this.router.navigate(['doctor', this.atId]);
+      this.router.navigate(['doctor', this.empId]);
     });
   }
 }

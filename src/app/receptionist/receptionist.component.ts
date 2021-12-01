@@ -5,21 +5,23 @@ import { AuthService } from '../shared/auth.service';
 @Component({
   selector: 'app-receptionist',
   templateUrl: './receptionist.component.html',
-  styleUrls: ['./receptionist.component.scss']
+  styleUrls: ['./receptionist.component.scss'],
 })
 export class ReceptionistComponent implements OnInit {
-
-  loggedUserName:string;
-  empId:number;
-  constructor(private authService: AuthService,private router:Router,private route:ActivatedRoute) { }
+  loggedUserName: string;
+  empId: number;
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.loggedUserName=localStorage.getItem('Username');
-    this.empId =  this.route.snapshot.params['empId'];
+    this.loggedUserName = localStorage.getItem('username');
+    this.empId = this.route.snapshot.params['empId'];
   }
-  logOut(){
+  logOut() {
     this.authService.logout();
     this.router.navigateByUrl('login');
-   }
-
+  }
 }

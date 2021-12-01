@@ -26,6 +26,7 @@ import { ReceptionistComponent } from './receptionist/receptionist.component';
 import { PatientService } from './shared/patient.service';
 import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
+import { DoctorComponent } from './doctor/doctor.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +42,8 @@ import { PrescriptionComponent } from './prescription/prescription.component';
     PatientComponent,
     SpecializationComponent,
     SignupComponent,
-    PrescriptionComponent
-    
+    PrescriptionComponent,
+    DoctorComponent,
   ],
   imports: [
     BrowserModule,

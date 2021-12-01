@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
 
 @Component({
@@ -10,10 +10,12 @@ import { AuthService } from '../shared/auth.service';
 export class ReceptionistComponent implements OnInit {
 
   loggedUserName:string;
-  constructor(private authService: AuthService,private router:Router) { }
+  empId:number;
+  constructor(private authService: AuthService,private router:Router,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.loggedUserName=localStorage.getItem('Username');
+    this.empId =  this.route.snapshot.params['empId'];
   }
   logOut(){
     this.authService.logout();

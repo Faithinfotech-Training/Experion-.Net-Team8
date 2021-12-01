@@ -14,6 +14,7 @@ import { ReceptionistComponent } from './receptionist/receptionist.component';
 import { PatientComponent } from './patient/patient.component';
 import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
+import { DoctorComponent } from './doctor/doctor.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -31,7 +32,7 @@ const routes: Routes = [
   { path: 'signup/:empId/:roleId', component: SignupComponent },
   { path: 'prescription', component: PrescriptionComponent },
   {
-    path: 'receptionist',
+    path: 'receptionist/:empId',
     component: ReceptionistComponent,
     canActivate: [AuthGuard],
     data: { role: '4' },
@@ -41,6 +42,12 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [AuthGuard],
     data: { role: '3' },
+  },
+  {
+    path: 'doctor/:empId',
+    component: DoctorComponent,
+    canActivate: [AuthGuard],
+    data: { role: '1' },
   },
 ];
 

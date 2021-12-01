@@ -19,7 +19,6 @@ export class PaymentService {
       .get(environment.apiUrl + '/api/patient')
       .toPromise()
       .then((response) => (this.patients = response as Patient[]));
-      console.log("Hai heloo");
       console.log(this.patients);
   }
   

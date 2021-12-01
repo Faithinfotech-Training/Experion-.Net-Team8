@@ -1,24 +1,23 @@
 <div class="container">
   <div class="header">
     <h5>Payment Information</h5>
+    <hr />
     <!--search-->
-    <div class="form-control">
-      <input
-        class="form-control"
-        type="text"
-        placeholder="Search....."
-        [(ngModel)]="filter"
-      />
-      <!--button also we can use here-->
-      <!--Button-->
-      <a
-        [routerLink]="['receptionist']"
-        class="btn btn-primary"
-        style="float: right"
-        >Refresh</a
-      >
-    </div>
-   
+
+    <input
+      class="form-control"
+      type="text"
+      placeholder="Search....."
+      [(ngModel)]="filter"
+    />
+    <!--button also we can use here-->
+    <!--Button-->
+    <a
+      [routerLink]="['receptionist']"
+      class="btn btn-primary"
+      style="float: right"
+      >Refresh</a
+    >
 
     <table class="table table-bordered table-striped">
       <thead>
@@ -48,7 +47,9 @@
 
           <td (click)="populateForm(c)">{{ c.PatientName }}</td>
 
-          <td (click)="populateForm(c)">{{ c.PaymentDate | date:"dd-MM-yyyy"}}</td>
+          <td (click)="populateForm(c)">
+            {{ c.PaymentDate | date: "dd-MM-yyyy" }}
+          </td>
           <td>
             <button
               (click)="updatePayment(c.PaymentId)"

@@ -1,5 +1,6 @@
+<h3>Register Patient</h3>
+<hr />
 <form name="patientform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
-
     <!--patient Id-->
     <input type="hidden" name="PatientId" [(ngModel)]="patientService.formData.PatientId" />
 
@@ -8,82 +9,80 @@
         <label>Patient Name:</label>
         <input name="PatientName" #PatientName="ngModel" [(ngModel)]="patientService.formData.PatientName"
             class="form-control" placeholder="Enter Patient Name" minlength="1" maxlength="25" required
-            [ngClass]="{'is-invalid': PatientName.touched && PatientName.invalid}" />
+            [ngClass]="{ 'is-invalid': PatientName.touched && PatientName.invalid }" />
         <div class="validation-error" *ngIf="PatientName.touched && PatientName.invalid">
             <div *ngIf="PatientName.errors.required">Patient name required</div>
         </div>
     </div>
 
-    <br>
+    <br />
 
     <!--Age-->
     <div class="form-group">
         <label>Age:</label>
         <input name="Age" type="number" #Age="ngModel" [(ngModel)]="patientService.formData.Age" class="form-control"
-            placeholder="Enter Patient Age" required [ngClass]="{'is-invalid': Age.touched && Age.invalid}" />
+            placeholder="Enter Patient Age" required [ngClass]="{ 'is-invalid': Age.touched && Age.invalid }" />
         <div class="validation-error" *ngIf="Age.touched && Age.invalid">
             <div *ngIf="Age.errors.required">Age is required</div>
         </div>
     </div>
 
-    <br>
-
+    <br />
 
     <!--Mobile Number-->
     <div class="form-group">
         <label>Mobile Number</label>
-        <input name="MobileNo" type="tel" #MobileNo="ngModel" [(ngModel)]="patientService.formData.MobileNo" class="form-control"
-            placeholder="Enter Mobile Number" minlength="10" required pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
-            [ngClass]="{'is-invalid': MobileNo.touched && MobileNo.invalid}" />
+        <input name="MobileNo" type="tel" #MobileNo="ngModel" [(ngModel)]="patientService.formData.MobileNo"
+            class="form-control" placeholder="Enter Mobile Number" minlength="10" required
+            pattern="[0-9]{3}[0-9]{3}[0-9]{4}" [ngClass]="{ 'is-invalid': MobileNo.touched && MobileNo.invalid }" />
         <div class="validation-error" *ngIf="MobileNo.touched && MobileNo.invalid">
             <div *ngIf="MobileNo.errors.required">Mobile number is required</div>
         </div>
     </div>
 
     <!--Gender-->
-    <br>
+    <br />
 
     <div class="form-group">
         <div>
             <label>Gender:</label>
             <input type="radio" name="Gender" id="Gender" #Gender="ngModel" value="male"
                 [(ngModel)]="patientService.formData.Gender" class="form-check-input" />
-                 Male
-            &nbsp;
+            Male &nbsp;
             <input type="radio" name="Gender" id="Gender" #Gender="ngModel" value="female"
                 [(ngModel)]="patientService.formData.Gender" class="form-check-input" />
-                 Female
+            Female
         </div>
     </div>
 
-    <br>
+    <br />
 
     <!--Address-->
     <div class="form-group">
         <label>Address:</label>
-        <input name="Address" #Address="ngModel" [(ngModel)]="patientService.formData.Address"
-            class="form-control" placeholder="Enter the Address" minlength="1"  required
-            [ngClass]="{'is-invalid': Address.touched && Address.invalid}" />
+        <input name="Address" #Address="ngModel" [(ngModel)]="patientService.formData.Address" class="form-control"
+            placeholder="Enter the Address" minlength="1" required
+            [ngClass]="{ 'is-invalid': Address.touched && Address.invalid }" />
         <div class="validation-error" *ngIf="Address.touched && Address.invalid">
             <div *ngIf="Address.errors.required">Address is required</div>
         </div>
     </div>
 
     <!--Is Active-->
-    <br>
+    <br />
     <div class="form-group">
         <div class="form-check">
             <label class="col-md-4">Is Active</label>
             <input type="checkbox" name="IsActive" id="IsActive" #IsActive="ngModel"
-                [(ngModel)]="patientService.formData.IsActive" class="form-check-input">
+                [(ngModel)]="patientService.formData.IsActive" class="form-check-input" />
         </div>
     </div>
 
-
     <!--Submit button-->
-    <br>
+    <br />
     <div class="form-group">
-        <button type="submit" [disabled]="!(form.valid && form.dirty)"
-            class="btn btn-primary form-control">Submit</button>
+        <button type="submit" [disabled]="!(form.valid && form.dirty)" class="btn btn-primary form-control">
+            Submit
+        </button>
     </div>
 </form>

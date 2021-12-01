@@ -3,18 +3,15 @@
 // import { Employee } from './employee';
 // import { Patient } from './patient';
 export class Appointment {
-    AppointmentId: number =0;
-    AppointmentDate: Date = new Date();
-    PatientId: number;
-    EmployeeId: number;
-    AppointmentStatus: boolean;
-    AppointmentTypeId:number;
+  AppointmentId: number;
+  AppointmentDate: Date = new Date();
+  PatientId: number;
+  EmployeeId: number;
+  AppointmentStatus: boolean;
+  AppointmentTypeId: number;
 
-
-
-    // //object oriented model
-    // Patient:Patient;
-    // Employee:Employee;
-    // Appointmenttypes:Appointmenttypes;
-
+  // //object oriented model
+  // Patient:Patient;
+  // Employee:Employee;
+  // Appointmenttypes:Appointmenttypes;
 }

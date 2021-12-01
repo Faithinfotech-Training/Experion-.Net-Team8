@@ -34,12 +34,12 @@ export class AppointmentService {
   //     .toPromise()
   //     .then((response) => (this.patients = response as Patient[]));
   //     console.log(this.patients);
-  
+
   // }
 
   //Add appointment i.e insert appointment
   InsertAppoinment(appointment: Appointment): Observable<any> {
-    console.log(appointment)
+    console.log(appointment);
     return this.httpClient.post(
       environment.apiUrl + '/api/appointment',
       appointment

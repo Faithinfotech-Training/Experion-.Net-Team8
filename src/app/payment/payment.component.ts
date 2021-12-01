@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.scss']
+  styleUrls: ['./payment.component.scss'],
 })
 export class PaymentComponent implements OnInit {
   payId: number;
@@ -18,30 +18,30 @@ export class PaymentComponent implements OnInit {
     public payService: PaymentService,
     private toastrService: ToastrService,
     private router: Router,
-    private route: ActivatedRoute)
-   {}
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
- //get departments
- this.payService.BindCmbPatients();
- 
- this.payId = this.route.snapshot.params['paymentId'];
- console.log("payId"+this.payId);
- //this.resetform()
- if (this.payId != 0 || this.payId != null) {
-   //getPayment
-   this.payService.getPaymentById(this.payId).subscribe((data) => {
-     console.log(data);
-     var datePipe = new DatePipe('en-UK');
-     let formatedDate: any = datePipe.transform(
-       data.PaymentDate,
-       'yyyy-MM-dd'
-     );
-     data.PaymentDate = formatedDate;
-     this.payService.formData = data;
-     this.payService.formData = Object.assign({}, data);
-   });
- }
+    //get departments
+    this.payService.BindCmbPatients();
+
+    this.payId = this.route.snapshot.params['paymentId'];
+    console.log('payId' + this.payId);
+    //this.resetform()
+    if (this.payId != 0 || this.payId != null) {
+      //getPayment
+      this.payService.getPaymentById(this.payId).subscribe((data) => {
+        console.log(data);
+        var datePipe = new DatePipe('en-UK');
+        let formatedDate: any = datePipe.transform(
+          data.PaymentDate,
+          'yyyy-MM-dd'
+        );
+        data.PaymentDate = formatedDate;
+        this.payService.formData = data;
+        this.payService.formData = Object.assign({}, data);
+      });
+    }
   }
   onSubmit(form: NgForm) {
     console.log(form.value);
@@ -55,9 +55,7 @@ export class PaymentComponent implements OnInit {
 
       this.updatePayment(form);
     }
-
   }
- 
 
   //Clear all content at Initialization
 
@@ -81,6 +79,7 @@ export class PaymentComponent implements OnInit {
         'Payment record has been inserted',
         'Clinic v2021'
       );
+      this.router.navigateByUrl('/paymentlist');
     });
   }
 
@@ -98,9 +97,9 @@ export class PaymentComponent implements OnInit {
         'Payment record has been updated',
         'Clinic v2021'
       );
+      this.router.navigateByUrl('/paymentlist');
     });
 
-   // window.location.reload();
+    // window.location.reload();
   }
-
 }

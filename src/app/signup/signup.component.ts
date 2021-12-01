@@ -5,11 +5,11 @@ import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from '../shared/employee.service';
 
 @Component({
-  selector: 'app-specialization',
-  templateUrl: './specialization.component.html',
-  styleUrls: ['./specialization.component.scss'],
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss'],
 })
-export class SpecializationComponent implements OnInit {
+export class SignupComponent implements OnInit {
   empId: number;
   roleId: number;
   constructor(
@@ -20,19 +20,18 @@ export class SpecializationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    //get empId from activated route
     this.empId = this.route.snapshot.params['empId'];
     this.roleId = this.route.snapshot.params['roleId'];
-    this.empService.getSpecializations();
   }
 
   //onSubmit function
   onSubmit(form: NgForm) {
     console.log(form.value);
-    let addId = this.empService.specializationForm.ESId;
-    form.value.EmployeeId = this.empId;
+    let addId = this.empService.loginForm.LoginId;
     //insert
     if (addId == 0 || addId == null) {
-      this.insertSpecialization(form);
+      this.insertLogin(form);
     }
   }
 
@@ -44,14 +43,14 @@ export class SpecializationComponent implements OnInit {
   }
 
   //Insert
-  insertSpecialization(form?: NgForm) {
+  insertLogin(form?: NgForm) {
     console.log('Iserting a record...');
-    this.empService.insertSpecialization(form.value).subscribe((data) => {
+    form.value.RoleId = this.roleId;
+    form.value.EmployeeId = this.empId;
+    this.empService.insertLogin(form.value).subscribe((data) => {
       console.log(data);
-      this.resetForm(form);
-      this.toastr.success('Specialization added', 'CMSApp v2021');
-      this.router.navigateByUrl('admin');
-      this.router.navigate(['signup', this.empId, this.roleId]);
+      this.toastr.success('User added', 'CMSApp v2021');
+      this.router.navigateByUrl('/admin');
     });
   }
 }

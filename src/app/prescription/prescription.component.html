@@ -1,0 +1,26 @@
+<h3>Prescription</h3>
+<hr />
+<form name="prescriptionform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+    <!--Prescription Id-->
+    <input type="hidden" name="PrescriptionId" [(ngModel)]="preService.prescriptionForm.PrescriptionId" />
+
+    <!--Prescription-->
+    <div class="form-group">
+        <label>Prescription:</label>
+        <textarea name="Prescription" #Prescription="ngModel" [(ngModel)]="preService.prescriptionForm.Prescription"
+            class="form-control" placeholder="Add your prescription here..." rows="10" cols="30" required
+            [ngClass]="{ 'is-invalid': Prescription.touched && Prescription.invalid }"></textarea>
+        <div class="validation-error" *ngIf="Prescription.touched && Prescription.invalid">
+            <div *ngIf="Prescription.errors.required">Prescription is required</div>
+        </div>
+    </div>
+    <br />
+
+    <!--Submit button-->
+    <br />
+    <div class="form-group">
+        <button type="submit" [disabled]="!(form.valid && form.dirty)" class="btn btn-primary form-control">
+            Submit
+        </button>
+    </div>
+</form>

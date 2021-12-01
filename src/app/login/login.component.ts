@@ -65,11 +65,19 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('username', this.jwtResponse.UserName);
             this.router.navigateByUrl('/admin');
           } else if (this.jwtResponse.RoleId === 2) {
-            //logged as Patient
-            console.log('patient');
-          } else if (this.jwtResponse.RoleId === 3) {
-            //logged as Employee
-            console.log('Employee');
+            //logged as Lab Technician
+            console.log('Lab Technician');
+          } else if (this.jwtResponse.RoleId === 1) {
+            //logged as Doctor
+            console.log('Doctor');
+            //storing in localStorage/sessionStorage
+            localStorage.setItem('username', this.jwtResponse.UserName);
+            localStorage.setItem(
+              'ACCESS_ROLE',
+              this.jwtResponse.RoleId.toString()
+            );
+            sessionStorage.setItem('username', this.jwtResponse.UserName);
+            this.router.navigate(['doctor',this.jwtResponse.EmployeeId]);
           } else if (this.jwtResponse.RoleId === 4) {
             //logged  as receptionist
             localStorage.setItem('username', this.jwtResponse.UserName);
@@ -78,7 +86,7 @@ export class LoginComponent implements OnInit {
               this.jwtResponse.RoleId.toString()
             );
             sessionStorage.setItem('username', this.jwtResponse.UserName);
-            this.router.navigateByUrl('/receptionist');
+            this.router.navigate(['receptionist',this.jwtResponse.EmployeeId]);
           } else {
             this.error =
               'Sorry! not allowed to access ... Invalid authorization';

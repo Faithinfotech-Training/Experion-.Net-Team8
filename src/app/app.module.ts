@@ -25,6 +25,9 @@ import { PatientComponent } from './patient/patient.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 import { PatientService } from './shared/patient.service';
 import { PatientlistComponent } from './patientlist/patientlist.component';
+import { SignupComponent } from './signup/signup.component';
+import { PrescriptionComponent } from './prescription/prescription.component';
+import { DoctorComponent } from './doctor/doctor.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +42,11 @@ import { PatientlistComponent } from './patientlist/patientlist.component';
     AppointmentsComponent,
     PatientComponent,
     SpecializationComponent,
-    PatientlistComponent
+    PatientlistComponent,
     
+    SignupComponent,
+    PrescriptionComponent,
+    DoctorComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,8 +58,6 @@ import { PatientlistComponent } from './patientlist/patientlist.component';
     ToastrModule.forRoot(),
     Ng2SearchPipeModule,
     ReactiveFormsModule,
-   
-
   ],
   providers: [
     EmployeeService,

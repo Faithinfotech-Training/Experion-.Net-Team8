@@ -14,7 +14,7 @@ export class PrescriptionService {
   prescriptions: Prescription[];
   patients: Patient[];
   employees: Employee[];
-  formData: Prescription = new Prescription();
+  prescriptionForm: Prescription = new Prescription();
 
   constructor(private httpClient: HttpClient) {}
 

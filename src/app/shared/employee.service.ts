@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Roles } from './roles';
+import { Login } from './login';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class EmployeeService {
   //create an instance of Employee
   formData: Employee = new Employee();
   specializationForm: Specialization = new Specialization();
+  loginForm: Login = new Login();
   departments: Department[];
   specializations: Specialization[];
   employees: Employee[];
@@ -52,6 +54,11 @@ export class EmployeeService {
       environment.apiUrl + '/api/employee/AddEmployee',
       employee
     );
+  }
+
+  //insert login details
+  insertLogin(user: Login): Observable<any> {
+    return this.httpClient.post(environment.apiUrl + '/api/login', user);
   }
 
   //insert specialization

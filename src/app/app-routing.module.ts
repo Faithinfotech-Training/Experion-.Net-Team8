@@ -12,6 +12,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { SpecializationComponent } from './specialization/specialization.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 import { PatientComponent } from './patient/patient.component';
+import { DoctorComponent } from './doctor/doctor.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -33,11 +34,17 @@ const routes: Routes = [
   { path: 'specialization/:empId', component: SpecializationComponent },
   { path: 'appointments/:patientid', component: AppointmentsComponent },
   {
-    path: 'receptionist',
+    path: 'receptionist/:empId',
     component: ReceptionistComponent,
     canActivate: [AuthGuard],
     data: { role: '4' },
-  }
+  },
+  {
+    path: 'doctor/:empId',
+    component: DoctorComponent,
+    canActivate: [AuthGuard],
+    data: { role: '1' },
+  },
 ];
 
 @NgModule({

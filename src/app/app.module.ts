@@ -24,6 +24,7 @@ import { SpecializationComponent } from './specialization/specialization.compone
 import { PatientComponent } from './patient/patient.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 import { PatientService } from './shared/patient.service';
+import { PatientlistComponent } from './patientlist/patientlist.component';
 import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import { DoctorComponent } from './doctor/doctor.component';
@@ -43,6 +44,8 @@ import { LabTechnicianComponent } from './lab-technician/lab-technician.componen
     AppointmentsComponent,
     PatientComponent,
     SpecializationComponent,
+    PatientlistComponent,
+    
     SignupComponent,
     PrescriptionComponent,
     DoctorComponent,

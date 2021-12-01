@@ -1,6 +1,6 @@
 <div class="container">
   <div class="header">
-    <h5>Payment Information</h5>
+    <h5>Patient Information</h5>
     <!--search-->
     <div class="form-control">
       <input
@@ -12,24 +12,24 @@
       <!--button also we can use here-->
       <!--Button-->
       <a
-        [routerLink]="['receptionist']"
+        [routerLink]="['patientlist']"
         class="btn btn-primary"
         style="float: right"
         >Refresh</a
       >
     </div>
-   
 
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>PaymentId</th>
+          <th>PatientId</th>
 
-          <th>Amount</th>
+          <th>PatientName</th>
 
-          <th>Patient Name</th>
+          <th>Contact number</th>
 
-          <th>Payment date</th>
+          <th>IsActive</th>
+          -->
 
           <th>Action</th>
         </tr>
@@ -37,27 +37,25 @@
       <tbody>
         <tr
           *ngFor="
-            let c of payService.payments
+            let pat of patientService.patients
               | filter: filter
               | paginate: { itemsPerPage: 5, currentPage: page }
           "
         >
-          <td (click)="populateForm(c)">{{ c.PaymentId }}</td>
+          <td (click)="populateForm(pat)">{{ pat.PatientId }}</td>
 
-          <td (click)="populateForm(c)">{{ c.Amount }}</td>
+          <td (click)="populateForm(pat)">{{ pat.PatientName }}</td>
 
-          <td (click)="populateForm(c)">{{ c.PatientName }}</td>
+          <td (click)="populateForm(pat)">{{ pat.MobileNo }}</td>
 
-          <td (click)="populateForm(c)">{{ c.PaymentDate | date:"dd-MM-yyyy"}}</td>
-          <td>
-            <button
-              (click)="updatePayment(c.PaymentId)"
-              class="btn btn-info"
-              style="margin-left: 10px"
-            >
-              Edit
-            </button>
-          </td>
+          <td (click)="populateForm(pat)">{{ pat.AppointmentDate }}</td>
+          <button
+            (click)="updatePatient(pat.PatientId)"
+            class="btn btn-info"
+            style="margin-left: 10px"
+          >
+            Edit
+          </button>
         </tr>
       </tbody>
     </table>

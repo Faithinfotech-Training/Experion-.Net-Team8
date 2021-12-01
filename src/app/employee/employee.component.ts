@@ -90,6 +90,7 @@ export class EmployeeComponent implements OnInit {
       console.log(data);
       this.resetForm(form);
       this.toastr.success('Employee updated', 'CMSApp v2021');
+      this.router.navigateByUrl('employeelist');
     });
   }
 }

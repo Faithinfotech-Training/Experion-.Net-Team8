@@ -35,7 +35,7 @@
     <label class="col-md-4">Patient Name:</label>
     <select class="form-control" name="PatientId" id="PatientId" #PatientId="ngModel"
         [(ngModel)]="payService.formData.PatientId" required>
-        <option value=0 disabled>Choose a Patient</option>
+        <option  >Choose a Patient</option>
         <option *ngFor="let p of payService.patients" 
         value="{{p.PatientId}}">{{p.PatientName}}</option>
     </select>

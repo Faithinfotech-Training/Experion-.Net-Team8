@@ -39,7 +39,7 @@
                 <td>
                     <button class="btn btn-sm btn-outline-danger "
                         (click)="DeleteAppointment(patient.AppointmentId)">X</button>&nbsp;
-                    <button (click)="AddPrescription(patient.AppointmentId)" class="btn btn-info"
+                    <button (click)="AddPrescription(patient.PatientId, patient.AppointmentType)" class="btn btn-info"
                         style="margin-left: 10px">Add Prescription</button>
                     <button (click)="ViewLabResults(patient.AppointmentId)" class="btn btn-info"
                         style="margin-left: 10px">Lab Results</button>

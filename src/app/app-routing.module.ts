@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'specialization/:empId/:roleId', component: SpecializationComponent },
   { path: 'appointments/:patientid', component: AppointmentsComponent },
   { path: 'signup/:empId/:roleId', component: SignupComponent },
-  { path: 'prescription', component: PrescriptionComponent },
+  { path: 'prescription/:patientId/:empId', component: PrescriptionComponent },
   {
     path: 'receptionist/:empId',
     component: ReceptionistComponent,

@@ -52,6 +52,8 @@ import { DoctorComponent } from './doctor/doctor.component';
     ToastrModule.forRoot(),
     Ng2SearchPipeModule,
     ReactiveFormsModule,
+   
+
   ],
   providers: [
     EmployeeService,

@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
               this.jwtResponse.RoleId.toString()
             );
             sessionStorage.setItem('username', this.jwtResponse.UserName);
-            this.router.navigateByUrl('/patient');
+            this.router.navigateByUrl('/receptionist');
           } else {
             this.error =
               'Sorry! not allowed to access ... Invalid authorization';

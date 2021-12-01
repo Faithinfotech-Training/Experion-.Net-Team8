@@ -50,6 +50,8 @@ import { PatientService } from './shared/patient.service';
     ToastrModule.forRoot(),
     Ng2SearchPipeModule,
     ReactiveFormsModule,
+   
+
   ],
   providers: [
     EmployeeService,

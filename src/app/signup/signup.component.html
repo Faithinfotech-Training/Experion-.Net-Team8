@@ -1,0 +1,38 @@
+<h3>Sign Up</h3>
+<hr />
+<form name="signupForm" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+    <!--Login Id-->
+    <input type="hidden" name="LoginId" [(ngModel)]="empService.loginForm.LoginId" />
+
+    <!--Username-->
+    <br />
+    <div class="form-group">
+        <label>Email Id:</label>
+        <input name="UserName" #UserName="ngModel" [(ngModel)]="empService.loginForm.UserName" class="form-control"
+            placeholder="Enter Email" minlength="1" required
+            [ngClass]="{ 'is-invalid': UserName.touched && UserName.invalid }" />
+        <div class="validation-error" *ngIf="UserName.touched && UserName.invalid">
+            <div *ngIf="UserName.errors.required">Email is required</div>
+        </div>
+    </div>
+
+    <!--Password-->
+    <br />
+    <div class="form-group">
+        <label>Password:</label>
+        <input type="password" name="Password" #Password="ngModel" [(ngModel)]="empService.loginForm.Password" class="form-control"
+            placeholder="Create a new Password" minlength="6" maxlength="10" pattern="^\w{6,10}$" required
+            [ngClass]="{ 'is-invalid': Password.touched && Password.invalid }" />
+        <div class="validation-error" *ngIf="Password.touched && Password.invalid">
+            <div *ngIf="Password.errors.required">Password is required</div>
+        </div>
+    </div>
+
+    <!--Submit button-->
+    <br />
+    <div class="form-group">
+        <button type="submit" [disabled]="!(form.valid && form.dirty)" class="btn btn-primary form-control">
+            Submit
+        </button>
+    </div>
+</form>

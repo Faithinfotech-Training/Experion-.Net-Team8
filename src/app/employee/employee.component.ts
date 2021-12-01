@@ -72,9 +72,14 @@ export class EmployeeComponent implements OnInit {
     console.log('Iserting a record...');
     this.empService.insertEmployee(form.value).subscribe((data) => {
       console.log(data);
-      this.resetForm(form);
       this.toastr.success('Employee added', 'CMSApp v2021');
-      this.router.navigate(['specialization', data]);
+      //this.resetForm(form);
+      console.log(form.value.RoleId);
+      if (form.value.RoleId == 1 || form.value.RoleId == 2) {
+        this.router.navigate(['specialization', data, form.value.RoleId]);
+      } else {
+        this.router.navigate(['signup', data, form.value.RoleId]);
+      }
     });
   }
 

@@ -23,5 +23,8 @@ namespace Clinic_Management_System_8.Repository
 
         //--- View Appointments for a particular doctor ---//
         Task<List<AppointmentViewModel>> ViewAppointmentForDoctor(int id);
+
+        //--- Delete Appointment ---/
+        Task DeleteAppointment(int id);
     }
 }

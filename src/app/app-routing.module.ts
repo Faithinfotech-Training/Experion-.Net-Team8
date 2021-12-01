@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'signup/:empId/:roleId', component: SignupComponent },
   { path: 'prescription/:patientId/:empId', component: PrescriptionComponent },
   {
-    path: 'receptionist/:empId',
+    path: 'receptionist',
     component: ReceptionistComponent,
     canActivate: [AuthGuard],
     data: { role: '4' },

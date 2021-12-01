@@ -73,10 +73,8 @@ namespace Clinic_Management_System_8.Repository
                 return await(from e in db.Employees
                              from r in db.Roles
                              from d in db.Departments
-                             from es in db.EmployeeSpecializations
-                             from s in db.Specializations
 
-                             where e.RoleId == r.RoleId && e.DepartmentId == d.DepartmentId && e.EmployeeId == es.EmployeeId && es.SpecializationId == s.SpecializationId
+                             where e.RoleId == r.RoleId && e.DepartmentId == d.DepartmentId
                              select new EmployeeModel
                              {
                                  EmployeeId = e.EmployeeId,
@@ -85,7 +83,6 @@ namespace Clinic_Management_System_8.Repository
                                  MobileNo = e.MobileNo,
                                  Gender = e.Gender,
                                  DateOfJoining = e.DateOfJoining,
-                                 Specialization = s.SpecializationName,
                                  DepartmentName = d.DepartmentName,
                                  RoleName = r.RoleName,
                                  IsActive = e.IsActive

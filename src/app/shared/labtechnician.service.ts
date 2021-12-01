@@ -9,22 +9,19 @@ import { Labtechnician } from './labtechnician';
 export class LabtechnicianService {
 
   //create an instance
-  patients:Labtechnician[];
+  labTechnician:Labtechnician = new Labtechnician();
+
   constructor(private httpClient: HttpClient) { }
 
-  GetAllPatientsOfLabTechnician(id: number) {
+  getLabTechnicianData(id: number) {
     this.httpClient
-      .get(environment.apiUrl + '/api/appointment/GetByDoctor?id=' + id)
+      .get(environment.apiUrl + '/api/employee/GetEmployeeById?id=' + id)
       .toPromise()
-      .then((response) => (this.patients = response as Labtechnician[]));
-    console.log(this.patients);
+      .then((response) => (this.labTechnician = response as Labtechnician));
+    console.log(this.labTechnician);
+    console.log(this.labTechnician.EmployeeId);
+
   }
 
-  //delete an appointment 
-  deleteAppointment(id: number) {
-    return this.httpClient.delete(
-      environment.apiUrl + '/api/appointment/' + id
-    );
-  }
   
 }

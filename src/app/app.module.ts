@@ -27,6 +27,9 @@ import { PatientService } from './shared/patient.service';
 import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import { DoctorComponent } from './doctor/doctor.component';
+import { TestreportComponent } from './testreport/testreport.component';
+import { TestreportListComponent } from './testreport-list/testreport-list.component';
+import { LabTechnicianComponent } from './lab-technician/lab-technician.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { DoctorComponent } from './doctor/doctor.component';
     SignupComponent,
     PrescriptionComponent,
     DoctorComponent,
+    TestreportComponent,
+    TestreportListComponent,
+    LabTechnicianComponent,
   ],
   imports: [
     BrowserModule,

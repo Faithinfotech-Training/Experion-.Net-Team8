@@ -102,12 +102,19 @@ namespace Clinic_Management_System_8.Repository
                               from e in dbContext.Employees
                               where a.AppointmentTypeId == at.AppointmentTypeId &&
                               a.PatientId == p.PatientId &&
-                              a.EmployeeId == e.EmployeeId
+                              a.EmployeeId == a.EmployeeId
+                              
+
                               select new AppointmentViewModel
                               {
                                   AppointmentId = a.AppointmentId,
+                                  PatientId = p.PatientId,
                                   AppointmentType = at.AppointmentType,
                                   PatientName = p.PatientName,
+                                  Age = p.Age,
+                                  MobileNo = p.MobileNo,
+                                  Gender = p.Gender,
+                                  Address = p.Address,
                                   EmployeeName = e.EmployeeName,
                                   AppointmentStatus = a.AppointmentStatus,
                                   AppointmentDate = a.AppointmentDate
@@ -143,8 +150,13 @@ namespace Clinic_Management_System_8.Repository
                               select new AppointmentViewModel
                               {
                                   AppointmentId = a.AppointmentId,
+                                  PatientId = p.PatientId,
                                   AppointmentType = at.AppointmentType,
                                   PatientName = p.PatientName,
+                                  Age = p.Age,
+                                  MobileNo = p.MobileNo,
+                                  Gender = p.Gender,
+                                  Address = p.Address,
                                   EmployeeName = e.EmployeeName,
                                   AppointmentStatus = a.AppointmentStatus,
                                   AppointmentDate = a.AppointmentDate
@@ -155,6 +167,24 @@ namespace Clinic_Management_System_8.Repository
 
 
         #endregion
+
+        //--- Delete the appointment ---//
+
+        #region Delete Appointment
+        public async Task DeleteAppointment(int id)
+        {
+            Appointments appointment = dbContext.Appointments.FirstOrDefault(Aid => Aid.AppointmentId == id);
+            if (appointment != null)
+            {
+                appointment.AppointmentStatus = false;
+                await dbContext.SaveChangesAsync();
+
+
+
+            }
+        }
+        #endregion
+
 
     }
 }

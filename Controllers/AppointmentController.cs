@@ -164,5 +164,29 @@ namespace Clinic_Management_System_8.Controllers
 
         #endregion
 
+        //--- Delete appointment ---//
+        #region Delete Appointment
+
+        [HttpDelete("{id}")]
+        //[Authorize]
+        public async Task<IActionResult> DeleteAppointment(int id)
+        {
+            //Check the validation of body
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await appointmentRepo.DeleteAppointment(id);
+                    return Ok();
+                }
+                catch (Exception)
+                {
+                    return BadRequest();
+                }
+            }
+            return BadRequest();
+        }
+        #endregion
+
     }
 }

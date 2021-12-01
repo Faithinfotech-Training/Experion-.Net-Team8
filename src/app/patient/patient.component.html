@@ -20,7 +20,7 @@
     <!--Age-->
     <div class="form-group">
         <label>Age:</label>
-        <input name="Age" type="number" #Age="ngModel" [(ngModel)]="patientService.formData.Age" class="form-control"
+        <input name="Age" type="number"  min="0" max="120" #Age="ngModel" [(ngModel)]="patientService.formData.Age" class="form-control"
             placeholder="Enter Patient Age" required [ngClass]="{ 'is-invalid': Age.touched && Age.invalid }" />
         <div class="validation-error" *ngIf="Age.touched && Age.invalid">
             <div *ngIf="Age.errors.required">Age is required</div>
@@ -32,7 +32,7 @@
     <!--Mobile Number-->
     <div class="form-group">
         <label>Mobile Number</label>
-        <input name="MobileNo" type="tel" #MobileNo="ngModel" [(ngModel)]="patientService.formData.MobileNo"
+        <input name="MobileNo" type="tel"  #MobileNo="ngModel" [(ngModel)]="patientService.formData.MobileNo"
             class="form-control" placeholder="Enter Mobile Number" minlength="10" required
             pattern="[0-9]{3}[0-9]{3}[0-9]{4}" [ngClass]="{ 'is-invalid': MobileNo.touched && MobileNo.invalid }" />
         <div class="validation-error" *ngIf="MobileNo.touched && MobileNo.invalid">

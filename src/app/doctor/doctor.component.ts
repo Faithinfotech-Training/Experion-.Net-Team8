@@ -24,7 +24,6 @@ export class DoctorComponent implements OnInit {
 
   ngOnInit(): void {
     this.empId = this.route.snapshot.params['empId'];
-
     this.doctorService.GetAllPatientsOfDoctor(this.empId);
   }
 
@@ -64,6 +63,15 @@ export class DoctorComponent implements OnInit {
           console.log(error);
         }
       );
+    }
+  }
+
+  //to enable or diasable the button
+  isDisabled(status: boolean): boolean {
+    if (status) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

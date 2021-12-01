@@ -67,6 +67,14 @@ export class LoginComponent implements OnInit {
           } else if (this.jwtResponse.RoleId === 2) {
             //logged as Lab Technician
             console.log('Lab Technician');
+            //storing in localStorage/sessionStorage
+            localStorage.setItem('username', this.jwtResponse.UserName);
+            localStorage.setItem(
+              'ACCESS_ROLE',
+              this.jwtResponse.RoleId.toString()
+            );
+            sessionStorage.setItem('username', this.jwtResponse.UserName);
+            this.router.navigate(['labtechnician',this.jwtResponse.EmployeeId]);
           } else if (this.jwtResponse.RoleId === 1) {
             //logged as Doctor
             console.log('Doctor');
@@ -86,7 +94,7 @@ export class LoginComponent implements OnInit {
               this.jwtResponse.RoleId.toString()
             );
             sessionStorage.setItem('username', this.jwtResponse.UserName);
-            this.router.navigate(['receptionist',this.jwtResponse.EmployeeId]);
+            this.router.navigateByUrl('receptionist');
           } else {
             this.error =
               'Sorry! not allowed to access ... Invalid authorization';

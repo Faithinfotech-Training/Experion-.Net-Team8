@@ -11,6 +11,7 @@ export class PatientService {
 
   formData: Patient = new Patient();
   patients: Patient[];
+
   constructor(private httpClient: HttpClient) { }
 
   //InsertPatient
@@ -48,6 +49,11 @@ export class PatientService {
   GetAllPatientByDate(date: Date): Observable<any> {
     return this.httpClient.get(
       environment.apiUrl + '/api/patient/' + date
+    );
+  }
+  deleteappointment(id: number) {
+    return this.httpClient.delete(
+      environment.apiUrl + '/api/appoinment/' + id
     );
   }
 

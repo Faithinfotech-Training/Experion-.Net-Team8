@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Appointment } from './appointment';
+import { Doctor } from './doctor';
 import { Employee } from './employee';
 import { Patient } from './patient';
 
@@ -12,7 +13,7 @@ import { Patient } from './patient';
 export class AppointmentService {
   //create instance
   formData: Appointment = new Appointment();
-  appointments: Appointment[];
+  appointments: Doctor[];
   employees: Employee[];
   //patients: Patient[];
   constructor(private httpClient: HttpClient) {}
@@ -58,7 +59,7 @@ export class AppointmentService {
     this.httpClient
       .get(environment.apiUrl + '/api/appointment')
       .toPromise()
-      .then((response) => (this.appointments = response as Appointment[]));
+      .then((response) => (this.appointments = response as Doctor[]));
   }
 
   //View all appointments by date

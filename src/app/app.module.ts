@@ -28,6 +28,8 @@ import { PatientlistComponent } from './patientlist/patientlist.component';
 import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import { DoctorComponent } from './doctor/doctor.component';
+import { TestreportComponent } from './testreport/testreport.component';
+import { LabTechnicianComponent } from './lab-technician/lab-technician.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { DoctorComponent } from './doctor/doctor.component';
     SignupComponent,
     PrescriptionComponent,
     DoctorComponent,
+    TestreportComponent,
+    LabTechnicianComponent,
   ],
   imports: [
     BrowserModule,

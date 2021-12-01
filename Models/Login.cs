@@ -9,7 +9,9 @@ namespace Clinic_Management_System_8.Models
         public string UserName { get; set; }
         public string Password { get; set; }
         public int RoleId { get; set; }
+        public int? EmployeeId { get; set; }
 
+        public virtual Employees Employee { get; set; }
         public virtual Roles Role { get; set; }
     }
 }

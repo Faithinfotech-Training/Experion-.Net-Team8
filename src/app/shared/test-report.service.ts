@@ -14,13 +14,14 @@ export class TestReportService {
 
   // create an instance of TestReport
   testReports: TestReport[];
-
+  newTestReport : TestReport = new TestReport();
+  
   getTestReportsByEmployeeId(id:number){
 
   }
 
   addTestReport(){
-    return
+    return this.httpClient.post(environment.apiUrl + '/api/appointment/' + id)
   }
 
 }

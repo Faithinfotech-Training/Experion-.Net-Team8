@@ -2,7 +2,7 @@ import { AppointmentService } from './../shared/appointment.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-appointments',
@@ -10,11 +10,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./appointments.component.scss'],
 })
 export class AppointmentsComponent implements OnInit {
-
   patientid: number;
   constructor(
     public appointmentService: AppointmentService,
-    private toastr: ToastrService,private route: ActivatedRoute
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -49,11 +50,12 @@ export class AppointmentsComponent implements OnInit {
 
   //Insert
   insertAppointment(form?: NgForm) {
-    console.log('Inserting a record...');
+    console.log('Inserting a record...hii');
     this.appointmentService.InsertAppoinment(form.value).subscribe((data) => {
       console.log(data);
       this.resetForm(form);
       this.toastr.success('Appointment added', 'ClinicApp v2021');
+      this.router.navigateByUrl('/patientlist');
     });
   }
 

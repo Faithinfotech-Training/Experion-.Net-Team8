@@ -1,3 +1,5 @@
+<h3>Add Payment</h3>
+<hr />
 <form
   name="paymentform"
   #form="ngForm"
@@ -30,26 +32,35 @@
       <div *ngIf="Amount.errors.required">Amount required</div>
     </div>
   </div>
-
+  <br />
   <!--PatientName-->
   <div class="form-group">
     <label class="col-md-4">Patient Name:</label>
-    <select class="form-control" name="PatientId" id="PatientId" #PatientId="ngModel"
-        [(ngModel)]="payService.formData.PatientId" required>
-        <option  >Choose a Patient</option>
-        <option *ngFor="let p of payService.patients" 
-        value="{{p.PatientId}}">{{p.PatientName}}</option>
+    <select
+      class="form-control"
+      name="PatientId"
+      id="PatientId"
+      #PatientId="ngModel"
+      [(ngModel)]="payService.formData.PatientId"
+      required
+    >
+      <option>Choose a Patient</option>
+      <option *ngFor="let p of payService.patients" value="{{ p.PatientId }}">
+        {{ p.PatientName }}
+      </option>
     </select>
-    <div class="validation-error" *ngIf="PatientId.touched && PatientId.invalid">
-        <div *ngIf="PatientId.errors.required">PatientId is required</div>
+    <div
+      class="validation-error"
+      *ngIf="PatientId.touched && PatientId.invalid"
+    >
+      <div *ngIf="PatientId.errors.required">PatientId is required</div>
     </div>
-</div>
-
+  </div>
 
   <!--Date of payment generation-->
   <br />
   <div class="form-group">
-    <label>Date of joining:</label>
+    <label>Payment Date</label>:
     <input
       type="date"
       class="form-control"

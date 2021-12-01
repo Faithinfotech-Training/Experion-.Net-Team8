@@ -21,15 +21,15 @@ namespace Clinic_Management_System_8.Repository
 
         //--- member function to add a new employee ---//
         #region AddEmployee
-        public async Task<Employees> AddEmployee(Employees employee)
+        public async Task<int> AddEmployee(Employees employee)
         {
             if (db != null)
             {
                 await db.Employees.AddAsync(employee);
                 await db.SaveChangesAsync();
-                return employee;
+                return employee.EmployeeId;
             }
-            return null;
+            return 0;
         }
         #endregion
 
@@ -53,30 +53,11 @@ namespace Clinic_Management_System_8.Repository
         //--- member function to get employee by id ---//
         #region GetEmployeeById
 
-        public async Task<EmployeeModel> GetEmployeeById(int id)
+        public async Task<Employees> GetEmployeeById(int id)
         {
             if (db != null)
             {
-                return await (from e in db.Employees
-                              from r in db.Roles
-                              from d in db.Departments
-                              from es in db.EmployeeSpecializations
-                              from s in db.Specializations
-
-                              where e.EmployeeId == id && e.RoleId == r.RoleId && e.DepartmentId == d.DepartmentId && e.EmployeeId == es.EmployeeId && es.SpecializationId == s.SpecializationId
-                              select new EmployeeModel
-                              {
-                                  EmployeeId = e.EmployeeId,
-                                  EmployeeName = e.EmployeeName,
-                                  Age = e.Age,
-                                  MobileNo = e.MobileNo,
-                                  Gender = e.Gender,
-                                  DateOfJoining = e.DateOfJoining,
-                                  Specialization = s.SpecializationName,
-                                  DepartmentName = d.DepartmentName,
-                                  RoleName = r.RoleName,
-                                  IsActive = e.IsActive
-                              }).FirstOrDefaultAsync();
+                return await db.Employees.FirstOrDefaultAsync(e=>e.EmployeeId==id);
             }
             return null;
         }
@@ -92,10 +73,8 @@ namespace Clinic_Management_System_8.Repository
                 return await(from e in db.Employees
                              from r in db.Roles
                              from d in db.Departments
-                             from es in db.EmployeeSpecializations
-                             from s in db.Specializations
 
-                             where e.RoleId == r.RoleId && e.DepartmentId == d.DepartmentId && e.EmployeeId == es.EmployeeId && es.SpecializationId == s.SpecializationId
+                             where e.RoleId == r.RoleId && e.DepartmentId == d.DepartmentId
                              select new EmployeeModel
                              {
                                  EmployeeId = e.EmployeeId,
@@ -104,7 +83,6 @@ namespace Clinic_Management_System_8.Repository
                                  MobileNo = e.MobileNo,
                                  Gender = e.Gender,
                                  DateOfJoining = e.DateOfJoining,
-                                 Specialization = s.SpecializationName,
                                  DepartmentName = d.DepartmentName,
                                  RoleName = r.RoleName,
                                  IsActive = e.IsActive
@@ -139,7 +117,7 @@ namespace Clinic_Management_System_8.Repository
                               from r in db.Roles
                               from es in db.EmployeeSpecializations
                               from s in db.Specializations
-                              where e.RoleId == r.RoleId && e.EmployeeId == es.EmployeeId && es.SpecializationId == s.SpecializationId && r.RoleId == id
+                              where e.RoleId == r.RoleId && e.EmployeeId == es.EmployeeId && es.SpecializationId == s.SpecializationId && e.RoleId == id
                               select new DoctorModel
                               {
                                   EmployeeId = e.EmployeeId,

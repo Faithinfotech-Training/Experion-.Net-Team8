@@ -16,6 +16,8 @@ namespace Clinic_Management_System_8.Repository
         {
             _db = db;
         }
+
+        //---  Adding Prescription ---//
         #region Prescription added
         public async Task<int> AddPrescription(Prescriptions note)
         {
@@ -29,59 +31,64 @@ namespace Clinic_Management_System_8.Repository
                 return 0;
 
 
-            }
+        }
 
-       
+        #endregion
 
+
+        //--- Get Prescription By Date  ---//
+        #region GetPrescriptionByDate
         public async Task<PrescriptionViewModel> GetPrescriptionByDate(DateTime date)
         {
             if (_db != null)
             {
                 //LINQ
-                return await(from p in _db.Prescriptions
-                             from e in _db.Employees
-                             from t in _db.Patients
-                             where p.EmployeeId == e.EmployeeId && p.PatientId == t.PatientId && p.PrescriptionDate==date
-                             select new PrescriptionViewModel
-                             {
-                                 PrescriptionId = p.PrescriptionId,
-                                 Prescription = p.Prescription,
-                                 PrescriptionDate = p.PrescriptionDate,
-                                 DoctorName = e.EmployeeName,
-                                 PatientName = t.PatientName
-                             }).FirstOrDefaultAsync();
+                return await (from p in _db.Prescriptions
+                              from e in _db.Employees
+                              from t in _db.Patients
+                              where p.EmployeeId == e.EmployeeId && p.PatientId == t.PatientId && p.PrescriptionDate == date
+                              select new PrescriptionViewModel
+                              {
+                                  PrescriptionId = p.PrescriptionId,
+                                  Prescription = p.Prescription,
+                                  PrescriptionDate = p.PrescriptionDate,
+                                  DoctorName = e.EmployeeName,
+                                  PatientName = t.PatientName
+                              }).FirstOrDefaultAsync();
             }
             return null;
 
         }
-
-
-
         #endregion
 
-
+        //---  Get prescription by patient id  ---//
+        #region GetPrescriptionByPatientId
         public async Task<PrescriptionViewModel> GetPrescriptionByPatientId(int id)
         {
             if (_db != null)
             {
                 //LINQ
-                return await(from p in _db.Prescriptions
-                             from e in _db.Employees
-                             from t in _db.Patients
-                             where p.EmployeeId == e.EmployeeId && p.PatientId == t.PatientId && p.PatientId==id
-                             select new PrescriptionViewModel
-                             {
-                                 PrescriptionId = p.PrescriptionId,
-                                 Prescription = p.Prescription,
-                                 PrescriptionDate = p.PrescriptionDate,
-                                 DoctorName = e.EmployeeName,
-                                 PatientName = t.PatientName
-                             }).FirstOrDefaultAsync();
-                  }
-                    return null;
-        
+                return await (from p in _db.Prescriptions
+                              from e in _db.Employees
+                              from t in _db.Patients
+                              where p.EmployeeId == e.EmployeeId && p.PatientId == t.PatientId && p.PatientId == id
+                              select new PrescriptionViewModel
+                              {
+                                  PrescriptionId = p.PrescriptionId,
+                                  Prescription = p.Prescription,
+                                  PrescriptionDate = p.PrescriptionDate,
+                                  DoctorName = e.EmployeeName,
+                                  PatientName = t.PatientName
+                              }).FirstOrDefaultAsync();
             }
+            return null;
 
+        }
+        #endregion
+
+
+        //--- Get prescription Details ---//
+        #region GetPrescriptionDetails
         public async Task<List<PrescriptionViewModel>> GetPrescriptionDetails()
         {
             if (_db != null)
@@ -93,37 +100,43 @@ namespace Clinic_Management_System_8.Repository
                               where p.EmployeeId == e.EmployeeId && p.PatientId == t.PatientId
                               select new PrescriptionViewModel
                               {
-                                  PrescriptionId=p.PrescriptionId,
-                                  Prescription=p.Prescription,
-                                  PrescriptionDate=p.PrescriptionDate,
-                                  DoctorName=e.EmployeeName,
-                                  PatientName=t.PatientName
+                                  PrescriptionId = p.PrescriptionId,
+                                  Prescription = p.Prescription,
+                                  PrescriptionDate = p.PrescriptionDate,
+                                  DoctorName = e.EmployeeName,
+                                  PatientName = t.PatientName
                               }).ToListAsync();
             }
             return null;
         }
+        #endregion
 
-        public async  Task<List<PrescriptionViewModel>> GetPrescriptionForPeriod(DateTime date)
+        //--- Get Prescription for period ---//
+        #region GetPrescriptionForPeriod
+        public async Task<List<PrescriptionViewModel>> GetPrescriptionForPeriod(DateTime date)
         {
             if (_db != null)
             {
                 //LINQ
-                return await(from p in _db.Prescriptions
-                             from e in _db.Employees
-                             from t in _db.Patients
-                             where p.EmployeeId == e.EmployeeId && p.PatientId == t.PatientId&& p.PrescriptionDate<date
-                             select new PrescriptionViewModel
-                             {
-                                 PrescriptionId = p.PrescriptionId,
-                                 Prescription = p.Prescription,
-                                 PrescriptionDate = p.PrescriptionDate,
-                                 DoctorName = e.EmployeeName,
-                                 PatientName = t.PatientName
-                             }).ToListAsync();
+                return await (from p in _db.Prescriptions
+                              from e in _db.Employees
+                              from t in _db.Patients
+                              where p.EmployeeId == e.EmployeeId && p.PatientId == t.PatientId && p.PrescriptionDate < date
+                              select new PrescriptionViewModel
+                              {
+                                  PrescriptionId = p.PrescriptionId,
+                                  Prescription = p.Prescription,
+                                  PrescriptionDate = p.PrescriptionDate,
+                                  DoctorName = e.EmployeeName,
+                                  PatientName = t.PatientName
+                              }).ToListAsync();
             }
             return null;
         }
+        #endregion
 
+        //--- Update Prescription ---//
+        #region UpdatePrescription
         public async Task UpdatePrescription(Prescriptions note)
         {
             if (_db != null)
@@ -132,5 +145,7 @@ namespace Clinic_Management_System_8.Repository
                 await _db.SaveChangesAsync();
             }
         }
+        #endregion
+
     }
 }

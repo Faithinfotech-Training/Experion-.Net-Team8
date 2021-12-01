@@ -15,7 +15,7 @@ namespace Clinic_Management_System_8.ViewModel
         public string Gender { get; set; }
         public DateTime DateOfJoining { get; set; }
 
-        public string Specialization { get; set; }
+        //public string Specialization { get; set; }
 
         public string DepartmentName { get; set; }
 

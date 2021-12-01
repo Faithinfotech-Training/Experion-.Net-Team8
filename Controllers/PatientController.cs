@@ -24,7 +24,7 @@ namespace Clinic_Management_System_8.Controllers
         #region AddPatient
 
         [HttpPost]
-        [Authorize]
+        //[Authorize]
 
         public async Task<IActionResult> AddPatient(Patients patient)
         {
@@ -57,7 +57,7 @@ namespace Clinic_Management_System_8.Controllers
         #region UpdatePatient
 
         [HttpPut]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> UpdatePatient([FromBody] Patients patient)
         {
             //Check the validation of body
@@ -82,15 +82,15 @@ namespace Clinic_Management_System_8.Controllers
         #region ViewPatients
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> ViewAllPatients()
         {
             try
             {
-                var hobbies = await patientRepo.ViewAllPatients();
-                if (hobbies != null)
+                var patient = await patientRepo.ViewAllPatients();
+                if (patient != null)
                 {
-                    return Ok(hobbies);
+                    return Ok(patient);
                 }
                 return NotFound();
             }
@@ -106,8 +106,9 @@ namespace Clinic_Management_System_8.Controllers
         //--- View Patient by Id ---//
         #region ViewPatientById
 
-        [HttpGet("{id}")]
-        [Authorize]
+        [HttpGet]
+        [Route("ViewPatientById")]
+        //[Authorize]
         public async Task<IActionResult> ViewPatientById(int id)
         {
             try
@@ -132,7 +133,7 @@ namespace Clinic_Management_System_8.Controllers
         #region ViewPatientByDate
 
         [HttpGet("{date}")]
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> ViewPatientByDate(DateTime date)
         {
             try

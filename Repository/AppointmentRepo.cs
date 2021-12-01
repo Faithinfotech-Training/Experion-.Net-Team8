@@ -56,7 +56,7 @@ namespace Clinic_Management_System_8.Repository
         //--- View Appointment By Date ---//
         #region ViewAppointmentByDate
 
-        public async Task<AppointmentViewModel> ViewAppointmentByDate(DateTime date)
+        public async Task<List<AppointmentViewModel>> ViewAppointmentByDate(DateTime date)
         {
             //--- get appointment by id ---//
             if (dbContext != null)
@@ -79,7 +79,7 @@ namespace Clinic_Management_System_8.Repository
                                   EmployeeName = e.EmployeeName,
                                   AppointmentStatus = a.AppointmentStatus,
                                   AppointmentDate = a.AppointmentDate
-                              }).FirstOrDefaultAsync();
+                              }).ToListAsync();
             }
             return null;
         }
@@ -135,8 +135,10 @@ namespace Clinic_Management_System_8.Repository
                               from p in dbContext.Patients
                               from e in dbContext.Employees
                               where a.AppointmentTypeId == at.AppointmentTypeId &&
-                              at.AppointmentType == "Doctor" &&
-                              a.EmployeeId == id
+                              a.EmployeeId == id &&
+                              a.PatientId==p.PatientId &&
+                              a.EmployeeId==a.EmployeeId &&
+                              e.EmployeeId==id
 
                               select new AppointmentViewModel
                               {

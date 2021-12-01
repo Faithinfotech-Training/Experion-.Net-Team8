@@ -13,10 +13,10 @@ namespace Clinic_Management_System_8.Repository
         Task<List<EmployeeModel>> GetEmployees();
 
         //--- get employee by id ---//
-        Task<EmployeeModel> GetEmployeeById(int id);
+        Task<Employees> GetEmployeeById(int id);
 
         //--- add Employee ---//
-        Task<Employees> AddEmployee(Employees employee);
+        Task<int> AddEmployee(Employees employee);
 
 
         //--- update Employee ---//

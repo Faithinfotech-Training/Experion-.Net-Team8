@@ -10,6 +10,7 @@ namespace Clinic_Management_System_8.Models
             Appointments = new HashSet<Appointments>();
             EmployeeSpecializations = new HashSet<EmployeeSpecializations>();
             LabHasTechnician = new HashSet<LabHasTechnician>();
+            Login = new HashSet<Login>();
             Prescriptions = new HashSet<Prescriptions>();
             Queries = new HashSet<Queries>();
             TestReportsDoctor = new HashSet<TestReports>();
@@ -31,6 +32,7 @@ namespace Clinic_Management_System_8.Models
         public virtual ICollection<Appointments> Appointments { get; set; }
         public virtual ICollection<EmployeeSpecializations> EmployeeSpecializations { get; set; }
         public virtual ICollection<LabHasTechnician> LabHasTechnician { get; set; }
+        public virtual ICollection<Login> Login { get; set; }
         public virtual ICollection<Prescriptions> Prescriptions { get; set; }
         public virtual ICollection<Queries> Queries { get; set; }
         public virtual ICollection<TestReports> TestReportsDoctor { get; set; }

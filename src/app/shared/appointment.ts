@@ -7,7 +7,7 @@ export class Appointment {
     AppointmentDate: Date = new Date();
     PatientId: number;
     EmployeeId: number;
-    AppointmentStatus: boolean = false;
+    AppointmentStatus: boolean;
     AppointmentTypeId:number;
 
 

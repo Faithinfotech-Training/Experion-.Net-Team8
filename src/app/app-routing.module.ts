@@ -12,6 +12,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { SpecializationComponent } from './specialization/specialization.component';
 import { ReceptionistComponent } from './receptionist/receptionist.component';
 import { PatientComponent } from './patient/patient.component';
+import { PatientlistComponent } from './patientlist/patientlist.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -27,6 +28,8 @@ const routes: Routes = [
   { path: 'payment/:paymentId', component: PaymentComponent },
   { path: 'employee', component: EmployeeComponent },
   { path: 'patient', component: PatientComponent },
+  { path: 'patientlist', component: PatientlistComponent },
+  { path: 'patient/:patientId', component: PatientComponent },
   { path: 'appointments', component: AppointmentsComponent },
   { path: 'employee/:empId', component: EmployeeComponent },
   { path: 'employeelist', component: EmployeeListComponent },

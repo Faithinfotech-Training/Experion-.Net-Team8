@@ -14,7 +14,7 @@ export class PrescriptionComponent implements OnInit {
   empId: number;
   patientId: number;
   currentDate: Date = new Date();
-
+  atId: number;
   constructor(
     public preService: PrescriptionService,
     private toastr: ToastrService,
@@ -26,6 +26,7 @@ export class PrescriptionComponent implements OnInit {
     //get empId from activated route
     this.empId = this.route.snapshot.params['empId'];
     this.patientId = this.route.snapshot.params['patientId'];
+    this.atId = this.route.snapshot.params['atId'];
     console.log(this.empId);
     console.log(this.patientId);
     //this.empId = 2;
@@ -61,7 +62,7 @@ export class PrescriptionComponent implements OnInit {
     this.preService.AddPrescription(form.value).subscribe((data) => {
       console.log(data);
       this.toastr.success('Prescription added', 'CMSApp v2021');
-      this.router.navigateByUrl('/doctor');
+      this.router.navigate(['doctor', this.atId]);
     });
   }
 }

@@ -5,7 +5,6 @@
             <div class="col-md-12">
                 <div class="input-group mb-3">
                     <input class="form-control" type="text" placeholder="Search here.." [(ngModel)]="filter">
-                    <button class="btn btn-primary" [routerLink]="['../receptionist']">Home</button>
                 </div>
             </div>
         </div>
@@ -29,7 +28,7 @@
         <tbody>
             <!--Depends on where we read here we used view model to display-->
             <tr
-                *ngFor="let patient of appointmentService.appointments  | filter : filter| paginate: {itemsPerPage:5, currentPage:page}">
+                *ngFor="let patient of labTechnicianService.patients  | filter : filter| paginate: {itemsPerPage:5, currentPage:page}">
                 <td>{{patient.PatientId}}</td>
                 <td>{{patient.PatientName}}</td>
                 <td>{{patient.Age}}</td>
@@ -39,8 +38,9 @@
                 <td>{{patient.AppointmentStatus}}</td>
                 <td>
                     <button class="btn btn-sm btn-outline-danger "
-                        (click)="DeleteAppointment(patient.AppointmentId)">Cancel Appointment</button>&nbsp;
-                   
+                        (click)="DeleteAppointment(patient.AppointmentId)">X</button>&nbsp;
+                    <button (click)="AddPrescription(patient.AppointmentId)" class="btn btn-info"
+                        style="margin-left: 10px">Add Lab Record</button>
                     
                 </td>
             </tr>

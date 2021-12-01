@@ -1,4 +1,5 @@
 ﻿using Clinic_Management_System_8.Models;
+using Clinic_Management_System_8.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,14 +19,50 @@ namespace Clinic_Management_System_8.Controllers
     public class LoginController : ControllerBase
     {
         IConfiguration _config;
+        ILogin loginRepo;
         CMSContext contextDB;
 
         //--- dependency injection for configuration ---//
-        public LoginController(IConfiguration config, CMSContext _contextDB)
+        public LoginController(IConfiguration config, CMSContext _contextDB, ILogin _loginRepo)
         {
             _config = config;
             contextDB = _contextDB;
+            loginRepo = _loginRepo;
         }
+
+
+        //--- add login details ---//
+        #region AddLoginDetails
+
+        [HttpPost]
+        //[Authorize]
+
+        public async Task<IActionResult> AddLogin(Login login)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var newUser = await loginRepo.AddLogin(login);
+                    if (newUser > 0)
+                    {
+                        return Ok(newUser);
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                }
+                catch (Exception)
+                {
+                    return BadRequest();
+                }
+            }
+            return BadRequest();
+        }
+
+        #endregion
+
 
         [AllowAnonymous]
         [HttpGet("{username}/{password}")]

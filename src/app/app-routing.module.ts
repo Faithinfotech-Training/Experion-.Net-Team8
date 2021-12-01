@@ -42,7 +42,7 @@ const routes: Routes = [
   },
   { path: 'doctor', component: DoctorComponent },
   {
-    path: 'receptionist/:empId',
+    path: 'receptionist',
     component: ReceptionistComponent,
     canActivate: [AuthGuard],
     data: { role: '4' },

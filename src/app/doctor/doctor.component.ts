@@ -2,6 +2,7 @@ import { DoctorService } from './../shared/doctor.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-doctor',
@@ -17,7 +18,8 @@ export class DoctorComponent implements OnInit {
     private route: ActivatedRoute,
     public doctorService: DoctorService,
     public toastrservice: ToastrService,
-    private router: Router
+    private router: Router,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +36,11 @@ export class DoctorComponent implements OnInit {
     }
     console.log(id, this.empId);
     this.router.navigate(['prescription', id, this.empId, this.atId]);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigateByUrl('login');
   }
 
   DeleteAppointment(id: number) {

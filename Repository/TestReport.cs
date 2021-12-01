@@ -42,25 +42,26 @@ namespace Clinic_Management_System_8.Repository
         }
             public async Task<List<LabReportModel>> GetTestReport()
             {
-                if (_db != null)
-                {
-                    //LINQ
-                    return await (from t in _db.TestReports
-                                  from e in _db.Employees
-                                  from p in _db.Patients
-                                  where t.DoctorId == e.EmployeeId && t.LabTechnicianId == e.EmployeeId && t.PatientId == p.PatientId
-                                  select new LabReportModel
-                                  {
-                                      TestReportId = t.TestReportId,
-                                      TestReport = t.TestReport,
-                                      PatientName = p.PatientName,
-                                      DoctorName = e.EmployeeName,
-                                      LabTechnicianName = e.EmployeeName,
-                                      ReportGeneratedDate = t.ReportGeneratedDate
-                                  }).ToListAsync();
-                }
-                return null;
+            if (_db != null)
+            {
+                //LINQ
+                return await (from t in _db.TestReports
+                              from d in _db.Employees
+                              from l in _db.Employees
+                              from p in _db.Patients
+                              where t.DoctorId == d.EmployeeId && t.LabTechnicianId == l.EmployeeId && t.PatientId == p.PatientId
+                              select new LabReportModel
+                              {
+                                  TestReportId = t.TestReportId,
+                                  TestReport = t.TestReport,
+                                  PatientName = p.PatientName,
+                                  DoctorName = d.EmployeeName,
+                                  LabTechnicianName = l.EmployeeName,
+                                  ReportGeneratedDate = t.ReportGeneratedDate
+                              }).ToListAsync();
             }
+            return null;
+        }
 
         public  async Task<LabReportModel> GetTestReportByDate(DateTime date)
         {

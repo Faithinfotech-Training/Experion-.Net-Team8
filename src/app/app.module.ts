@@ -1,3 +1,4 @@
+import { TestreportComponent } from './testreport/testreport.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { AppointmentService } from './shared/appointment.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,7 +29,6 @@ import { PatientlistComponent } from './patientlist/patientlist.component';
 import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import { DoctorComponent } from './doctor/doctor.component';
-import { TestreportComponent } from './testreport/testreport.component';
 import { LabTechnicianComponent } from './lab-technician/lab-technician.component';
 
 @NgModule({
@@ -44,7 +44,7 @@ import { LabTechnicianComponent } from './lab-technician/lab-technician.componen
     AppointmentsComponent,
     PatientComponent,
     SpecializationComponent,
-    PatientlistComponent,  
+    PatientlistComponent,    
     SignupComponent,
     PrescriptionComponent,
     DoctorComponent,

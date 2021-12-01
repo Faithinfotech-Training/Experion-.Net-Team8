@@ -102,7 +102,7 @@ namespace Clinic_Management_System_8.Repository
                               from e in dbContext.Employees
                               where a.AppointmentTypeId == at.AppointmentTypeId &&
                               a.PatientId == p.PatientId &&
-                              a.EmployeeId == a.EmployeeId
+                              a.EmployeeId == e.EmployeeId
                               
 
                               select new AppointmentViewModel
@@ -144,7 +144,7 @@ namespace Clinic_Management_System_8.Repository
                               where a.AppointmentTypeId == at.AppointmentTypeId &&
                               a.EmployeeId == id &&
                               a.PatientId==p.PatientId &&
-                              a.EmployeeId==a.EmployeeId &&
+                              a.EmployeeId==e.EmployeeId &&
                               e.EmployeeId==id
 
                               select new AppointmentViewModel

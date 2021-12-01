@@ -26,6 +26,8 @@ export class PrescriptionComponent implements OnInit {
     //get empId from activated route
     this.empId = this.route.snapshot.params['empId'];
     this.patientId = this.route.snapshot.params['patientId'];
+    console.log(this.empId);
+    console.log(this.patientId);
     //this.empId = 2;
     //this.patientId = 2;
   }
@@ -55,6 +57,7 @@ export class PrescriptionComponent implements OnInit {
     var datePipe = new DatePipe('en-UK');
     let formatDate: any = datePipe.transform(this.currentDate, 'yyyy-MM-dd');
     form.value.PrescriptionDate = formatDate;
+    console.log(form.value);
     this.preService.AddPrescription(form.value).subscribe((data) => {
       console.log(data);
       this.toastr.success('Prescription added', 'CMSApp v2021');

@@ -44,6 +44,8 @@ export class PrescriptionService {
 
   //Add prescription
   AddPrescription(prescription: Prescription): Observable<any> {
+    //console.log('hi');
+    console.log(prescription);
     return this.httpClient.post(
       environment.apiUrl + '/api/prescription',
       prescription

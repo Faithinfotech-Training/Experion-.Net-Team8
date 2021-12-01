@@ -1,70 +1,67 @@
-
 <div class="container">
-    <div class="header">
-      <h5>Patient Information</h5>
-      <!--search-->
-      <div class="form-control">
-        <input
-          class="form-control"
-          type="text"
-          placeholder="Search....."
-          [(ngModel)]="filter"
-        />
-        <!--button also we can use here-->
-        <!--Button-->
-        <a
-          [routerLink]="['patientlist']"
-          class="btn btn-primary"
-          style="float: right"
-          >Refresh</a
+  <div class="header">
+    <h5>Patient Information</h5>
+    <!--search-->
+    <div class="form-control">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Search....."
+        [(ngModel)]="filter"
+      />
+      <!--button also we can use here-->
+      <!--Button-->
+      <a
+        [routerLink]="['patientlist']"
+        class="btn btn-primary"
+        style="float: right"
+        >Refresh</a
+      >
+    </div>
+
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>PatientId</th>
+
+          <th>PatientName</th>
+
+          <th>Contact number</th>
+
+          <th>IsActive</th>
+          -->
+
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let pat of patientService.patients
+              | filter: filter
+              | paginate: { itemsPerPage: 5, currentPage: page }
+          "
         >
-      </div>
-     
-  
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th>PatientId</th>
-  
-            <th>PatientName</th>
-  
-            <th>Contact number</th>
-  
-           <th>IsActive</th>-->
-  
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="
-              let pat of patientService.patients
-                | filter: filter
-                | paginate: { itemsPerPage: 5, currentPage: page }
-            "
+          <td (click)="populateForm(pat)">{{ pat.PatientId }}</td>
+
+          <td (click)="populateForm(pat)">{{ pat.PatientName }}</td>
+
+          <td (click)="populateForm(pat)">{{ pat.MobileNo }}</td>
+
+          <td (click)="populateForm(pat)">{{ pat.AppointmentDate }}</td>
+          <button
+            (click)="updatePatient(pat.PatientId)"
+            class="btn btn-info"
+            style="margin-left: 10px"
           >
-            <td (click)="populateForm(pat)">{{ pat.PatientId}}</td>
-  
-            <td (click)="populateForm(pat)">{{ pat.PatientName}}</td>
-  
-            <td (click)="populateForm(pat)">{{ pat.MobileNo}}</td>
-  
-          <td (click)="populateForm(pat)">{{ pat.AppointmentDate}}</td>
-              <button
-                (click)="updatePatient(pat.PatientId)"
-                class="btn btn-info"
-                style="margin-left: 10px"
-              >
-                Edit
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="footer">
-        <!--paginatiom control-->
-        <pagination-controls (pageChange)="page = $event"></pagination-controls>
-      </div>
+            Edit
+          </button>
+        </tr>
+      </tbody>
+    </table>
+    <div class="footer">
+      <!--paginatiom control-->
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div>
   </div>
-  
+</div>

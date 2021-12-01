@@ -1,7 +1,7 @@
 import { Employee } from './employee';
 import { Patient } from './patient';
 export class Prescription {
-  PrescriptionId: number;
+  PrescriptionId: number = 0;
   Prescription: string;
   PrescriptionDate: Date = new Date();
   EmployeeId: number;

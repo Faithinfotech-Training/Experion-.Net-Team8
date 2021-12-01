@@ -44,8 +44,7 @@ import { LabTechnicianComponent } from './lab-technician/lab-technician.componen
     AppointmentsComponent,
     PatientComponent,
     SpecializationComponent,
-    PatientlistComponent,
-    
+    PatientlistComponent,  
     SignupComponent,
     PrescriptionComponent,
     DoctorComponent,

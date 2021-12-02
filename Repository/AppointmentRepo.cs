@@ -103,11 +103,18 @@ namespace Clinic_Management_System_8.Repository
                               where a.AppointmentTypeId == at.AppointmentTypeId &&
                               a.PatientId == p.PatientId &&
                               a.EmployeeId == e.EmployeeId
+                              
+
                               select new AppointmentViewModel
                               {
                                   AppointmentId = a.AppointmentId,
+                                  PatientId = p.PatientId,
                                   AppointmentType = at.AppointmentType,
                                   PatientName = p.PatientName,
+                                  Age = p.Age,
+                                  MobileNo = p.MobileNo,
+                                  Gender = p.Gender,
+                                  Address = p.Address,
                                   EmployeeName = e.EmployeeName,
                                   AppointmentStatus = a.AppointmentStatus,
                                   AppointmentDate = a.AppointmentDate
@@ -137,7 +144,7 @@ namespace Clinic_Management_System_8.Repository
                               where a.AppointmentTypeId == at.AppointmentTypeId &&
                               a.EmployeeId == id &&
                               a.PatientId==p.PatientId &&
-                              a.EmployeeId==a.EmployeeId &&
+                              a.EmployeeId==e.EmployeeId &&
                               e.EmployeeId==id
 
                               select new AppointmentViewModel

@@ -33,4 +33,7 @@ export class LabTechnicianComponent implements OnInit {
     this.router.navigateByUrl('login');
   }
   
+  viewAppointments() {
+    this.router.navigate(['testreport',this.empId]);
+  }
 }

@@ -1,4 +1,8 @@
+import { LabtechnicianService } from './../shared/labtechnician.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-appointments-list',
@@ -7,9 +11,54 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppointmentsListComponent implements OnInit {
 
-  constructor() { }
+  empId: number;
+  page: number = 1;
+  filter: string;
+
+  constructor(
+    private route: ActivatedRoute,
+    public toastrservice: ToastrService,
+    private router: Router,
+    public authService: AuthService,
+    public labTechnicianService: LabtechnicianService,
+  ) { }
 
   ngOnInit(): void {
+    this.empId = this.route.snapshot.params['empId'];
+    this.labTechnicianService.getAllPatientsOfLabTechnician(this.empId);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigateByUrl('login');
+  }
+
+  addLabReport(){
+    this.router.navigate(['appointmentlist',this.empId])
+  }
+
+ deleteAppointment(id: number) {
+    console.log('cancel the appointment');
+
+    if (
+      confirm(
+        'Are you sure you want to cancel or you had completed this appointment ? '
+      )
+    ) {
+      this.labTechnicianService.deleteAppointment(id).subscribe(
+        (result) => {
+          console.log(result);
+          this.labTechnicianService.getAllPatientsOfLabTechnician(this.empId);
+          this.toastrservice.success(
+            'Appointment record has been deleted',
+            'ClinicApp v2021'
+          );
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 
 }

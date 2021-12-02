@@ -1,3 +1,4 @@
+import { TestreportComponent } from './testreport/testreport.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
@@ -64,6 +65,10 @@ const routes: Routes = [
     component: LabTechnicianComponent,
     canActivate: [AuthGuard],
     data: { role: '2' },
+  },
+  {
+    path: 'testreport/:empId/:testReportId',
+    component: TestreportComponent,
   },
 ];
 

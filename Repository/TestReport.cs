@@ -69,6 +69,33 @@ namespace Clinic_Management_System_8.Repository
                 return null;
             }
         #endregion
+
+        //get test reports by employee id
+        #region Get test reports by employee id
+        public async Task<List<LabReportModel>> GetTestReportsByEmpId(int id)
+        {
+            if (_db != null)
+            {
+                //LINQ
+                return await (from t in _db.TestReports
+                              from d in _db.Employees
+                              from l in _db.Employees
+                              from p in _db.Patients
+                              where t.DoctorId == d.EmployeeId && t.LabTechnicianId == l.EmployeeId && t.PatientId == p.PatientId && (t.DoctorId ==id || t.LabTechnicianId == id)
+                              select new LabReportModel
+                              {
+                                  TestReportId = t.TestReportId,
+                                  TestReport = t.TestReport,
+                                  PatientName = p.PatientName,
+                                  DoctorName = d.EmployeeName,
+                                  LabTechnicianName = l.EmployeeName,
+                                  ReportGeneratedDate = t.ReportGeneratedDate
+                              }).ToListAsync();
+            }
+            return null;
+        }
+        #endregion
+
         //get test report by date
         #region Get test report by date
         public async Task<LabReportModel> GetTestReportByDate(DateTime date)

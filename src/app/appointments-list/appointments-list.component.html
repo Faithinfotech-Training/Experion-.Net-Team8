@@ -42,11 +42,11 @@
                 <td>{{ appointment.AppointmentDate | date: "dd-MM-yyyy" }}</td>
                 <td>{{ appointment.AppointmentStatus }}</td>
                 <td>
-                    <button class="btn btn-sm btn-outline-danger" (click)="deleteAppointment(appoinment.AppointmentId)">
+                    <button class="btn btn-sm btn-outline-danger" (click)="deleteAppointment(appointment.AppointmentId)">
                         X</button>&nbsp;
                     <button (click)="
               addLabReport()
-            " class="btn btn-info" style="margin-left: 10px" [disabled]="!isDisabled(patient.AppointmentStatus)">
+            " class="btn btn-info" style="margin-left: 10px" [disabled]="!isDisabled(appointment.AppointmentStatus)">
                         Add Lab Report
                     </button>
                 </td>

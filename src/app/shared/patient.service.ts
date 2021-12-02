@@ -36,6 +36,7 @@ export class PatientService {
       .get(environment.apiUrl + '/api/patient')
       .toPromise()
       .then((response) => (this.patients = response as Patient[]));
+      console.log(this.patients);
   }
 
    //get all patient by id

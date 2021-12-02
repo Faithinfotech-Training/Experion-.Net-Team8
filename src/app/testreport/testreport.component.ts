@@ -1,3 +1,6 @@
+import { Labtechnician } from './../shared/labtechnician';
+import { EmployeeService } from './../shared/employee.service';
+import { PatientService } from './../shared/patient.service';
 import { TestReportService } from './../shared/test-report.service';
 import { ToastrService } from 'ngx-toastr';
 import { TestReport } from './../shared/test-report';
@@ -12,21 +15,28 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./testreport.component.scss']
 })
 export class TestreportComponent implements OnInit {
-
+  
   employeeId : number;
   testReportId: number;
   testReport : TestReport = new TestReport(); 
   constructor(
-    private testReportService : TestReportService,
+    public testReportService : TestReportService,
     private toastr: ToastrService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public patientService : PatientService,
+    public empService:EmployeeService
   ) { }
 
   ngOnInit(): void {
   
     this.testReportId =  this.route.snapshot.params['testReportId'];
- 
+    this.employeeId =  this.route.snapshot.params['empId'];
+
+    // this.testReportService.getAllPatientsAndDoctors();
+    this.patientService.GetAllPatients();
+    this.testReportService.getDoctors();
+    
     if (this.testReportId != 0 || this.testReportId != null) {
       //get test report
       // this.testReportService.get(this.empId).subscribe(
@@ -52,6 +62,7 @@ export class TestreportComponent implements OnInit {
     let addId = this.testReportService.newTestReport.TestReportId;
     //insert
     if (addId == 0 || addId == null) {
+      form.value.LabtechnicianId = this.employeeId;
       this.insertTestReport(form);
     } 
     // else {
@@ -69,17 +80,13 @@ export class TestreportComponent implements OnInit {
 
   //Insert
   insertTestReport(form?: NgForm) {
-    console.log('Iserting a record...');
+    console.log('Inserting a record...');
     this.testReportService.insertTestReport(form.value).subscribe((data) => {
       console.log(data);
       this.toastr.success('Test Report added', 'CMSApp v2021');
       //this.resetForm(form);
-      console.log(form.value.RoleId);
-      if (form.value.RoleId == 1 || form.value.RoleId == 2) {
-        this.router.navigate(['specialization', data, form.value.RoleId]);
-      } else {
-        this.router.navigate(['signup', data, form.value.RoleId]);
-      }
+      this.router.navigate(['labtechnician', this.employeeId]);
+
     });
   }
 
@@ -94,4 +101,5 @@ export class TestreportComponent implements OnInit {
   //   });
   // }
 
+  
 }

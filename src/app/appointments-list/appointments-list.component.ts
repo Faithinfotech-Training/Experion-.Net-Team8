@@ -34,7 +34,7 @@ export class AppointmentsListComponent implements OnInit {
   }
 
   addLabReport(){
-    this.router.navigate(['appointmentlist',this.empId])
+    this.router.navigate(['testreport',this.empId,0])
   }
 
  deleteAppointment(id: number) {

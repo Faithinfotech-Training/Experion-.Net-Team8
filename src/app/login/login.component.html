@@ -1,44 +1,59 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Login</h3>
+  <div>
+    <h3>Login here..</h3>
+
+    <hr />
+
+    <!--Reactive form-->
+    <form [formGroup]="loginForm" (ngSubmit)="loginCredentials()">
+      <!--Username-->
+      <div class="form-group">
+        <div>
+          <label>Username: </label>
+          <input
+            type="email"
+            placeholder="Enter your username"
+            formControlName="UserName"
+            autocomplete="off"
+            required
+            class="form-control"
+          />
         </div>
-        <div class="panel-body">
-          <form accept-charset="UTF-8" role="form">
-            <fieldset>
-              <div class="form-group">
-                <input type="email" placeholder="Username" formControlName="UserName" autocomplete="off" required
-                  class="form-control" />
-              </div>
-              <div *ngIf="isSubmitted && formControls.UserName.errors">
-                <div *ngIf="formControls.UserName.errors.required" style="color: red">
-                  username is required.
-                </div>
-              </div>
-              <div class="form-group">
-                <input type="password" placeholder="Password" formControlName="Password" autocomplete="off" required
-                  class="form-control" />
-              </div>
-              <div *ngIf="isSubmitted && formControls.Password.errors">
-                <div *ngIf="formControls.Password.errors.required" style="color: red">
-                  Password is required.
-                </div>
-              </div>
-              <div>
-                <br />
-                <button type="submit" class="btn btn-lg btn-success btn-block">
-                  <i class="fa fa-sign-in"></i> Login
-                </button>
-              </div>
-              <div *ngIf="error" style="color: red">
-                {{ error }}
-              </div>
-            </fieldset>
-          </form>
+        <div *ngIf="isSubmitted && formControls.UserName.errors">
+          <div *ngIf="formControls.UserName.errors.required" style="color: red">
+            username is required.
+          </div>
+        </div>
+
+        <!--Password-->
+        <div>
+          <br />
+          <label>Password: </label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            formControlName="Password"
+            autocomplete="off"
+            required
+            class="form-control"
+          />
+        </div>
+        <div *ngIf="isSubmitted && formControls.Password.errors">
+          <div *ngIf="formControls.Password.errors.required" style="color: red">
+            Password is required.
+          </div>
+        </div>
+        <!--Submit button-->
+        <div>
+          <br />
+          <button type="submit" class="btn btn-md btn-outline-primary">
+            <i class="fa fa-sign-in"></i> Login
+          </button>
+        </div>
+        <div *ngIf="error" style="color: red">
+          {{ error }}
         </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>

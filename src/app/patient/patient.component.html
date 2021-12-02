@@ -22,7 +22,8 @@
       [(ngModel)]="patientService.formData.PatientName"
       class="form-control"
       placeholder="Enter Patient Name"
-      pattern="[A-Za-z.-]{1,30}"
+      minlength="1"
+      pattern="[A-Za-z ]+"
       required
       [ngClass]="{ 'is-invalid': PatientName.touched && PatientName.invalid }"
     />

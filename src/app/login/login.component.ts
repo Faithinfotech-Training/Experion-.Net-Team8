@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
 
             //storing in localStorage/sessionStorage
             localStorage.setItem('username', this.jwtResponse.UserName);
+            localStorage.setItem('name', this.jwtResponse.Name);
             localStorage.setItem(
               'ACCESS_ROLE',
               this.jwtResponse.RoleId.toString()
@@ -69,26 +70,32 @@ export class LoginComponent implements OnInit {
             console.log('Lab Technician');
             //storing in localStorage/sessionStorage
             localStorage.setItem('username', this.jwtResponse.UserName);
+            localStorage.setItem('name', this.jwtResponse.Name);
             localStorage.setItem(
               'ACCESS_ROLE',
               this.jwtResponse.RoleId.toString()
             );
             sessionStorage.setItem('username', this.jwtResponse.UserName);
-            this.router.navigate(['labtechnician',this.jwtResponse.EmployeeId]);
+            this.router.navigate([
+              'labtechnician',
+              this.jwtResponse.EmployeeId,
+            ]);
           } else if (this.jwtResponse.RoleId === 1) {
             //logged as Doctor
             console.log('Doctor');
             //storing in localStorage/sessionStorage
             localStorage.setItem('username', this.jwtResponse.UserName);
+            localStorage.setItem('name', this.jwtResponse.Name);
             localStorage.setItem(
               'ACCESS_ROLE',
               this.jwtResponse.RoleId.toString()
             );
             sessionStorage.setItem('username', this.jwtResponse.UserName);
-            this.router.navigate(['doctor',this.jwtResponse.EmployeeId]);
+            this.router.navigate(['doctor', this.jwtResponse.EmployeeId]);
           } else if (this.jwtResponse.RoleId === 4) {
             //logged  as receptionist
             localStorage.setItem('username', this.jwtResponse.UserName);
+            localStorage.setItem('name', this.jwtResponse.Name);
             localStorage.setItem(
               'ACCESS_ROLE',
               this.jwtResponse.RoleId.toString()

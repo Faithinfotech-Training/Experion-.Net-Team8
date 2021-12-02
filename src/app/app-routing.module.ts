@@ -72,6 +72,10 @@ const routes: Routes = [
     path: 'testreport/:empId/:testReportId',
     component: TestreportComponent,
   },
+  {
+    path: 'testreport',
+    component: TestreportComponent,
+  },
 ];
 
 @NgModule({

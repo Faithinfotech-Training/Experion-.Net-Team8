@@ -40,6 +40,30 @@ namespace Clinic_Management_System_8.Controllers
             }
 
         }
+
+        //Get test reports by employee
+        #region Get test report
+
+        [HttpGet]
+        //[Authorize]
+        public async Task<IActionResult> GetTestReportsByEmpId(int id)
+        {
+            try
+            {
+                var tests = await postRepository.GetTestReport();
+                if (tests == null)
+                {
+                    return NotFound();
+                }
+                return Ok(tests);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+        }
+
         #endregion
         //add one test report 
         #region Add test report

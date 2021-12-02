@@ -1,6 +1,7 @@
 <div class="container">
   <div class="header">
     <h5>Payment Information</h5>
+    <hr />
     <!--search-->
     <div class="form-control">
       <input
@@ -11,12 +12,8 @@
       />
       <!--button also we can use here-->
       <!--Button-->
-      <a
-        [routerLink]="['receptionist']"
-        class="btn btn-primary"
-        style="float: right"
-        >Refresh</a
-      >
+     
+      <button class="btn btn-primary" style="float: right" [routerLink]="['../receptionist']">Home</button>
     </div>
    
 
@@ -48,7 +45,9 @@
 
           <td (click)="populateForm(c)">{{ c.PatientName }}</td>
 
-          <td (click)="populateForm(c)">{{ c.PaymentDate | date:"dd-MM-yyyy"}}</td>
+          <td (click)="populateForm(c)">
+            {{ c.PaymentDate | date: "dd-MM-yyyy" }}
+          </td>
           <td>
             <button
               (click)="updatePayment(c.PaymentId)"

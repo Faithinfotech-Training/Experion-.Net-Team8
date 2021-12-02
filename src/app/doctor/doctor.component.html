@@ -46,7 +46,7 @@
                         X</button>&nbsp;
                     <button (click)="
               AddPrescription(patient.PatientId, patient.AppointmentType)
-            " class="btn btn-info" style="margin-left: 10px">
+            " class="btn btn-info" style="margin-left: 10px" [disabled]="!isDisabled(patient.AppointmentStatus)">
                         Add Prescription
                     </button>
                     <button (click)="ViewLabResults(patient.AppointmentId)" class="btn btn-info"

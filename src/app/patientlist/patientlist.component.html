@@ -1,54 +1,66 @@
 <div class="container">
-    <div class="header">
-        <h5>Patient Info</h5>
-        <div class="list-row">
-            <div class="col-md-12">
-                <div class="input-group mb-3">
-                    <input class="form-control" type="text" placeholder="Search here.." [(ngModel)]="filter">
-                    <button class="btn btn-primary" [routerLink]="['../receptionist']">Home</button>
-                </div>
-            </div>
+  <div class="header">
+    <h5>Patient Info</h5>
+    <hr />
+    <div class="list-row">
+      <div class="col-md-12">
+        <div class="input-group mb-3">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Search here.."
+            [(ngModel)]="filter"
+          />
+          <button class="btn btn-primary" [routerLink]="['../receptionist']">
+            Home
+          </button>
         </div>
-
+      </div>
     </div>
+  </div>
 
-
-    <table class="table table-striped table-bordered">
-        <thead>
-            <tr>
-                <th>Patient Id</th>
-                <th>Patient Name</th>
-                <th>Age</th>
-                <th>Mobile Number</th>
-                <th>Gender</th>
-                <th>Appointment Date</th>
-                <th>Apointment Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!--Depends on where we read here we used view model to display-->
-            <tr
-                *ngFor="let patient of appointmentService.appointments  | filter : filter| paginate: {itemsPerPage:5, currentPage:page}">
-                <td>{{patient.PatientId}}</td>
-                <td>{{patient.PatientName}}</td>
-                <td>{{patient.Age}}</td>
-                <td>{{patient.MobileNo}}</td>
-                <td>{{patient.Gender}}</td>
-                <td>{{patient.AppointmentDate | date: 'dd-MM-yyyy'}}</td>
-                <td>{{patient.AppointmentStatus}}</td>
-                <td>
-                    <button class="btn btn-sm btn-outline-danger "
-                        (click)="DeleteAppointment(patient.AppointmentId)">Cancel Appointment</button>&nbsp;
-                   
-                    
-                </td>
-            </tr>
-        </tbody>
-
-    </table>
-    <div class="footer">
-        <!--pagenation-->
-        <pagination-controls (pageChange)="page=($event)"></pagination-controls>
-    </div>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Patient Id</th>
+        <th>Patient Name</th>
+        <th>Age</th>
+        <th>Mobile Number</th>
+        <th>Gender</th>
+        <th>Appointment Date</th>
+        <th>Apointment Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--Depends on where we read here we used view model to display-->
+      <tr
+        *ngFor="
+          let patient of appointmentService.appointments
+            | filter: filter
+            | paginate: { itemsPerPage: 5, currentPage: page }
+        "
+      >
+        <td>{{ patient.PatientId }}</td>
+        <td>{{ patient.PatientName }}</td>
+        <td>{{ patient.Age }}</td>
+        <td>{{ patient.MobileNo }}</td>
+        <td>{{ patient.Gender }}</td>
+        <td>{{ patient.AppointmentDate | date: "dd-MM-yyyy" }}</td>
+        <td>{{ patient.AppointmentStatus }}</td>
+        <td>
+          <button
+            class="btn btn-sm btn-outline-danger"
+            (click)="DeleteAppointment(patient.AppointmentId)"
+          >
+            Cancel Appointment</button
+          >&nbsp;
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="footer">
+    <!--pagenation-->
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
 </div>

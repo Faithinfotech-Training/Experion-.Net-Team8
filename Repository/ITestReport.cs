@@ -11,6 +11,9 @@ namespace Clinic_Management_System_8.Repository
     {
         
         Task<List<LabReportModel>> GetTestReport();
+
+        Task<List<LabReportModel>> GetTestReportsByEmpId(int id);
+
         Task<int> AddTestReport(TestReports test);
         Task UpdateTestReport(TestReports test);
         

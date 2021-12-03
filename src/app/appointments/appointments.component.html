@@ -23,51 +23,62 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label
-                class="form-control-label"
-                class="form-control-label"
-                for="Gender"
-                id="gender"
+              <label class="form-control-label" for="Gender" id="gender"
                 >Appoinment Type:</label
               ><span class="required">*</span>
+              <br />
+              <div>
+                <input
+                  type="radio"
+                  name="AppointmentTypeId"
+                  id="doctor"
+                  #AppointmentTypeId="ngModel"
+                  value="1"
+                  [(ngModel)]="appointmentService.formData.AppointmentTypeId"
+                />
 
-              <input
-                type="radio"
-                name="AppointmentTypeId"
-                id="AppointmentTypeId"
-                #AppointmentTypeId="ngModel"
-                value="1"
-                [(ngModel)]="appointmentService.formData.AppointmentTypeId"
-                class="form-check-input"
-              />
-
-              <label
-                class="form-control-label"
-                class="custom-control-label"
-                for="AppointmentTypeId"
-                id="AppointmentTypeId"
-                >&ensp;Doctor</label
-              >
-
-              <input
-                type="radio"
-                name="AppointmentTypeId"
-                id="AppointmentTypeId"
-                #AppointmentTypeId="ngModel"
-                value="2"
-                [(ngModel)]="appointmentService.formData.AppointmentTypeId"
-                class="form-check-input"
-              />
-              <label
-                class="form-control-label"
-                class="custom-control-label"
-                for="AppointmentTypeId"
-                id="AppointmentTypeId"
-                >&ensp;Lab Technician</label
-              >
+                <label
+                  class="form-control-label"
+                  for="doctor"
+                  id="AppointmentTypeId"
+                  >Doctor</label
+                >
+                <input
+                  type="radio"
+                  name="AppointmentTypeId"
+                  id="labtechnician"
+                  #AppointmentTypeId="ngModel"
+                  value="2"
+                  [(ngModel)]="appointmentService.formData.AppointmentTypeId"
+                />
+                <label
+                  class="form-control-label"
+                  for="labtechnician"
+                  id="AppointmentTypeId"
+                  >Lab Technician</label
+                >
+              </div>
             </div>
           </div>
 
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="form-check">
+                <label class="col-md-6" id="isactive">Appointment Status</label>
+                <input
+                  type="checkbox"
+                  name="IsActive"
+                  id="IsActive"
+                  #IsActive="ngModel"
+                  [(ngModel)]="appointmentService.formData.AppointmentStatus"
+                  class="form-check-input"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
           <!-- Employee -->
           <div class="col-md-6">
             <div class="form-group">
@@ -105,9 +116,6 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <label
@@ -135,21 +143,6 @@
                 <div *ngIf="AppointmentDate.errors.required" class="required">
                   Appointment date is required
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <div class="form-check">
-                <label class="col-md-4" id="isactive">Appointment Status</label>
-                <input
-                  type="checkbox"
-                  name="IsActive"
-                  id="IsActive"
-                  #IsActive="ngModel"
-                  [(ngModel)]="appointmentService.formData.AppointmentStatus"
-                  class="form-check-input"
-                />
               </div>
             </div>
           </div>

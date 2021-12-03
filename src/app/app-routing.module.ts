@@ -1,3 +1,4 @@
+import { TestreportsListComponent } from './testreports-list/testreports-list.component';
 import { AppointmentsListComponent } from './appointments-list/appointments-list.component';
 import { TestreportComponent } from './testreport/testreport.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'signup/:empId/:roleId', component: SignupComponent },
   { path: 'prescription/:patientId/:empId', component: PrescriptionComponent },
   { path: 'appoinmentlist/:empId', component: AppointmentsListComponent },
+  { path: 'testreportlist/:empId', component: TestreportsListComponent },
 
   {
     path: 'prescription/:patientId/:empId/:atId',

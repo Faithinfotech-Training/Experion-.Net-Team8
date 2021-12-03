@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-testreport',
@@ -25,34 +26,32 @@ export class TestreportComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public patientService : PatientService,
-    public empService:EmployeeService
+    public empService:EmployeeService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
   
     this.testReportId =  this.route.snapshot.params['testReportId'];
     this.employeeId =  this.route.snapshot.params['empId'];
-
-    // this.testReportService.getAllPatientsAndDoctors();
     this.patientService.GetAllPatients();
     this.testReportService.getDoctors();
-    
     if (this.testReportId != 0 || this.testReportId != null) {
       //get test report
-      // this.testReportService.get(this.empId).subscribe(
-      //   (data) => {
-      //     console.log(data);
-      //     //date format
-      //     var datePipe = new DatePipe('en-UK');
-      //     let formatDate: any = datePipe.transform(
-      //       data.DateOfJoining,
-      //       'yyyy-MM-dd'
-      //     );
-      //     data.DateOfJoining = formatDate;
-      //     this.empService.formData = data;
-      //   },
-      //   (error) => console.log(error)
-      // );
+      this.testReportService.getTestReport(this.testReportId).subscribe(
+        (data) => {
+          console.log(data);
+          //date format
+          var datePipe = new DatePipe('en-UK');
+          let formatDate: any = datePipe.transform(
+            data.ReportGeneratedDate,
+            'yyyy-MM-dd'
+          );
+          data.ReportGeneratedDate = formatDate;
+          this.testReportService.newTestReport = data;
+        },
+        (error) => console.log(error)
+      );
     }
   }
 
@@ -74,7 +73,8 @@ export class TestreportComponent implements OnInit {
   //clear all contents and Initialization
   resetForm(from?: NgForm) {
     if (from != null) {
-      from.resetForm();
+      from.reset();
+      this.router.navigate(['testreportlist',this.employeeId]);
     }
   }
 

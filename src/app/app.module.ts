@@ -31,6 +31,7 @@ import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { LabTechnicianComponent } from './lab-technician/lab-technician.component';
+import { TestreportsListComponent } from './testreports-list/testreports-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 
@@ -54,6 +55,7 @@ import { FooterComponent } from './footer/footer.component';
     TestreportComponent,
     LabTechnicianComponent,
     AppointmentsListComponent,
+    TestreportsListComponent,
     NavbarComponent,
     FooterComponent
   ],

@@ -27,13 +27,12 @@ export class TestReportService {
   newTestReport: TestReport = new TestReport();
   patients: Patient[];
   doctors: Employee[];
+  isReadOnly: boolean = false;
 
-  // get reports of employee by id 
+
   getTestReportsByEmployeeId(id: number) {
 
   }
-
-
 
   insertTestReport(testReport: TestReport): Observable<any> {
     return this.httpClient.post(environment.apiUrl + '/api/testreport/add',
@@ -42,8 +41,8 @@ export class TestReportService {
   }
 
   // get test report by id
-  getTestReport(id: number) {
-    return this.httpClient.get(environment.apiUrl + '/api/testreport/' + id);
+  getTestReport(id: number) :Observable<any>{
+    return this.httpClient.get(environment.apiUrl + '/api/testreport/GetTestReportById/?id=' + id);
   }
 
   //delete test report
@@ -58,12 +57,22 @@ export class TestReportService {
     then((response) => (this.doctors = response as Employee[]));
   }
 
-  // getAllPatientsAndDoctors(){
-  //     this.patientService.GetAllPatients();
-  //     this.patients = this.patientService.patients;
-  //     console.log(this.patients);
-  //     this.empService.getAllEmployee();
-  //     this.doctors = this.empService.employees.filter(emp => emp.RoleId === 1);
-  // }
+  //get all appointments for lab technician
 
+  getLabRecords(id: number) {
+    this.httpClient
+      .get(environment.apiUrl + '/api/testreport/byemployeeid?id=' + id)
+      .toPromise()
+      .then((response) => (this.testReports = response as Testreportmodel[]));
+    console.log(this.testReports);
+  }
+
+  toggleReadOnlyMode(value:boolean){
+    this.isReadOnly = value;
+  }
+
+  resetTestReport(){
+    this.newTestReport = new TestReport();
+    this.toggleReadOnlyMode(false);
+  }
 }

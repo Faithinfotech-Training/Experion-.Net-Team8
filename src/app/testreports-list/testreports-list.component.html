@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="header">
-        <h5>Appoinments</h5>
+        <h5>Lab Reports</h5>
         <div class="list-row">
             <div class="col-md-12">
                 <div class="input-group mb-3">
@@ -17,37 +17,32 @@
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th>Patient Id</th>
+                <th>LabReport Id</th>
+                <th>Report Date</th>
                 <th>Patient Name</th>
-                <th>Age</th>
-                <th>Mobile Number</th>
-                <th>Gender</th>
-                <th>Appointment Date</th>
-                <th>Apointment Status</th>
+                <th>LabTechnician Name</th>
+                <th>Doctor Name</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <!--Depends on where we read here we used view model to display-->
             <tr *ngFor="
-          let appointment of labTechnicianService.appointments
+          let testReport of testReportService.testReports
             | filter: filter
             | paginate: { itemsPerPage: 5, currentPage: page }
         ">
-                <td>{{ appointment.PatientId }}</td>
-                <td>{{ appointment.PatientName }}</td>
-                <td>{{ appointment.Age }}</td>
-                <td>{{ appointment.MobileNo }}</td>
-                <td>{{ appointment.Gender }}</td>
-                <td>{{ appointment.AppointmentDate | date: "dd-MM-yyyy" }}</td>
-                <td>{{ appointment.AppointmentStatus }}</td>
+                <td>{{ testReport.TestReportId }}</td>
+                <td>{{ testReport.ReportGeneratedDate }}</td>
+                <td>{{ testReport.PatientName }}</td>
+                <td>{{ testReport.LabTechnicianName }}</td>
+                <td>{{ testReport.DoctorName }}</td>
                 <td>
-                    <button class="btn btn-sm btn-outline-danger" (click)="deleteAppointment(appointment.AppointmentId)">
+                    <button class="btn btn-sm btn-outline-danger" (click)="testReportService.deleteTestReport(testReport.TestReportId)">
                         X</button>&nbsp;
-                    <button (click)="
-              addLabReport()
-            " class="btn btn-info" style="margin-left: 10px" [disabled]="!isDisabled(appointment.AppointmentStatus)">
-                        Add Lab Report
+                    <button (click)="viewLabReport(empId,testReport.TestReportId)" class="btn btn-info"
+                        style="margin-left: 10px">
+                        View Record
                     </button>
                 </td>
             </tr>

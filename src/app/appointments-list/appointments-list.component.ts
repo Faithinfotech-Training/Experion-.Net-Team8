@@ -1,3 +1,4 @@
+import { TestReportService } from './../shared/test-report.service';
 import { LabtechnicianService } from './../shared/labtechnician.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -21,6 +22,7 @@ export class AppointmentsListComponent implements OnInit {
     private router: Router,
     public authService: AuthService,
     public labTechnicianService: LabtechnicianService,
+    public testReportService :TestReportService
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +36,7 @@ export class AppointmentsListComponent implements OnInit {
   }
 
   addLabReport(){
+    this.testReportService.resetTestReport();
     this.router.navigate(['testreport',this.empId,0])
   }
 

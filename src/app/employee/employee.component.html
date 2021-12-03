@@ -1,208 +1,267 @@
-<h3>Register Employee</h3>
-<hr />
-<form
-  name="empform"
-  #form="ngForm"
-  autocomplete="off"
-  (ngSubmit)="onSubmit(form)"
->
-  <!--Employee Id-->
-  <input
-    type="hidden"
-    name="EmployeeId"
-    [(ngModel)]="empService.formData.EmployeeId"
-  />
-
-  <!--Emloyee Name-->
-  <div class="form-group">
-    <label>Full Name:</label>
-    <input
-      name="EmployeeName"
-      #EmployeeName="ngModel"
-      [(ngModel)]="empService.formData.EmployeeName"
-      class="form-control"
-      placeholder="Enter Full Name"
-      required
-      pattern="[A-Za-z.-]{1,30}"
-      [ngClass]="{ 'is-invalid': EmployeeName.touched && EmployeeName.invalid }"
-    />
-    <div
-      class="validation-error"
-      *ngIf="EmployeeName.touched && EmployeeName.invalid"
-    >
-      <div *ngIf="EmployeeName.errors.required">Name is required</div>
+<div class="container-fluid bg-default" id="image_specs">
+  <div class="card my-2 mx-auto" id="signup_card">
+    <div class="card-header text-center">
+      <h1 id="heading" class="mb-0 heading">EMPLOYEE</h1>
+      <h1 id="green" class="mb-0 heading">&ensp;REGISTRATION</h1>
     </div>
-  </div>
-  <br />
-  <!--Emloyee Age-->
-  <div class="form-group">
-    <label>Age:</label>
-    <input
-      type="number"
-      name="Age"
-      #Age="ngModel"
-      [(ngModel)]="empService.formData.Age"
-      class="form-control"
-      placeholder="Enter your age"
-      required
-      [ngClass]="{ 'is-invalid': Age.touched && Age.invalid }"
-      min="23"
-      max="65"
-    />
-    <div class="validation-error" *ngIf="Age.touched && Age.invalid">
-      <div *ngIf="Age.errors.required">Age is required</div>
-    </div>
-  </div>
 
-  <br />
-  <!--Emloyee Mobile Number-->
-  <div class="form-group">
-    <label>Mobile Number:</label>
-    <input
-      type="tel"
-      name="MobileNo"
-      #MobileNo="ngModel"
-      [(ngModel)]="empService.formData.MobileNo"
-      class="form-control"
-      placeholder="Enter your MobileNo (eg:1234567892)"
-      required
-      pattern="[0-9]{10}"
-      [ngClass]="{ 'is-invalid': MobileNo.touched && MobileNo.invalid }"
-    />
-    <div class="validation-error" *ngIf="MobileNo.touched && MobileNo.invalid">
-      <div *ngIf="MobileNo.errors.required">MobileNo is required</div>
-    </div>
-  </div>
-
-  <br />
-  <!--Gender-->
-
-  <div class="form-group">
-    <div>
-      <label>Gender :</label>
-      <input
-        type="radio"
-        name="Gender"
-        id="Gender"
-        #Gender="ngModel"
-        value="male"
-        [(ngModel)]="empService.formData.Gender"
-        class="form-check-input"
-      />
-      Male&nbsp;&nbsp;
-      <input
-        type="radio"
-        name="Gender"
-        id="Gender"
-        #Gender="ngModel"
-        value="female"
-        [(ngModel)]="empService.formData.Gender"
-        class="form-check-input"
-      />
-      Female
-    </div>
-  </div>
-
-  <!--Date of joining-->
-  <br />
-  <div class="form-group">
-    <label>Date of joining:</label>
-    <input
-      type="date"
-      class="form-control"
-      name="DateOfJoining"
-      #DateOfJoining="ngModel"
-      [(ngModel)]="empService.formData.DateOfJoining"
-      required
-      [ngClass]="{
-        'is-invalid': DateOfJoining.touched && DateOfJoining.invalid
-      }"
-    />
-    <div
-      class="validation-error"
-      *ngIf="DateOfJoining.touched && DateOfJoining.invalid"
-    >
-      <div *ngIf="DateOfJoining.errors.required">
-        Date of Joining is required
-      </div>
-    </div>
-  </div>
-
-  <!--DepartmentId-->
-  <br />
-  <div class="form-group">
-    <label class="col-md-4">Department:</label>
-    <select
-      class="form-control"
-      name="DepartmentId"
-      id="DepartmentId"
-      #DepartmentId="ngModel"
-      [(ngModel)]="empService.formData.DepartmentId"
-      required
-    >
-      <option value="0" disabled>Choose a Department</option>
-      <option
-        *ngFor="let dept of empService.departments"
-        value="{{ dept.DepartmentId }}"
+    <div class="card-body">
+      <form
+        name="empform"
+        #form="ngForm"
+        autocomplete="off"
+        (ngSubmit)="onSubmit(form)"
       >
-        {{ dept.DepartmentName }}
-      </option>
-    </select>
-    <div
-      class="validation-error"
-      *ngIf="DepartmentId.touched && DepartmentId.invalid"
-    >
-      <div *ngIf="DepartmentId.errors.required">Department is required</div>
+        <!-- <h6 class="heading-small text-muted mb-4">Personal information</h6> -->
+        <!--Employee Id-->
+        <input
+          type="hidden"
+          name="EmployeeId"
+          [(ngModel)]="empService.formData.EmployeeId"
+        />
+
+        <!--Emloyee Name-->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-control-label" for="EmployeeName"
+                >Employee Name :</label
+              ><span class="required">*</span>
+              <input
+                name="EmployeeName"
+                #EmployeeName="ngModel"
+                [(ngModel)]="empService.formData.EmployeeName"
+                class="form-control"
+                placeholder="Enter Full Name"
+                required
+                minlength="1"
+                pattern="[A-Za-z ]+"
+                [ngClass]="{
+                  'is-invalid': EmployeeName.touched && EmployeeName.invalid
+                }"
+              />
+              <div
+                class="validation-error"
+                *ngIf="EmployeeName.touched && EmployeeName.invalid"
+              >
+                <div
+                  class="validation-error"
+                  *ngIf="EmployeeName.touched && EmployeeName.invalid"
+                >
+                  <div *ngIf="EmployeeName.errors.required" class="required">
+                    Name is required
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--Emloyee Age-->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-control-label" for="Age">Age :</label
+              ><span class="required">*</span>
+              <input
+                type="number"
+                name="Age"
+                #Age="ngModel"
+                [(ngModel)]="empService.formData.Age"
+                class="form-control"
+                placeholder="Enter your age"
+                required
+                [ngClass]="{ 'is-invalid': Age.touched && Age.invalid }"
+                min="23"
+                max="65"
+              />
+              <div class="validation-error" *ngIf="Age.touched && Age.invalid">
+                <div *ngIf="Age.errors.required" class="required">
+                  Age is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label
+                class="form-control-label"
+                class="form-control-label"
+                for="DateOfJoining"
+                >Date Of Joining</label
+              ><span class="required">*</span>
+              <input
+                type="date"
+                class="form-control"
+                name="DateOfJoining"
+                #DateOfJoining="ngModel"
+                [(ngModel)]="empService.formData.DateOfJoining"
+                required
+                [ngClass]="{
+                  'is-invalid': DateOfJoining.touched && DateOfJoining.invalid
+                }"
+              />
+              <div
+                class="validation-error"
+                *ngIf="DateOfJoining.touched && DateOfJoining.invalid"
+              >
+                <div *ngIf="DateOfJoining.errors.required" class="required">
+                  Date of Joining is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-control-label" for="MobileNo">MobileNo :</label
+              ><span class="required">*</span>
+              <input
+                type="tel"
+                name="MobileNo"
+                #MobileNo="ngModel"
+                [(ngModel)]="empService.formData.MobileNo"
+                class="form-control"
+                placeholder="Enter your MobileNo (eg:1234567892)"
+                required
+                pattern="[0-9]{10}"
+                [ngClass]="{
+                  'is-invalid': MobileNo.touched && MobileNo.invalid
+                }"
+              />
+              <div
+                class="validation-error"
+                *ngIf="MobileNo.touched && MobileNo.invalid"
+              >
+                <div *ngIf="MobileNo.errors.required" class="required">
+                  MobileNo is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-control-label" for="DepartmentId"
+                >Department :</label
+              ><span class="required">*</span>
+              <select
+                class="form-control"
+                name="DepartmentId"
+                id="DepartmentId"
+                #DepartmentId="ngModel"
+                [(ngModel)]="empService.formData.DepartmentId"
+                required
+              >
+                <option
+                  *ngFor="let dept of empService.departments"
+                  value="{{ dept.DepartmentId }}"
+                >
+                  {{ dept.DepartmentName }}
+                </option>
+              </select>
+              <div
+                class="validation-error"
+                *ngIf="DepartmentId.touched && DepartmentId.invalid"
+              >
+                <div *ngIf="DepartmentId.errors.required" class="required">
+                  Department is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-control-label" for="RoleId">Role :</label
+              ><span class="required">*</span>
+              <select
+                class="form-control"
+                name="RoleId"
+                id="RoleId"
+                #RoleId="ngModel"
+                [(ngModel)]="empService.formData.RoleId"
+                required
+              >
+                <option
+                  *ngFor="let role of empService.roles"
+                  value="{{ role.RoleId }}"
+                >
+                  {{ role.RoleName }}
+                </option>
+              </select>
+              <div
+                class="validation-error"
+                *ngIf="RoleId.touched && RoleId.invalid"
+              >
+                <div *ngIf="RoleId.errors.required" class="required">
+                  Role is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label
+                class="form-control-label"
+                class="form-control-label"
+                for="Gender"
+                id="gender"
+                >Gender</label
+              ><span class="required">*</span>
+
+              <input
+                type="radio"
+                name="Gender"
+                id="Gender"
+                #Gender="ngModel"
+                value="male"
+                [(ngModel)]="empService.formData.Gender"
+              />
+              <label class="form-control-label" for="Male" id="gender"
+                >&ensp;Male</label
+              >
+
+              <input
+                type="radio"
+                name="Gender"
+                id="Gender"
+                #Gender="ngModel"
+                value="female"
+                [(ngModel)]="empService.formData.Gender"
+              />
+              <label class="form-control-label" for="Female" id="gender"
+                >&ensp;Female</label
+              >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <div class="form-check">
+                <label class="col-md-4" id="isactive">Is Active</label>
+                <input
+                  type="checkbox"
+                  name="IsActive"
+                  id="IsActive"
+                  #IsActive="ngModel"
+                  [(ngModel)]="empService.formData.IsActive"
+                  class="form-check-input"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          type="submit"
+          [disabled]="!(form.valid && form.dirty)"
+          class="btn btn-success form-control"
+        >
+          Register
+        </button>
+      </form>
     </div>
   </div>
-
-  <!--RoleId-->
-  <br />
-  <div class="form-group">
-    <label class="col-md-4">Role:</label>
-    <select
-      class="form-control"
-      name="RoleId"
-      id="RoleId"
-      #RoleId="ngModel"
-      [(ngModel)]="empService.formData.RoleId"
-      required
-    >
-      <option value="0" disabled>Choose a Role</option>
-      <option *ngFor="let role of empService.roles" value="{{ role.RoleId }}">
-        {{ role.RoleName }}
-      </option>
-    </select>
-    <div class="validation-error" *ngIf="RoleId.touched && RoleId.invalid">
-      <div *ngIf="RoleId.errors.required">Role is required</div>
-    </div>
-  </div>
-
-  <!--Is Active-->
-  <br />
-  <div class="form-group">
-    <div class="form-check">
-      <label class="col-md-4">Is Active</label>
-      <input
-        type="checkbox"
-        name="IsActive"
-        id="IsActive"
-        #IsActive="ngModel"
-        [(ngModel)]="empService.formData.IsActive"
-        class="form-check-input"
-      />
-    </div>
-  </div>
-
-  <!--Submit button-->
-  <br />
-  <div class="form-group">
-    <button
-      type="submit"
-      [disabled]="!(form.valid && form.dirty)"
-      class="btn btn-primary form-control"
-    >
-      Submit
-    </button>
-  </div>
-</form>
+</div>

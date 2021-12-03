@@ -1,12 +1,15 @@
 <header>
   <div class="container">
-    <h4 align="center">Welcome {{ userName }} !</h4>
+    <h4>Welcome {{ userName }} !</h4>
   </div>
 
+  <br />
   <nav>
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" (click)="viewAppointments()">View Appointments</a>
+        <a class="btn btn-outline-primary" (click)="viewAppointments()"
+          >View Appointments</a
+        >
       </li>
 
       <li class="nav-item">
@@ -14,7 +17,11 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" (click)="logout()">Logout</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+          class="btn btn-outline-primary"
+          (click)="logout()"
+          >Logout</a
+        >
       </li>
     </ul>
   </nav>

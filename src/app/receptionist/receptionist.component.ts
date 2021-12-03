@@ -17,7 +17,7 @@ export class ReceptionistComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loggedUserName = localStorage.getItem('username');
+    this.loggedUserName = localStorage.getItem('name');
     this.empId = this.route.snapshot.params['empId'];
   }
   logOut() {

@@ -24,13 +24,13 @@
   <div class="form-group">
     <label>Total Amount :</label>
     <input
+      type="number"
       name="Amount"
       #Amount="ngModel"
       [(ngModel)]="payService.formData.Amount"
       class="form-control"
       placeholder="Enter Total Amount"
-      minlength="1"
-      maxlength="25"
+      min="1"
       required
       [ngClass]="{ 'is-invalid': Amount.touched && Amount.invalid }"
     />

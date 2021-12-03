@@ -41,6 +41,33 @@ namespace Clinic_Management_System_8.Controllers
 
         }
         #endregion
+
+        //Get test reports by employee Id
+        #region Get test report by empid
+
+        [HttpGet]
+        [Route("byEmployeeId")]
+        //[Authorize]
+
+        public async Task<IActionResult> GetTestReportsByEmpId(int id)
+        {
+            try
+            {
+                var tests = await postRepository.GetTestReportsByEmpId(id);
+                if (tests == null)
+                {
+                    return NotFound();
+                }
+                return Ok(tests);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+        }
+
+        #endregion
         //add one test report 
         #region Add test report
         [HttpPost]
@@ -70,8 +97,8 @@ namespace Clinic_Management_System_8.Controllers
             }
             return BadRequest();
         }
-
         #endregion
+
         //update test report by passing id
         #region update test report
         [HttpPut]

@@ -23,7 +23,8 @@
       class="form-control"
       placeholder="Enter Full Name"
       required
-      pattern="[A-Za-z.-]{1,30}"
+      minlength="1"
+      pattern="[A-Za-z ]+"
       [ngClass]="{ 'is-invalid': EmployeeName.touched && EmployeeName.invalid }"
     />
     <div

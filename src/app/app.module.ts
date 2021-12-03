@@ -1,3 +1,4 @@
+import { AppointmentsListComponent } from './appointments-list/appointments-list.component';
 import { TestreportComponent } from './testreport/testreport.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { AppointmentService } from './shared/appointment.service';
@@ -50,6 +51,7 @@ import { LabTechnicianComponent } from './lab-technician/lab-technician.componen
     DoctorComponent,
     TestreportComponent,
     LabTechnicianComponent,
+    AppointmentsListComponent
   ],
   imports: [
     BrowserModule,

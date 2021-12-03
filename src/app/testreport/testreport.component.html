@@ -1,1 +1,107 @@
-<p>testreport works!</p>
+<h3>Add Lab Report</h3>
+<hr />
+<form name="testreportform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+    <!--Test Report Id-->
+    <input type="hidden" name="TestReportId" [(ngModel)]="testReportService.newTestReport.TestReportId" />
+
+    <!--Date of Report generated-->
+  <br />
+  <div class="form-group">
+    <label>Date of report:</label>
+    <input
+      type="date"
+      class="form-control"
+      name="ReportGeneratedDate"
+      #ReportGeneratedDate="ngModel"
+      [(ngModel)]="testReportService.newTestReport.ReportGeneratedDate"
+      required
+      [ngClass]="{
+        'is-invalid': ReportGeneratedDate.touched && ReportGeneratedDate.invalid
+      }"
+    />
+    <div
+      class="validation-error"
+      *ngIf="ReportGeneratedDate.touched && ReportGeneratedDate.invalid"
+    >
+      <div *ngIf="ReportGeneratedDate.errors.required">
+        Date of Report is required
+      </div>
+    </div>
+  </div>
+
+  <!--PatientId-->
+  <br />
+  <div class="form-group">
+    <label class="col-md-4">Patient:</label>
+    <select
+      class="form-control"
+      name="PatientId"
+      id="PatientId"
+      #PatientId="ngModel"
+      [(ngModel)]="testReportService.newTestReport.PatientId"
+      required
+    >
+      <option value="0" disabled>Choose a Patient</option>
+      <option
+        *ngFor="let patient of patientService.patients"
+        value="{{ patient.PatientId }}"
+      >
+        {{ patient.PatientName }}
+      </option>
+    </select>
+    <div
+      class="validation-error"
+      *ngIf="PatientId.touched && PatientId.invalid"
+    >
+      <div *ngIf="PatientId.errors.required">Patient is required</div>
+    </div>
+  </div>
+
+  <!--DoctorId-->
+  <br />
+  <div class="form-group">
+    <label class="col-md-4">Doctor:</label>
+    <select
+      class="form-control"
+      name="DoctorId"
+      id="DoctorId"
+      #DoctorId="ngModel"
+      [(ngModel)]="testReportService.newTestReport.DoctorId"
+      required
+    >
+      <option value="0" disabled>Choose a Doctor</option>
+      <option
+        *ngFor="let emp of testReportService.doctors"
+        value="{{ emp.EmployeeId }}"
+      >
+        {{ emp.EmployeeName }}
+      </option>
+    </select>
+    <div
+      class="validation-error"
+      *ngIf="DoctorId.touched && DoctorId.invalid"
+    >
+      <div *ngIf="DoctorId.errors.required">Doctor is required</div>
+    </div>
+  </div>
+
+    <!--TestReport-->
+    <div class="form-group">
+        <label>TestReport:</label>
+        <textarea name="TestReport" #TestReport="ngModel" [(ngModel)]="testReportService.newTestReport.TestReport"
+            class="form-control" placeholder="Add your lab report here..." rows="10" cols="30" required
+            [ngClass]="{ 'is-invalid': TestReport.touched && TestReport.invalid }"></textarea>
+        <div class="validation-error" *ngIf="TestReport.touched && TestReport.invalid">
+            <div *ngIf="TestReport.errors.required">Test Report is required</div>
+        </div>
+    </div>
+    <br />
+
+    <!--Submit button-->
+    <br />
+    <div class="form-group">
+        <button type="submit" [disabled]="!(form.valid && form.dirty)" class="btn btn-primary form-control">
+            Submit
+        </button>
+    </div>
+</form>

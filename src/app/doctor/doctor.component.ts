@@ -9,6 +9,7 @@ import { AuthService } from '../shared/auth.service';
   templateUrl: './doctor.component.html',
   styleUrls: ['./doctor.component.scss'],
 })
+
 export class DoctorComponent implements OnInit {
   empId: number;
   page: number = 1;

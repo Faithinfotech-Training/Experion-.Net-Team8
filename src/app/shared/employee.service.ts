@@ -96,4 +96,8 @@ export class EmployeeService {
       environment.apiUrl + '/api/employee/GetEmployeeById?id=' + empId
     );
   }
+
+  getDoctors(): Employee[]{
+    return this.employees.filter(e => e.RoleId ==1);
+  }
 }

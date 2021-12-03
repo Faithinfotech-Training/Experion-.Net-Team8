@@ -1,3 +1,5 @@
+import { AppointmentsListComponent } from './appointments-list/appointments-list.component';
+import { TestreportComponent } from './testreport/testreport.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 
 import { PaymentlistComponent } from './paymentlist/paymentlist.component';
@@ -35,6 +37,7 @@ const routes: Routes = [
   { path: 'appointments/:patientid', component: AppointmentsComponent },
   { path: 'signup/:empId/:roleId', component: SignupComponent },
   { path: 'prescription/:patientId/:empId', component: PrescriptionComponent },
+  { path: 'appoinmentlist/:empId', component: AppointmentsListComponent },
 
   {
     path: 'prescription/:patientId/:empId/:atId',
@@ -64,6 +67,14 @@ const routes: Routes = [
     component: LabTechnicianComponent,
     canActivate: [AuthGuard],
     data: { role: '2' },
+  },
+  {
+    path: 'testreport/:empId/:testReportId',
+    component: TestreportComponent,
+  },
+  {
+    path: 'testreport',
+    component: TestreportComponent,
   },
 ];
 

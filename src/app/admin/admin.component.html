@@ -1,20 +1,28 @@
 <header>
   <div class="container">
-    <h4 align="center">Welcome {{ loggedUserName }} !</h4>
+    <h4>Welcome {{ loggedUserName }} !</h4>
   </div>
-
+  <br />
   <nav>
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" href="../employee">Add Employee</a>
+        <a class="btn btn-outline-primary" href="../employee">Add Employee</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="../employeelist">View Employee</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+          class="btn btn-outline-primary"
+          href="../employeelist"
+          >View Employee</a
+        >
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" (click)="logout()">Logout</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+          class="btn btn-outline-primary"
+          (click)="logout()"
+          >Logout</a
+        >
       </li>
     </ul>
   </nav>

@@ -1,22 +1,13 @@
 <div class="container-fluid bg-default pb-4">
   <div class="container-fluid py-4">
-      <h1 id="heading" class="mb-0 heading pt-4">MANAGE</h1>
-      <h1 id="green" class="mb-0 heading pt-4"> PATIENTS</h1>
-          <nav aria-label="breadcrumb" id="navBar">
-              <ol class="breadcrumb bg-default" >
-                <li class="breadcrumb-item"><a routerLink="home"><i id="breadCrumb" class="fas fa-home fa-6"></i></a></li>
-              <li id="breadCrumb" class="breadcrumb-item active" aria-current="page">Patients</li>
-              </ol>
-            </nav>
-          </div>
+    <h1 id="heading" class="mb-0 heading pt-4">MANAGE</h1>
+    <h1 id="green" class="mb-0 heading pt-4">&ensp;PATIENTS</h1>
+  </div>
 
   <div class="card" id="manage_patient_card">
     <div class="card-header border-0">
       <div class="row">
-        <div class="col-6">
-          
-        </div>
-
+        <div class="col-6"></div>
       </div>
     </div>
     <!-- Light table -->
@@ -25,25 +16,34 @@
         <thead class="thead-light">
           <tr>
             <th>Patient Id</th>
-          <th>Patient Name</th>
-          <th>Age</th>
-          <th>Mobile Number</th>
-          <th>Gender</th>
-          <th>Appointment Date</th>
-          <th>Apointment Status</th>
-          <th>Action</th>
+            <th>Patient Name</th>
+            <th>Age</th>
+            <th>Mobile Number</th>
+            <th>Gender</th>
+            <th>Appointment Date</th>
+            <th>Apointment Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="
-          let patient of appointmentService.appointments
-            | filter: filter
-            | paginate: { itemsPerPage: 5, currentPage: page }
-        ">
+          <tr
+            *ngFor="
+              let patient of appointmentService.appointments
+                | filter: filter
+                | paginate: { itemsPerPage: 5, currentPage: page }
+            "
+          >
             <td class="table-user">
-              <img *ngIf="patient.gender=='Male'" src="../../assets/img/patient-male.png" class="avatar rounded-circle mr-3">
-              <img *ngIf="patient.gender=='Female'" src="../../assets/img/patient-female.png"
-                class="avatar rounded-circle mr-3">
+              <img
+                *ngIf="patient.gender == 'Male'"
+                src="../../assets/img/patient-male.png"
+                class="avatar rounded-circle mr-3"
+              />
+              <img
+                *ngIf="patient.gender == 'Female'"
+                src="../../assets/img/patient-female.png"
+                class="avatar rounded-circle mr-3"
+              />
               <b>{{ patient.PatientId }}</b>
             </td>
             <td>
@@ -59,7 +59,9 @@
               <span class="text-muted">{{ patient.Gender }}</span>
             </td>
             <td>
-              <span class="text-muted">{{ patient.AppointmentDate | date: "dd-MM-yyyy" }}</span>
+              <span class="text-muted">{{
+                patient.AppointmentDate | date: "dd-MM-yyyy"
+              }}</span>
             </td>
             <td>
               <span class="text-muted">{{ patient.AppointmentStatus }}</span>
@@ -72,6 +74,7 @@
                 Cancel Appointment</button
               >&nbsp;
             </td>
+          </tr>
         </tbody>
       </table>
     </div>

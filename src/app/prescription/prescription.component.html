@@ -1,26 +1,58 @@
-<h3>Prescription</h3>
-<hr />
-<form name="prescriptionform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
-    <!--Prescription Id-->
-    <input type="hidden" name="PrescriptionId" [(ngModel)]="preService.prescriptionForm.PrescriptionId" />
+<div class="container-fluid bg-default" id="image_specs">
+  <div class="card my-2 mx-auto" id="signup_card">
+    <div class="card-header text-center">
+      <h1 id="heading" class="mb-0 heading">ADD</h1>
+      <h1 id="green" class="mb-0 heading">&ensp;PRESCRIPTION</h1>
+    </div>
 
-    <!--Prescription-->
-    <div class="form-group">
-        <label>Prescription:</label>
-        <textarea name="Prescription" #Prescription="ngModel" [(ngModel)]="preService.prescriptionForm.Prescription"
-            class="form-control" placeholder="Add your prescription here..." rows="10" cols="30" required
-            [ngClass]="{ 'is-invalid': Prescription.touched && Prescription.invalid }"></textarea>
-        <div class="validation-error" *ngIf="Prescription.touched && Prescription.invalid">
-            <div *ngIf="Prescription.errors.required">Prescription is required</div>
+    <div class="card-body">
+      <form
+        name="prescriptionform"
+        #form="ngForm"
+        autocomplete="off"
+        (ngSubmit)="onSubmit(form)"
+      >
+        <!--Prescription Id-->
+        <input
+          type="hidden"
+          name="PrescriptionId"
+          [(ngModel)]="preService.prescriptionForm.PrescriptionId"
+        />
+
+        <div class="form-group">
+          <!--Emloyee Name-->
+          <label>Prescription:</label>
+          <textarea
+            name="Prescription"
+            #Prescription="ngModel"
+            [(ngModel)]="preService.prescriptionForm.Prescription"
+            class="form-control"
+            placeholder="Add your prescription here..."
+            required
+            [ngClass]="{
+              'is-invalid': Prescription.touched && Prescription.invalid
+            }"
+            class="form-control"
+          ></textarea>
+          <div
+            class="validation-error"
+            *ngIf="Prescription.touched && Prescription.invalid"
+          >
+            <div *ngIf="Prescription.errors.required">
+              Prescription is required
+            </div>
+          </div>
         </div>
+        <div>
+          <button
+            type="submit"
+            [disabled]="!(form.valid && form.dirty)"
+            class="btn btn-success form-control"
+          >
+            Book Appointment
+          </button>
+        </div>
+      </form>
     </div>
-    <br />
-
-    <!--Submit button-->
-    <br />
-    <div class="form-group">
-        <button type="submit" [disabled]="!(form.valid && form.dirty)" class="btn btn-primary form-control">
-            Submit
-        </button>
-    </div>
-</form>
+  </div>
+</div>

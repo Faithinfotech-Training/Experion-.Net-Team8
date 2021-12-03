@@ -1,15 +1,15 @@
 nav {
-  background-color: #3bd278;
+  background-color: rgb(127, 236, 117);
 }
 
 #button {
-  background-color: #3bd278;
+  background-color: rgb(127, 236, 117);
   border: 0;
   font-size: 120%;
 }
 
 #greenText {
-  color: #165526;
+  color: rgb(127, 236, 117);
 }
 
 #image_specs {
@@ -21,25 +21,12 @@ nav {
 label {
   font-size: 1rem;
   margin-bottom: 0.4em;
-  margin-top: 1.5em;
+  margin-top: 1.2em;
   font-weight: 500;
 }
 
-input[type="radio"] {
-  margin-left: 2em;
-  margin-top: 2.2em;
-  margin-bottom: 1.5em;
-}
-
-label#gender,
-label#isactive {
-  margin-top: 2em;
-  margin-bottom: 1.5em;
-}
-
-input[type="checkbox"] {
-  margin-top: 2.3em;
-  margin-bottom: 1.5em;
+input#IsActive {
+  margin-top: 1.5em;
 }
 
 #signup_card {
@@ -56,7 +43,7 @@ input[type="checkbox"] {
   display: inline;
   font-size: 150%;
   font-weight: bold;
-  color: #165526;
+  color: rgb(127, 236, 117);
 }
 
 .required {

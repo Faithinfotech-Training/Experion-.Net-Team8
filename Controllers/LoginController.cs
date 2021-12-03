@@ -73,11 +73,12 @@ namespace Clinic_Management_System_8.Controllers
 
             //--- Authenticate the user ---//
             Login user = AuthenticateUser(username, password);
-            Employees emp = contextDB.Employees.FirstOrDefault(e => e.EmployeeId == user.EmployeeId);
+            
 
             //--- validate ---//
             if (user != null)
             {
+                Employees emp = contextDB.Employees.FirstOrDefault(e => e.EmployeeId == user.EmployeeId);
                 var tokenString = GenerateJWT(username, password);
                 response = Ok(new { UserName = user.UserName, RoleId = user.RoleId, Token = tokenString, EmployeeId = user.EmployeeId, Name = emp.EmployeeName });
                 return response;

@@ -17,6 +17,7 @@ namespace Clinic_Management_System_8.ViewModel
         public string Gender { get; set; }
         public string Address { get; set; }
         public String EmployeeName { get; set; }
+        public int EmployeeId { get; set; }
         public bool AppointmentStatus { get; set; }
         public DateTime AppointmentDate { get; set; }
     }

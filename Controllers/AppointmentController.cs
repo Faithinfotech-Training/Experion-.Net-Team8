@@ -164,10 +164,35 @@ namespace Clinic_Management_System_8.Controllers
 
         #endregion
 
-        //--- Delete appointment ---//
-        #region Delete Appointment
+        //--- update appointment status---//
+        #region UpdateStatus
 
         [HttpDelete("{id}")]
+        //[Authorize]
+        public async Task<IActionResult> UpdateStatus(int id)
+        {
+            //Check the validation of body
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await appointmentRepo.UpdateStatus(id);
+                    return Ok();
+                }
+                catch (Exception)
+                {
+                    return BadRequest();
+                }
+            }
+            return BadRequest();
+        }
+        #endregion
+
+        //--- Delete appointment ---//
+        #region DeleteAppointment
+
+        [HttpDelete]
+        [Route("delete")]
         //[Authorize]
         public async Task<IActionResult> DeleteAppointment(int id)
         {

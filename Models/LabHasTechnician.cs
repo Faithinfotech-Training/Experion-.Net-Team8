@@ -9,7 +9,7 @@ namespace Clinic_Management_System_8.Models
         public int LabId { get; set; }
         public int LabTechnicianId { get; set; }
 
-        public virtual Labs Lab { get; set; }
+        public virtual LabTests Lab { get; set; }
         public virtual Employees LabTechnician { get; set; }
     }
 }

@@ -5,15 +5,14 @@ import { environment } from 'src/environments/environment';
 import { Labtechnician } from './labtechnician';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LabtechnicianService {
-
   //create an instance
-  labTechnician:Labtechnician = new Labtechnician();
-  appointments:Appoinmentmodel[];
+  labTechnician: Labtechnician = new Labtechnician();
+  appointments: Appoinmentmodel[];
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getLabTechnicianData(id: number) {
     this.httpClient
@@ -22,10 +21,9 @@ export class LabtechnicianService {
       .then((response) => (this.labTechnician = response as Labtechnician));
     console.log(this.labTechnician);
     console.log(this.labTechnician.EmployeeId);
-
   }
 
-    //get all appointments for lab technician
+  //get all appointments for lab technician
 
   getAllPatientsOfLabTechnician(id: number) {
     this.httpClient
@@ -38,8 +36,15 @@ export class LabtechnicianService {
   //delete a appointment for lab technician
   deleteAppointment(id: number) {
     return this.httpClient.delete(
-      environment.apiUrl + '/api/appointment/' + id
+      environment.apiUrl + '/api/appointment/delete?id=' + id
     );
   }
-  
+
+  //getAllPatientsFor All doctors
+  getAllPaetients(date: Date) {
+    this.httpClient
+      .get(environment.apiUrl + '/api/appointment/' + date)
+      .toPromise()
+      .then((response) => (this.appointments = response as Appoinmentmodel[]));
+  }
 }

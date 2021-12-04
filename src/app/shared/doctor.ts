@@ -10,5 +10,5 @@ export class Doctor {
   Address: string;
   EmployeeName: string;
   AppointmentStatus: boolean;
-  AppointmentDate: Date = new Date();
+  AppointmentDate: Date;
 }

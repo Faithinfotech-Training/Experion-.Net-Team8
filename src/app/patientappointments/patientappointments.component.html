@@ -1,19 +1,17 @@
 <div class="container-fluid bg-default pb-4">
-  <div class="container-fluid py-4" align="center">
+  <div class="container-fluid py-4">
     <h1 id="heading" class="mb-0 heading pt-4">VIEW</h1>
     <h1 id="green" class="mb-0 heading pt-4">&ensp;APPOINTMENTS</h1>
-    <!--search-->
-    <div class="form-outline">
-      <input
-        class="form-control"
-        type="text"
-        placeholder="Search....."
-        [(ngModel)]="filter"
-      />
-      <br />
-    </div>
+    <button
+      class="btn btn-primary"
+      style="float: right; margin: 10px"
+      [routerLink]="['../receptionist']"
+      id="button"
+    >
+      Back
+    </button>
   </div>
-
+  <br />
   <div class="card" id="manage_patient_card">
     <div class="card-header border-0">
       <div class="row">
@@ -28,8 +26,8 @@
             <th>Patient Id</th>
             <th>Patient Name</th>
             <th>Age</th>
-            <th>Mobile Number</th>
             <th>Gender</th>
+            <th>Consulting Doctor</th>
             <th>Appointment Date</th>
             <th>Apointment Status</th>
             <th>Action</th>
@@ -47,24 +45,28 @@
             <td>{{ appointment.PatientId }}</td>
             <td>{{ appointment.PatientName }}</td>
             <td>{{ appointment.Age }}</td>
-            <td>{{ appointment.MobileNo }}</td>
             <td>{{ appointment.Gender }}</td>
+            <td>{{ appointment.EmployeeName }}</td>
             <td>{{ appointment.AppointmentDate | date: "dd-MM-yyyy" }}</td>
             <td>{{ appointment.AppointmentStatus }}</td>
             <td>
               <button
-                class="btn btn-sm btn-outline-danger"
-                (click)="deleteAppointment(appointment.AppointmentId)"
+                (click)="
+                  addPayment(appointment.PatientId, appointment.EmployeeId)
+                "
+                class="btn btn-info"
+                [disabled]="isDisabled(appointment.AppointmentStatus)"
               >
-                X</button
-              >&nbsp;
+                Add Payment
+              </button>
+
               <button
-                (click)="addLabReport()"
+                (click)="deleteAppointment(appointment.AppointmentId)"
                 class="btn btn-info"
                 style="margin-left: 10px"
                 [disabled]="!isDisabled(appointment.AppointmentStatus)"
               >
-                Add Lab Report
+                Cancel Appointment
               </button>
             </td>
           </tr>
@@ -74,6 +76,8 @@
         <!--pagenation-->
         <pagination-controls (pageChange)="page = $event"></pagination-controls>
       </div>
+      <br />
+      <br />
     </div>
   </div>
 </div>

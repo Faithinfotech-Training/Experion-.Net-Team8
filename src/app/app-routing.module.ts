@@ -20,6 +20,8 @@ import { SignupComponent } from './signup/signup.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { LabTechnicianComponent } from './lab-technician/lab-technician.component';
+import { PatientappointmentsComponent } from './patientappointments/patientappointments.component';
+import { LabtestComponent } from './labtest/labtest.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -27,6 +29,7 @@ const routes: Routes = [
   { path: 'payment', component: PaymentComponent },
   { path: 'paymentlist', component: PaymentlistComponent },
   { path: 'payment/:paymentId', component: PaymentComponent },
+  { path: 'payment/:empId/:patientId', component: PaymentComponent },
   { path: 'employee', component: EmployeeComponent },
   { path: 'patient', component: PatientComponent },
   { path: 'patientlist', component: PatientlistComponent },
@@ -40,6 +43,8 @@ const routes: Routes = [
   { path: 'prescription/:patientId/:empId', component: PrescriptionComponent },
   { path: 'appoinmentlist/:empId', component: AppointmentsListComponent },
   { path: 'testreportlist/:empId', component: TestreportsListComponent },
+  { path: 'patientappointments', component: PatientappointmentsComponent },
+  { path: 'labtest/:patientId/:empId', component: LabtestComponent },
 
   {
     path: 'prescription/:patientId/:empId/:atId',

@@ -6,7 +6,7 @@ export class Prescription {
   PrescriptionDate: Date = new Date();
   EmployeeId: number;
   PatientId: number;
-
+  Tests: string;
   Patient: Patient;
   Employee: Employee;
 }

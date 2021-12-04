@@ -34,6 +34,8 @@ import { LabTechnicianComponent } from './lab-technician/lab-technician.componen
 import { TestreportsListComponent } from './testreports-list/testreports-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { PatientappointmentsComponent } from './patientappointments/patientappointments.component';
+import { LabtestComponent } from './labtest/labtest.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { FooterComponent } from './footer/footer.component';
     AppointmentsListComponent,
     TestreportsListComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    PatientappointmentsComponent,
+    LabtestComponent
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,10 @@ import { NgForm } from '@angular/forms';
 export class PaymentComponent implements OnInit {
   payId: number;
   payment: Payment = new Payment();
+  empId: number;
+  patientId: number;
+  date: Date = new Date();
+  paymentForm: Payment = new Payment();
   constructor(
     public payService: PaymentService,
     private toastrService: ToastrService,
@@ -24,7 +28,8 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     //get departments
     this.payService.BindCmbPatients();
-
+    this.patientId = this.route.snapshot.params['patientId'];
+    this.empId = this.route.snapshot.params['empId'];
     this.payId = this.route.snapshot.params['paymentId'];
     console.log('payId' + this.payId);
     //this.resetform()
@@ -41,6 +46,15 @@ export class PaymentComponent implements OnInit {
         this.payService.formData = data;
         this.payService.formData = Object.assign({}, data);
       });
+    }
+
+    if (this.payId == 0 || this.payId == null) {
+      //getPayment
+      var datePipe = new DatePipe('en-UK');
+      let formatedDate: any = datePipe.transform(this.date, 'yyyy-MM-dd');
+      this.paymentForm.PaymentDate = formatedDate;
+      this.paymentForm.PatientId = this.patientId;
+      this.payService.formData = Object.assign({}, this.paymentForm);
     }
   }
   onSubmit(form: NgForm) {
@@ -69,7 +83,8 @@ export class PaymentComponent implements OnInit {
 
   insertPayment(form?: NgForm) {
     console.log('Inserting a record...');
-
+    form.value.PatientId = this.patientId;
+    form.value.EmployeeId = this.empId;
     this.payService.insertPayment(form.value).subscribe((result) => {
       console.log(result);
 

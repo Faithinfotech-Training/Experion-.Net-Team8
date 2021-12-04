@@ -2,6 +2,14 @@
   <div class="container-fluid py-4">
     <h1 id="heading" class="mb-0 heading pt-4">MANAGE</h1>
     <h1 id="green" class="mb-0 heading pt-4">&ensp;PATIENTS</h1>
+    <button
+      id="button"
+      class="btn btn-primary"
+      style="float: right; margin: 10px"
+      [routerLink]="['../receptionist']"
+    >
+      Back
+    </button>
   </div>
 
   <div class="card" id="manage_patient_card">
@@ -20,30 +28,19 @@
             <th>Age</th>
             <th>Mobile Number</th>
             <th>Gender</th>
-            <th>Appointment Date</th>
-            <th>Apointment Status</th>
+            <th>Address</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr
             *ngFor="
-              let patient of appointmentService.appointments
+              let patient of appointmentService.patients
                 | filter: filter
                 | paginate: { itemsPerPage: 5, currentPage: page }
             "
           >
             <td class="table-user">
-              <img
-                *ngIf="patient.gender == 'Male'"
-                src="../../assets/img/patient-male.png"
-                class="avatar rounded-circle mr-3"
-              />
-              <img
-                *ngIf="patient.gender == 'Female'"
-                src="../../assets/img/patient-female.png"
-                class="avatar rounded-circle mr-3"
-              />
               <b>{{ patient.PatientId }}</b>
             </td>
             <td>
@@ -59,19 +56,21 @@
               <span class="text-muted">{{ patient.Gender }}</span>
             </td>
             <td>
-              <span class="text-muted">{{
-                patient.AppointmentDate | date: "dd-MM-yyyy"
-              }}</span>
-            </td>
-            <td>
-              <span class="text-muted">{{ patient.AppointmentStatus }}</span>
+              <span class="text-muted">{{ patient.Address }} </span>
             </td>
             <td>
               <button
-                class="btn btn-sm btn-outline-danger"
-                (click)="DeleteAppointment(patient.AppointmentId)"
+                type="button"
+                class="btn btn-sm btn-info"
+                (click)="UpdatePatient(patient.PatientId)"
               >
-                Cancel Appointment</button
+                Edit</button
+              >&nbsp;
+              <button
+                class="btn btn-sm btn-info"
+                (click)="AddAppointment(patient.PatientId)"
+              >
+                Book Appointment</button
               >&nbsp;
             </td>
           </tr>

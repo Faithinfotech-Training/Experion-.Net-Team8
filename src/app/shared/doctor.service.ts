@@ -4,13 +4,12 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DoctorService {
-
   //create an instance
-  patients:Doctor[];
-  constructor(private httpClient: HttpClient) { }
+  patients: Doctor[];
+  constructor(private httpClient: HttpClient) {}
 
   GetAllPatientsOfDoctor(id: number) {
     this.httpClient
@@ -26,6 +25,4 @@ export class DoctorService {
       environment.apiUrl + '/api/appointment/' + id
     );
   }
-
-  
 }

@@ -1,68 +1,84 @@
-<div class="container">
-  <div class="header">
-    <h5>Payment Information</h5>
-    <hr />
+<div class="container-fluid bg-default pb-4">
+  <div class="container-fluid py-4">
+    <h1 id="heading" class="mb-0 heading pt-4">MANAGE</h1>
+    <h1 id="green" class="mb-0 heading pt-4">&ensp;PAYMENTS</h1>
+    <button
+      id="button"
+      class="btn btn-primary"
+      style="float: right; margin: 10px"
+      [routerLink]="['../receptionist']"
+    >
+      Back
+    </button>
     <!--search-->
-    <div class="form-control">
+    <div class="form-outline">
       <input
         class="form-control"
         type="text"
         placeholder="Search....."
         [(ngModel)]="filter"
       />
-      <!--button also we can use here-->
-      <!--Button-->
-     
-      <button class="btn btn-primary" style="float: right" [routerLink]="['../receptionist']">Home</button>
+      <br />
     </div>
-   
 
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>PaymentId</th>
+    <div class="card" id="manage_patient_card">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col-6"></div>
+        </div>
+      </div>
+      <!-- Light table -->
+      <div class="table-responsive">
+        <table class="table table-flush align-items-center">
+          <thead class="thead-light">
+            <tr>
+              <th>PaymentId</th>
 
-          <th>Amount</th>
+              <th>Amount</th>
 
-          <th>Patient Name</th>
+              <th>Patient Name</th>
 
-          <th>Payment date</th>
+              <th>Payment date</th>
 
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          *ngFor="
-            let c of payService.payments
-              | filter: filter
-              | paginate: { itemsPerPage: 5, currentPage: page }
-          "
-        >
-          <td (click)="populateForm(c)">{{ c.PaymentId }}</td>
-
-          <td (click)="populateForm(c)">{{ c.Amount }}</td>
-
-          <td (click)="populateForm(c)">{{ c.PatientName }}</td>
-
-          <td (click)="populateForm(c)">
-            {{ c.PaymentDate | date: "dd-MM-yyyy" }}
-          </td>
-          <td>
-            <button
-              (click)="updatePayment(c.PaymentId)"
-              class="btn btn-info"
-              style="margin-left: 10px"
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let c of payService.payments
+                  | filter: filter
+                  | paginate: { itemsPerPage: 5, currentPage: page }
+              "
             >
-              Edit
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="footer">
-      <!--paginatiom control-->
-      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+              <td (click)="populateForm(c)">{{ c.PaymentId }}</td>
+
+              <td (click)="populateForm(c)">{{ c.Amount }}</td>
+
+              <td (click)="populateForm(c)">{{ c.PatientName }}</td>
+
+              <td (click)="populateForm(c)">
+                {{ c.PaymentDate | date: "dd-MM-yyyy" }}
+              </td>
+              <td>
+                <button
+                  (click)="updatePayment(c.PaymentId)"
+                  class="btn btn-info"
+                  style="margin-left: 10px"
+                >
+                  Edit
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="footer">
+          <!--paginatiom control-->
+          <pagination-controls
+            (pageChange)="page = $event"
+          ></pagination-controls>
+        </div>
+      </div>
     </div>
   </div>
 </div>

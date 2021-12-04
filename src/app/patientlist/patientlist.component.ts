@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Patient } from '../shared/patient';
 import { DoctorService } from '../shared/doctor.service';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-patientlist',
@@ -19,12 +20,24 @@ export class PatientlistComponent implements OnInit {
   constructor(
     public appointmentService: AppointmentService,
     public doctorService: DoctorService,
-    public toastrservice: ToastrService
+    public toastrservice: ToastrService,
+    public router: Router,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.appointmentService.GetAllAppoinments();
+    this.appointmentService.GetAllPatients();
   }
+
+  UpdatePatient(patientId: number) {
+    this.router.navigate(['patient', patientId]);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigateByUrl('login');
+  }
+
 
   DeleteAppointment(id: number) {
     console.log('cancel the appointment');

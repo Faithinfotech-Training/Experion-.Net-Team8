@@ -35,6 +35,13 @@ export class PatientappointmentsComponent implements OnInit {
     this.router.navigate(['payment', empId, patientId]);
   }
 
+  isDisabled(status: boolean) {
+    if (status === true) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   deleteAppointment(id: number) {
     console.log('cancel the appointment');
 

@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import { AppointmentService } from '../shared/appointment.service';
+import { Appointment } from '../shared/appointment';
 
 @Component({
   selector: 'app-prescription',
@@ -17,6 +18,7 @@ export class PrescriptionComponent implements OnInit {
   patientId: number;
   currentDate: Date = new Date();
   atId: number;
+  appointment: Appointment = new Appointment();
   form: FormGroup;
   tests: string;
   data: any;
@@ -103,21 +105,25 @@ export class PrescriptionComponent implements OnInit {
     var datePipe = new DatePipe('en-UK');
     let formatDate: any = datePipe.transform(this.currentDate, 'yyyy-MM-dd');
     form.value.PrescriptionDate = formatDate;
-    console.log(form.value);
-    if (confirm('Do you want to add lab tests?')) {
-      this.data = { name: this.checkArray };
-      console.log(this.data);
-      this.tests = JSON.stringify(this.data);
-      console.log(this.tests);
-      //this.router.navigate(['labtest', this.patientId, this.empId]);
-    } else {
-      form.value.Tests = null;
-      this.preService.AddPrescription(form.value).subscribe((data) => {
-        console.log(data);
-        this.toastr.success('Prescription added', 'CMSApp v2021');
-      });
-      this.updateStatus(this.patientId);
-      this.router.navigate(['doctor', this.empId]);
+    this.preService.AddPrescription(form.value).subscribe((data) => {
+      console.log(data);
+      this.toastr.success('Prescription added', 'CMSApp v2021');
+    });
+    this.updateStatus(this.patientId);
+    if (form.value.Tests != null) {
+      this.takeLabTechnician();
     }
+    this.router.navigate(['doctor', this.empId]);
+  }
+
+  takeLabTechnician() {
+    this.appointment.PatientId = this.patientId;
+    this.appointment.EmployeeId = 2;
+    var datePipe = new DatePipe('en-UK');
+    let formatDate: any = datePipe.transform(this.currentDate, 'yyyy-MM-dd');
+    this.appointment.AppointmentDate = formatDate;
+    this.appointment.AppointmentTypeId = 2;
+    this.appointment.AppointmentStatus = false;
+    this.appService.InsertAppoinment(this.appointment);
   }
 }

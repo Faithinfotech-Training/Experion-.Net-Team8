@@ -25,7 +25,7 @@ import { LabtestComponent } from './labtest/labtest.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -38,6 +38,7 @@ const routes: Routes = [
   { path: 'patientlist', component: PatientlistComponent },
   { path: 'patient/:patientId', component: PatientComponent },
   { path: 'appointments', component: AppointmentsComponent },
+  { path: 'appointments/:patientid', component: AppointmentsComponent },
   { path: 'employee/:empId', component: EmployeeComponent },
   { path: 'employeelist', component: EmployeeListComponent },
   { path: 'specialization/:empId/:roleId', component: SpecializationComponent },

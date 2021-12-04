@@ -38,6 +38,9 @@ export class PatientlistComponent implements OnInit {
     this.router.navigateByUrl('login');
   }
 
+  AddAppointment(patientId: number) {
+    this.router.navigate(['appointment', patientId]);
+  }
 
   DeleteAppointment(id: number) {
     console.log('cancel the appointment');

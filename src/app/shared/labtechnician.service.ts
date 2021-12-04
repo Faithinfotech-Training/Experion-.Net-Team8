@@ -46,5 +46,6 @@ export class LabtechnicianService {
       .get(environment.apiUrl + '/api/appointment/' + date)
       .toPromise()
       .then((response) => (this.appointments = response as Appoinmentmodel[]));
+    console.log(this.appointments);
   }
 }

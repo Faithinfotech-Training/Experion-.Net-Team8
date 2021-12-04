@@ -34,13 +34,9 @@ import { LabTechnicianComponent } from './lab-technician/lab-technician.componen
 import { TestreportsListComponent } from './testreports-list/testreports-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-<<<<<<< HEAD
 import { PatientappointmentsComponent } from './patientappointments/patientappointments.component';
 import { LabtestComponent } from './labtest/labtest.component';
 import { HomeComponent } from './home/home.component';
-=======
-import { HomeComponent } from './home/home.component';
->>>>>>> f31d4ec56272ad8feab5e4ebe7260967fca4b7b5
 
 @NgModule({
   declarations: [

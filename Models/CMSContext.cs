@@ -35,7 +35,7 @@ namespace Clinic_Management_System_8.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=VYSHNAVSASIDHAR\\SQLEXPRESS; Initial Catalog=CMS; Integrated security=True");
+                optionsBuilder.UseSqlServer("ConStr");
             }
         }
 

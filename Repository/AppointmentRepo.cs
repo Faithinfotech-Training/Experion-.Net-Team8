@@ -70,12 +70,19 @@ namespace Clinic_Management_System_8.Repository
                               where a.AppointmentTypeId == at.AppointmentTypeId &&
                               a.PatientId == p.PatientId &&
                               a.EmployeeId == e.EmployeeId &&
-                              a.AppointmentDate==date
+                              a.AppointmentDate==date &&
+                              a.AppointmentStatus==false
                               select new AppointmentViewModel
                               {
                                   AppointmentId = a.AppointmentId,
+                                  PatientId = p.PatientId,
                                   AppointmentType = at.AppointmentType,
                                   PatientName = p.PatientName,
+                                  Age = p.Age,
+                                  MobileNo = p.MobileNo,
+                                  Gender = p.Gender,
+                                  Address = p.Address,
+                                  EmployeeId = e.EmployeeId,
                                   EmployeeName = e.EmployeeName,
                                   AppointmentStatus = a.AppointmentStatus,
                                   AppointmentDate = a.AppointmentDate
@@ -94,16 +101,19 @@ namespace Clinic_Management_System_8.Repository
         {
             if (dbContext != null)
             {
+                DateTime date = DateTime.Today;
                 //-- LINQ --//
                 //-- joining Appointments, AppointmentTypes, Patients and Employees  --//
                 return await (from a in dbContext.Appointments
                               from at in dbContext.AppointmentTypes
                               from p in dbContext.Patients
                               from e in dbContext.Employees
+                              from r in dbContext.Roles
                               where a.AppointmentTypeId == at.AppointmentTypeId &&
                               a.PatientId == p.PatientId &&
-                              a.EmployeeId == e.EmployeeId
-                              
+                              a.EmployeeId == e.EmployeeId &&
+                              a.AppointmentDate == date 
+
 
                               select new AppointmentViewModel
                               {
@@ -115,6 +125,7 @@ namespace Clinic_Management_System_8.Repository
                                   MobileNo = p.MobileNo,
                                   Gender = p.Gender,
                                   Address = p.Address,
+                                  EmployeeId=e.EmployeeId,
                                   EmployeeName = e.EmployeeName,
                                   AppointmentStatus = a.AppointmentStatus,
                                   AppointmentDate = a.AppointmentDate
@@ -132,6 +143,7 @@ namespace Clinic_Management_System_8.Repository
 
         public async Task<List<AppointmentViewModel>> ViewAppointmentForDoctor(int id)
         {
+            DateTime date = DateTime.Now; 
             //--- get appointment by Doctorid ---//
             if (dbContext != null)
             {
@@ -143,9 +155,9 @@ namespace Clinic_Management_System_8.Repository
                               from e in dbContext.Employees
                               where a.AppointmentTypeId == at.AppointmentTypeId &&
                               a.EmployeeId == id &&
-                              a.PatientId==p.PatientId &&
-                              a.EmployeeId==e.EmployeeId &&
-                              e.EmployeeId==id
+                              a.PatientId == p.PatientId &&
+                              a.EmployeeId == e.EmployeeId &&
+                              e.EmployeeId == id && a.AppointmentDate == date && a.AppointmentStatus == true
 
                               select new AppointmentViewModel
                               {
@@ -170,20 +182,32 @@ namespace Clinic_Management_System_8.Repository
 
         //--- Delete the appointment ---//
 
-        #region Delete Appointment
-        public async Task DeleteAppointment(int id)
+        #region UpdateStatus
+        public async Task UpdateStatus(int id)
         {
             Appointments appointment = dbContext.Appointments.FirstOrDefault(Aid => Aid.AppointmentId == id);
             if (appointment != null)
             {
                 appointment.AppointmentStatus = false;
                 await dbContext.SaveChangesAsync();
-
-
-
             }
         }
         #endregion
+
+        //--- Delete the appointment ---//
+
+        #region DeleteAppointment
+        public async Task DeleteAppointment(int id)
+        {
+            Appointments appointment = dbContext.Appointments.FirstOrDefault(Aid => Aid.AppointmentId == id);
+            if (appointment != null)
+            {
+                dbContext.Appointments.Remove(appointment);
+                await dbContext.SaveChangesAsync();
+            }
+        }
+        #endregion
+
 
 
     }

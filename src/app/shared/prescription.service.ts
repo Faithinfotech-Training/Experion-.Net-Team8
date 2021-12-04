@@ -12,6 +12,7 @@ import { Prescription } from './prescription';
 export class PrescriptionService {
   //create instance of Prescription
   prescriptions: Prescription[];
+  pres: Prescription;
   patients: Patient[];
   employees: Employee[];
   prescriptionForm: Prescription = new Prescription();
@@ -63,7 +64,7 @@ export class PrescriptionService {
   //Get all prescription by patient by id
   GetPrescriptionByPatientId(patientId: number): Observable<any> {
     return this.httpClient.get(
-      environment.apiUrl + '/api/prescription/' + patientId
+      environment.apiUrl + '/api/prescription/test?id=' + patientId
     );
   }
 

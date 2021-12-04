@@ -23,6 +23,7 @@ import { LabTechnicianComponent } from './lab-technician/lab-technician.componen
 import { PatientappointmentsComponent } from './patientappointments/patientappointments.component';
 import { LabtestComponent } from './labtest/labtest.component';
 import { HomeComponent } from './home/home.component';
+import { TestsComponent } from './tests/tests.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'prescription/:patientId/:empId', component: PrescriptionComponent },
   { path: 'appoinmentlist/:empId', component: AppointmentsListComponent },
   { path: 'testreportlist/:empId', component: TestreportsListComponent },
+  { path: 'tests/:patientId', component: TestsComponent },
   { path: 'patientappointments', component: PatientappointmentsComponent },
   { path: 'labtest/:patientId/:empId', component: LabtestComponent },
 

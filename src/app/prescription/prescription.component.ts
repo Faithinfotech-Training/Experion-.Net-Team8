@@ -22,7 +22,7 @@ export class PrescriptionComponent implements OnInit {
   empId: number;
   patientId: number;
   currentDate: Date = new Date();
-  atId: number;
+  appointmentId: number;
   appointment: Appointment = new Appointment();
   form: FormGroup;
   data: any;
@@ -53,9 +53,10 @@ export class PrescriptionComponent implements OnInit {
     //get empId from activated route
     this.empId = this.route.snapshot.params['empId'];
     this.patientId = this.route.snapshot.params['patientId'];
-    this.atId = this.route.snapshot.params['atId'];
-    console.log(this.empId);
-    console.log(this.patientId);
+    this.appointmentId = this.route.snapshot.params['atId'];
+    console.log(this.appointmentId);
+    //console.log(this.empId);
+    //console.log(this.patientId);
     this.addLabTests = false;
     //this.patientId = 2;
   }
@@ -146,7 +147,7 @@ export class PrescriptionComponent implements OnInit {
           console.log(data);
           this.toastr.success('Prescription added', 'CMSApp v2021');
         });
-        this.updateStatus(this.patientId);
+        this.updateStatus(this.appointmentId);
         this.router.navigate(['doctor', this.empId]);
       }
     } else {
@@ -154,7 +155,7 @@ export class PrescriptionComponent implements OnInit {
         console.log(data);
         this.toastr.success('Prescription added', 'CMSApp v2021');
       });
-      this.updateStatus(this.patientId);
+      this.updateStatus(this.appointmentId);
       this.takeLabTechnician();
       this.router.navigate(['doctor', this.empId]);
     }

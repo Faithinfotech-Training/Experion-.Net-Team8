@@ -8,10 +8,9 @@ import { AuthService } from '../shared/auth.service';
 @Component({
   selector: 'app-appointments-list',
   templateUrl: './appointments-list.component.html',
-  styleUrls: ['./appointments-list.component.scss']
+  styleUrls: ['./appointments-list.component.scss'],
 })
 export class AppointmentsListComponent implements OnInit {
-
   empId: number;
   page: number = 1;
   filter: string;
@@ -22,8 +21,8 @@ export class AppointmentsListComponent implements OnInit {
     private router: Router,
     public authService: AuthService,
     public labTechnicianService: LabtechnicianService,
-    public testReportService :TestReportService
-  ) { }
+    public testReportService: TestReportService
+  ) {}
 
   ngOnInit(): void {
     this.empId = this.route.snapshot.params['empId'];
@@ -35,12 +34,24 @@ export class AppointmentsListComponent implements OnInit {
     this.router.navigateByUrl('login');
   }
 
-  addLabReport(){
-    this.testReportService.resetTestReport();
-    this.router.navigate(['testreport',this.empId,0])
+  isDisabled(status: boolean) {
+    if (status) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
- deleteAppointment(id: number) {
+  viewPrescribedTests(patientId: number) {
+    this.router.navigate(['tests', patientId]);
+  }
+
+  addLabReport() {
+    this.testReportService.resetTestReport();
+    this.router.navigate(['testreport', this.empId, 0]);
+  }
+
+  deleteAppointment(id: number) {
     console.log('cancel the appointment');
 
     if (
@@ -63,5 +74,4 @@ export class AppointmentsListComponent implements OnInit {
       );
     }
   }
-
 }

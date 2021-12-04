@@ -38,6 +38,7 @@ import { PatientappointmentsComponent } from './patientappointments/patientappoi
 import { LabtestComponent } from './labtest/labtest.component';
 import { HomeComponent } from './home/home.component';
 import { MakepaymentComponent } from './makepayment/makepayment.component';
+import { TestsComponent } from './tests/tests.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { MakepaymentComponent } from './makepayment/makepayment.component';
     PatientappointmentsComponent,
     LabtestComponent,
     HomeComponent,
-    MakepaymentComponent
+    MakepaymentComponent,
+    TestsComponent
   ],
   imports: [
     BrowserModule,

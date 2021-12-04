@@ -9,7 +9,6 @@ import { AuthService } from '../shared/auth.service';
   templateUrl: './doctor.component.html',
   styleUrls: ['./doctor.component.scss'],
 })
-
 export class DoctorComponent implements OnInit {
   empId: number;
   page: number = 1;
@@ -23,19 +22,16 @@ export class DoctorComponent implements OnInit {
     public authService: AuthService
   ) {}
 
+  
   ngOnInit(): void {
+    //window.location.reload();
     this.empId = this.route.snapshot.params['empId'];
     this.doctorService.GetAllPatientsOfDoctor(this.empId);
   }
 
-  AddPrescription(id: number, appointmentType: string) {
-    if (appointmentType == 'Doctor') {
-      this.atId = 1;
-    } else {
-      this.atId = 2;
-    }
+  AddPrescription(id: number, appointmentId: number) {
     console.log(id, this.empId);
-    this.router.navigate(['prescription', id, this.empId, this.atId]);
+    this.router.navigate(['prescription', id, this.empId, appointmentId]);
   }
 
   logout() {

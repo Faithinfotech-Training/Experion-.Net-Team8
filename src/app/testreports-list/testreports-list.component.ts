@@ -40,6 +40,5 @@ export class TestreportsListComponent implements OnInit {
     console.log(testReportId);
     this.testReportService.toggleReadOnlyMode(true);
     this.router.navigate(['testreport',empId,testReportId]);
-
   }
 }

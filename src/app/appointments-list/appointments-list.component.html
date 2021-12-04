@@ -57,14 +57,15 @@
                 (click)="deleteAppointment(appointment.AppointmentId)"
               >
                 X</button
-              >&nbsp;
+              >
+              &nbsp;
               <button
-                (click)="addLabReport()"
+                (click)="viewPrescribedTests(appointment.PatientId)"
                 class="btn btn-info"
                 style="margin-left: 10px"
                 [disabled]="!isDisabled(appointment.AppointmentStatus)"
               >
-                Add Lab Report
+                Prescribed Tests
               </button>
             </td>
           </tr>

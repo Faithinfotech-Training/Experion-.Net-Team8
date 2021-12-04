@@ -44,14 +44,20 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <!--Emloyee Name-->
-          <select multiple name="selectedTests" [(ngModel)]="tests">
-            <option *ngFor="let t of Tests" [ngValue]="t">
-              {{ t.TestName }}
-            </option>
-          </select>
+        <div>
+          <label>
+            <input type="checkbox" [value]="addLabTests" (change)="onAddLabTests($event)" />
+            Add Lab Tests
+          </label>
         </div>
+
+        <div *ngFor="let CountryData of CountryData; let i=index" [hidden]="!addLabTests">
+          <label>
+            <input type="checkbox" [value]="CountryData.value" (change)="onCheckboxChange($event)" />
+            {{CountryData.value}}
+          </label>
+        </div>
+      
 
         <div>
           <button

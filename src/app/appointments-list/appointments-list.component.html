@@ -4,12 +4,6 @@
     <h1 id="green" class="mb-0 heading pt-4">&ensp;APPOINTMENTS</h1>
     <!--search-->
     <div class="form-outline">
-      <input
-        class="form-control"
-        type="text"
-        placeholder="Search....."
-        [(ngModel)]="filter"
-      />
       <br />
     </div>
   </div>
@@ -24,6 +18,16 @@
     <div class="table-responsive">
       <table class="table table-flush align-items-center">
         <thead class="thead-light">
+          <tr>
+            <td colspan="8">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Search....."
+                [(ngModel)]="filter"
+              />
+            </td>
+          </tr>
           <tr>
             <th>Patient Id</th>
             <th>Patient Name</th>
@@ -56,8 +60,8 @@
                 class="btn btn-sm btn-outline-danger"
                 (click)="deleteAppointment(appointment.AppointmentId)"
               >
-                X</button
-              >
+                X
+              </button>
               &nbsp;
               <button
                 (click)="viewPrescribedTests(appointment.PatientId)"

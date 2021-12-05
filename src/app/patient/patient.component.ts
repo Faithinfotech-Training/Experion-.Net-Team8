@@ -60,6 +60,7 @@ export class PatientComponent implements OnInit {
   //Insert
   InsertPatientRecord(form?: NgForm) {
     console.log('Inserting a record...');
+    form.value.IsActive = true;
     this.patientService.InsertPatient(form.value).subscribe((result) => {
       console.log(result);
       this.resetForm(form);

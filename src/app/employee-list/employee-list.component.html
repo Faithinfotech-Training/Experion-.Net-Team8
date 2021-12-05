@@ -2,19 +2,17 @@
   <div class="container-fluid py-4">
     <h1 id="heading" class="mb-0 heading pt-4">VIEW</h1>
     <h1 id="green" class="mb-0 heading pt-4">&ensp;EMPLOYEES</h1>
-    <!--search-->
-    <div class="form-outline">
-      <input
-        class="form-control"
-        type="text"
-        placeholder="Search....."
-        [(ngModel)]="filter"
-      />
-      <br />
-    </div>
+    <button
+      id="button"
+      class="btn btn-primary"
+      style="float: right; margin: 10px"
+      [routerLink]="['../admin']"
+    >
+      Back
+    </button>
   </div>
 
-  <div class="card" id="manage_patient_card">
+  <div class="card" id="manage_patient_card" style="margin-top: 5px">
     <div class="card-header border-0">
       <div class="row">
         <div class="col-6"></div>
@@ -25,6 +23,18 @@
       <table class="table table-flush align-items-center">
         <thead class="thead-light">
           <tr>
+            <td colspan="8">
+              <!--search-->
+              <input
+                style="margin-top: 10px"
+                class="form-control"
+                type="text"
+                placeholder="Search....."
+                [(ngModel)]="filter"
+              />
+            </td>
+          </tr>
+          <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Age</th>
@@ -32,6 +42,7 @@
             <th>Gender</th>
             <th>Date of Joining</th>
             <th>Is Active</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>

@@ -23,13 +23,23 @@
       <table class="table table-flush align-items-center">
         <thead class="thead-light">
           <tr>
-            <th>Patient Id</th>
-            <th>Patient Name</th>
+            <td colspan="8">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Search here..."
+                [(ngModel)]="filter"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
             <th>Age</th>
             <th>Gender</th>
-            <th>Consulting Doctor</th>
-            <th>Appointment Date</th>
-            <th>Apointment Status</th>
+            <th>Doctor Name</th>
+            <th>Date</th>
+            <th>Appointment Status</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -62,17 +72,17 @@
 
               <button
                 (click)="deleteAppointment(appointment.AppointmentId)"
-                class="btn btn-info"
+                class="btn btn-outline-danger"
                 style="margin-left: 10px"
                 [disabled]="!isDisabled(appointment.AppointmentStatus)"
               >
-                Cancel Appointment
+                X
               </button>
             </td>
           </tr>
         </tbody>
       </table>
-      <div class="footer">
+      <div style="margin-top: 35px">
         <!--pagenation-->
         <pagination-controls (pageChange)="page = $event"></pagination-controls>
       </div>

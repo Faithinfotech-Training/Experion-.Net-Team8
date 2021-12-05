@@ -12,12 +12,6 @@
     </button>
     <!--search-->
     <div class="form-outline">
-      <input
-        class="form-control"
-        type="text"
-        placeholder="Search....."
-        [(ngModel)]="filter"
-      />
       <br />
     </div>
 
@@ -32,6 +26,16 @@
         <table class="table table-flush align-items-center">
           <thead class="thead-light">
             <tr>
+              <td colspan="5">
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Search....."
+                  [(ngModel)]="filter"
+                />
+              </td>
+            </tr>
+            <tr>
               <th>PaymentId</th>
 
               <th>Amount</th>
@@ -40,7 +44,7 @@
 
               <th>Payment date</th>
 
-              <th>Action</th>
+              <th>Payment Status</th>
             </tr>
           </thead>
           <tbody>
@@ -60,15 +64,7 @@
               <td (click)="populateForm(c)">
                 {{ c.PaymentDate | date: "dd-MM-yyyy" }}
               </td>
-              <td>
-                <button
-                  (click)="updatePayment(c.PaymentId)"
-                  class="btn btn-info"
-                  style="margin-left: 10px"
-                >
-                  Edit
-                </button>
-              </td>
+              <td (click)="populateForm(c)">{{ c.Status }}</td>
             </tr>
           </tbody>
         </table>

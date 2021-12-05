@@ -27,7 +27,7 @@ export class PrescriptionComponent implements OnInit {
   form: FormGroup;
   data: any;
   addLabTests: boolean = false;
-
+  id: number;
   CountryData: Array<any> = [
     { name: 1, value: 'ECG' },
     { name: 2, value: 'MRI' },
@@ -54,6 +54,7 @@ export class PrescriptionComponent implements OnInit {
     this.empId = this.route.snapshot.params['empId'];
     this.patientId = this.route.snapshot.params['patientId'];
     this.appointmentId = this.route.snapshot.params['atId'];
+    this.id = this.route.snapshot.params['id'];
     console.log(this.appointmentId);
     //console.log(this.empId);
     //console.log(this.patientId);
@@ -163,12 +164,14 @@ export class PrescriptionComponent implements OnInit {
 
   takeLabTechnician() {
     this.appointment.PatientId = this.patientId;
-    this.appointment.EmployeeId = 2;
+    this.appointment.EmployeeId = this.id;
     var datePipe = new DatePipe('en-UK');
     let formatDate: any = datePipe.transform(this.currentDate, 'yyyy-MM-dd');
     this.appointment.AppointmentDate = formatDate;
-    this.appointment.AppointmentTypeId = 2;
-    this.appointment.AppointmentStatus = false;
+    this.appointment.AppointmentTypeId = this.id;
+    this.appointment.AppointmentStatus = true;
+    this.appointment.AppointmentId = undefined;
+    console.log('hii' + this.appointment.EmployeeId);
     this.appService.InsertAppoinment(this.appointment);
   }
 }

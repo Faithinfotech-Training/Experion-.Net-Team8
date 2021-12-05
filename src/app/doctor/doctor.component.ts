@@ -22,7 +22,6 @@ export class DoctorComponent implements OnInit {
     public authService: AuthService
   ) {}
 
-  
   ngOnInit(): void {
     //window.location.reload();
     this.empId = this.route.snapshot.params['empId'];
@@ -31,7 +30,7 @@ export class DoctorComponent implements OnInit {
 
   AddPrescription(id: number, appointmentId: number) {
     console.log(id, this.empId);
-    this.router.navigate(['prescription', id, this.empId, appointmentId]);
+    this.router.navigate(['prescription', id, this.empId, appointmentId, 2]);
   }
 
   logout() {

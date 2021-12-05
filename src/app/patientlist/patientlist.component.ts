@@ -39,7 +39,7 @@ export class PatientlistComponent implements OnInit {
   }
 
   AddAppointment(patientId: number) {
-    this.router.navigate(['appointment', patientId]);
+    this.router.navigate(['appointments', patientId]);
   }
 
   DeleteAppointment(id: number) {

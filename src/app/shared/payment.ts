@@ -3,4 +3,5 @@ export class Payment {
   Amount: number;
   PatientId: number;
   PaymentDate: Date = new Date();
+  status: string;
 }

@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common';
 export class EmployeeComponent implements OnInit {
   empId: number;
   employee: Employee = new Employee();
+  status: boolean;
   constructor(
     public empService: EmployeeService,
     private toastr: ToastrService,
@@ -30,6 +31,7 @@ export class EmployeeComponent implements OnInit {
     //this.resetform();
     if (this.empId != 0 || this.empId != null) {
       //get employee
+      this.status = false;
       this.empService.getEmployee(this.empId).subscribe(
         (data) => {
           console.log(data);
@@ -44,6 +46,8 @@ export class EmployeeComponent implements OnInit {
         },
         (error) => console.log(error)
       );
+    } else {
+      this.status = true;
     }
   }
 
@@ -70,6 +74,7 @@ export class EmployeeComponent implements OnInit {
   //Insert
   insertEmployee(form?: NgForm) {
     console.log('Iserting a record...');
+    form.value.IsActive = true;
     this.empService.insertEmployee(form.value).subscribe((data) => {
       console.log(data);
       this.toastr.success('Employee added', 'CMSApp v2021');

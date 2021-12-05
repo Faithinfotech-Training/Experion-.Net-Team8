@@ -12,12 +12,6 @@
     </button>
     <!--search-->
     <div class="form-outline">
-      <input
-        class="form-control"
-        type="text"
-        placeholder="Search....."
-        [(ngModel)]="filter"
-      />
       <br />
     </div>
   </div>
@@ -34,12 +28,22 @@
       <table class="table table-flush align-items-center">
         <thead class="thead-light">
           <tr>
-            <th>Patient Id</th>
-            <th>Patient Name</th>
+            <td colspan="8">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Search....."
+                [(ngModel)]="filter"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
             <th>Age</th>
-            <th>Mobile Number</th>
+            <th>Contact</th>
             <th>Gender</th>
-            <th>Appointment Date</th>
+            <th>Date</th>
             <th>Apointment Status</th>
             <th>Action</th>
           </tr>
@@ -88,7 +92,7 @@
           </tr>
         </tbody>
       </table>
-      <div class="footer">
+      <div style="margin-top: 35px">
         <!--pagenation-->
         <pagination-controls (pageChange)="page = $event"></pagination-controls>
       </div>

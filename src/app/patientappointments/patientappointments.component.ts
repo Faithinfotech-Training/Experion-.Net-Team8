@@ -56,7 +56,7 @@ export class PatientappointmentsComponent implements OnInit {
             'Appointment record has been deleted',
             'ClinicApp v2021'
           );
-          this.router.navigateByUrl('/patientappointments');
+          window.location.reload();
         },
         (error) => {
           console.log(error);

@@ -30,7 +30,7 @@ export class AppointmentService {
   //GET patients for binding
   GetAllPatients() {
     this.httpClient
-      .get(environment.apiUrl + '/api/patient')
+      .get(environment.apiUrl + '/api/patient/get')
       .toPromise()
       .then((response) => (this.patients = response as Patient[]));
     console.log(this.patients);

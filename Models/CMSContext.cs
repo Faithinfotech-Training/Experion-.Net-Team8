@@ -15,13 +15,14 @@ namespace Clinic_Management_System_8.Models
         {
         }
 
+        public virtual DbSet<Announcement> Announcement { get; set; }
         public virtual DbSet<AppointmentTypes> AppointmentTypes { get; set; }
         public virtual DbSet<Appointments> Appointments { get; set; }
         public virtual DbSet<Departments> Departments { get; set; }
         public virtual DbSet<EmployeeSpecializations> EmployeeSpecializations { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<LabHasTechnician> LabHasTechnician { get; set; }
-        public virtual DbSet<Labs> Labs { get; set; }
+        public virtual DbSet<LabTests> LabTests { get; set; }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<Patients> Patients { get; set; }
         public virtual DbSet<Payments> Payments { get; set; }
@@ -41,10 +42,28 @@ namespace Clinic_Management_System_8.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Announcement>(entity =>
+            {
+                entity.HasKey(e => e.AnnId)
+                    .HasName("PK__Announce__1C67F94B181B4D21");
+
+                entity.Property(e => e.AnnDate).HasColumnType("date");
+
+                entity.Property(e => e.AnnText)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Employee)
+                    .WithMany(p => p.Announcement)
+                    .HasForeignKey(d => d.EmployeeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_emp");
+            });
+
             modelBuilder.Entity<AppointmentTypes>(entity =>
             {
                 entity.HasKey(e => e.AppointmentTypeId)
-                    .HasName("PK__Appointm__E258532BA0129794");
+                    .HasName("PK__Appointm__E258532B02E670E2");
 
                 entity.Property(e => e.AppointmentType)
                     .IsRequired()
@@ -55,7 +74,7 @@ namespace Clinic_Management_System_8.Models
             modelBuilder.Entity<Appointments>(entity =>
             {
                 entity.HasKey(e => e.AppointmentId)
-                    .HasName("PK__Appointm__8ECDFCC2EE89EFDC");
+                    .HasName("PK__Appointm__8ECDFCC28F488F64");
 
                 entity.Property(e => e.AppointmentDate).HasColumnType("date");
 
@@ -81,7 +100,7 @@ namespace Clinic_Management_System_8.Models
             modelBuilder.Entity<Departments>(entity =>
             {
                 entity.HasKey(e => e.DepartmentId)
-                    .HasName("PK__Departme__B2079BED8BAE2A16");
+                    .HasName("PK__Departme__B2079BEDA29E157A");
 
                 entity.Property(e => e.DepartmentName)
                     .IsRequired()
@@ -92,7 +111,7 @@ namespace Clinic_Management_System_8.Models
             modelBuilder.Entity<EmployeeSpecializations>(entity =>
             {
                 entity.HasKey(e => e.Esid)
-                    .HasName("PK__Employee__2332FD9570CBE7F1");
+                    .HasName("PK__Employee__2332FD9543C92B42");
 
                 entity.Property(e => e.Esid).HasColumnName("ESId");
 
@@ -112,7 +131,7 @@ namespace Clinic_Management_System_8.Models
             modelBuilder.Entity<Employees>(entity =>
             {
                 entity.HasKey(e => e.EmployeeId)
-                    .HasName("PK__Employee__7AD04F1100B65210");
+                    .HasName("PK__Employee__7AD04F119E2D83E9");
 
                 entity.Property(e => e.DateOfJoining).HasColumnType("date");
 
@@ -144,7 +163,7 @@ namespace Clinic_Management_System_8.Models
             modelBuilder.Entity<LabHasTechnician>(entity =>
             {
                 entity.HasKey(e => e.Ltid)
-                    .HasName("PK__LabHasTe__4D388D6DF53C6F93");
+                    .HasName("PK__LabHasTe__4D388D6D3D176D87");
 
                 entity.Property(e => e.Ltid).HasColumnName("LTId");
 
@@ -161,12 +180,12 @@ namespace Clinic_Management_System_8.Models
                     .HasConstraintName("FK_LT_Employee");
             });
 
-            modelBuilder.Entity<Labs>(entity =>
+            modelBuilder.Entity<LabTests>(entity =>
             {
-                entity.HasKey(e => e.LabId)
-                    .HasName("PK__Labs__EDBD68DA46E95042");
+                entity.HasKey(e => e.TestId)
+                    .HasName("PK__Labs__EDBD68DAB41F0F38");
 
-                entity.Property(e => e.LabName)
+                entity.Property(e => e.TestName)
                     .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);
@@ -199,7 +218,7 @@ namespace Clinic_Management_System_8.Models
             modelBuilder.Entity<Patients>(entity =>
             {
                 entity.HasKey(e => e.PatientId)
-                    .HasName("PK__Patients__970EC36627871B7B");
+                    .HasName("PK__Patients__970EC366E2BDD1EF");
 
                 entity.Property(e => e.Address)
                     .IsRequired()
@@ -222,11 +241,15 @@ namespace Clinic_Management_System_8.Models
             modelBuilder.Entity<Payments>(entity =>
             {
                 entity.HasKey(e => e.PaymentId)
-                    .HasName("PK__Payments__9B556A38FC159C7D");
+                    .HasName("PK__Payments__9B556A38C99757AA");
 
                 entity.Property(e => e.Amount).HasColumnType("money");
 
                 entity.Property(e => e.PaymentDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Status)
+                    .HasMaxLength(6)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Patient)
                     .WithMany(p => p.Payments)
@@ -238,7 +261,7 @@ namespace Clinic_Management_System_8.Models
             modelBuilder.Entity<Prescriptions>(entity =>
             {
                 entity.HasKey(e => e.PrescriptionId)
-                    .HasName("PK__Prescrip__401308324C40C776");
+                    .HasName("PK__Prescrip__401308323F818364");
 
                 entity.Property(e => e.Prescription)
                     .IsRequired()
@@ -267,7 +290,7 @@ namespace Clinic_Management_System_8.Models
             modelBuilder.Entity<Queries>(entity =>
             {
                 entity.HasKey(e => e.QueryId)
-                    .HasName("PK__Queries__5967F7DB848867B3");
+                    .HasName("PK__Queries__5967F7DBC1EEB747");
 
                 entity.Property(e => e.Query)
                     .IsRequired()
@@ -283,7 +306,7 @@ namespace Clinic_Management_System_8.Models
             modelBuilder.Entity<Roles>(entity =>
             {
                 entity.HasKey(e => e.RoleId)
-                    .HasName("PK__Roles__8AFACE1A0E13635D");
+                    .HasName("PK__Roles__8AFACE1A211F25D3");
 
                 entity.Property(e => e.RoleName)
                     .IsRequired()
@@ -294,7 +317,7 @@ namespace Clinic_Management_System_8.Models
             modelBuilder.Entity<Specializations>(entity =>
             {
                 entity.HasKey(e => e.SpecializationId)
-                    .HasName("PK__Speciali__5809D86F6A8F0BF3");
+                    .HasName("PK__Speciali__5809D86FC55BD289");
 
                 entity.Property(e => e.SpecializationName)
                     .IsRequired()
@@ -305,7 +328,7 @@ namespace Clinic_Management_System_8.Models
             modelBuilder.Entity<TestReports>(entity =>
             {
                 entity.HasKey(e => e.TestReportId)
-                    .HasName("PK__TestRepo__07E0C2EA6CF34B62");
+                    .HasName("PK__TestRepo__07E0C2EA57579E4A");
 
                 entity.Property(e => e.ReportGeneratedDate).HasColumnType("date");
 

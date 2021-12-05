@@ -102,6 +102,30 @@ namespace Clinic_Management_System_8.Controllers
 
         #endregion
 
+        //--- View Patients ---//
+        #region ViewPatients
+
+        [HttpGet]
+        [Route("get")]
+        public async Task<IActionResult> ViewPatients()
+        {
+            try
+            {
+                var patient = await patientRepo.ViewPatients();
+                if (patient != null)
+                {
+                    return Ok(patient);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        #endregion
+
 
         //--- View Patient by Id ---//
         #region ViewPatientById

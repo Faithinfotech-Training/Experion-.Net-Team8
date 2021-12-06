@@ -42,6 +42,24 @@ namespace Clinic_Management_System_8.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Announcement>(entity =>
+            {
+                entity.HasKey(e => e.AnnId)
+                    .HasName("PK__Announce__1C67F94BB612B1AE");
+
+                entity.Property(e => e.AnnDate).HasColumnType("date");
+
+                entity.Property(e => e.AnnText)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Employee)
+                    .WithMany(p => p.Announcement)
+                    .HasForeignKey(d => d.EmployeeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_emp");
+            });
+
             modelBuilder.Entity<AppointmentTypes>(entity =>
             {
                 entity.HasKey(e => e.AppointmentTypeId)
@@ -164,8 +182,8 @@ namespace Clinic_Management_System_8.Models
 
             modelBuilder.Entity<LabTests>(entity =>
             {
-                entity.HasKey(e => e.LabId)
-                    .HasName("PK__Labs__EDBD68DAB41F0F38");
+                entity.HasKey(e => e.TestId)
+                    .HasName("PK__Labs__EDBD68DAF48909FF");
 
                 entity.Property(e => e.TestName)
                     .IsRequired()
@@ -228,10 +246,6 @@ namespace Clinic_Management_System_8.Models
                 entity.Property(e => e.Amount).HasColumnType("money");
 
                 entity.Property(e => e.PaymentDate).HasColumnType("datetime");
-
-                entity.Property(e => e.Status)
-                    .HasMaxLength(6)
-                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Patient)
                     .WithMany(p => p.Payments)

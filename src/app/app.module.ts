@@ -39,6 +39,8 @@ import { LabtestComponent } from './labtest/labtest.component';
 import { HomeComponent } from './home/home.component';
 import { MakepaymentComponent } from './makepayment/makepayment.component';
 import { TestsComponent } from './tests/tests.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { ContactsComponent } from './contacts/contacts.component';
 import { LabresultsComponent } from './labresults/labresults.component';
 import { AnnouncementComponent } from './announcement/announcement.component';
 import { AnnouncementlistComponent } from './announcementlist/announcementlist.component';
@@ -71,6 +73,8 @@ import { AnnouncementlistComponent } from './announcementlist/announcementlist.c
     HomeComponent,
     MakepaymentComponent,
     TestsComponent,
+    AboutusComponent,
+    ContactsComponent
     LabresultsComponent,
     AnnouncementComponent,
     AnnouncementlistComponent

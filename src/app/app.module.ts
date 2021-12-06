@@ -73,7 +73,7 @@ import { AnnouncementComponent } from './announcement/announcement.component';
     MakepaymentComponent,
     TestsComponent,
     AboutusComponent,
-    ContactsComponent
+    ContactsComponent,
     LabresultsComponent,
     AnnouncementComponent
   ],

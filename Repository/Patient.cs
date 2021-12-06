@@ -66,7 +66,6 @@ namespace Clinic_Management_System_8.Repository
                               from e in contextDB.Employees
                               from at in contextDB.AppointmentTypes
                               where a.EmployeeId == e.EmployeeId &&
-                              a.AppointmentTypeId == at.AppointmentTypeId &&
                               a.PatientId==p.PatientId
                               select new PatientViewModel
                               {
@@ -79,6 +78,21 @@ namespace Clinic_Management_System_8.Repository
                                   ConsultingDoctor = e.EmployeeName,
                                   AppointedDate = a.AppointmentDate
                               }).ToListAsync();
+            }
+            return null;
+        }
+
+        #endregion
+
+
+        //--- View Patients ---//
+        #region ViewPatients
+
+        public async Task<List<Patients>> ViewPatients()
+        {
+            if (contextDB != null)
+            {
+                return await contextDB.Patients.ToListAsync();
             }
             return null;
         }

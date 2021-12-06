@@ -19,6 +19,9 @@ namespace Clinic_Management_System_8.Repository
         //--- View Patient ---//
         Task<List<PatientViewModel>> ViewAllPatients();
 
+        //--- View Patient ---//
+        Task<List<Patients>> ViewPatients();
+
         //--- View Patient by Id---//
         Task<Patients> ViewPatientById(int Id);
 

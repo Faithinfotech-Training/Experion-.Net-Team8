@@ -7,6 +7,7 @@ namespace Clinic_Management_System_8.Models
     {
         public Employees()
         {
+            Announcement = new HashSet<Announcement>();
             Appointments = new HashSet<Appointments>();
             EmployeeSpecializations = new HashSet<EmployeeSpecializations>();
             LabHasTechnician = new HashSet<LabHasTechnician>();
@@ -29,6 +30,7 @@ namespace Clinic_Management_System_8.Models
 
         public virtual Departments Department { get; set; }
         public virtual Roles Role { get; set; }
+        public virtual ICollection<Announcement> Announcement { get; set; }
         public virtual ICollection<Appointments> Appointments { get; set; }
         public virtual ICollection<EmployeeSpecializations> EmployeeSpecializations { get; set; }
         public virtual ICollection<LabHasTechnician> LabHasTechnician { get; set; }

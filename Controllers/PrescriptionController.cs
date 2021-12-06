@@ -123,7 +123,8 @@ namespace Clinic_Management_System_8.Controllers
 
         //--- Get Prescription By PatientId  ---//
         #region Get Prescription By PatientId 
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("test")]
         //[Authorize]
         public async Task<IActionResult> GetPrescriptionByPatientId(int id)
         {

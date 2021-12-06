@@ -9,7 +9,6 @@ namespace Clinic_Management_System_8.Models
         public decimal Amount { get; set; }
         public int PatientId { get; set; }
         public DateTime? PaymentDate { get; set; }
-        public string Status { get; set; }
 
         public virtual Patients Patient { get; set; }
     }

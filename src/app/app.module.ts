@@ -39,6 +39,8 @@ import { LabtestComponent } from './labtest/labtest.component';
 import { HomeComponent } from './home/home.component';
 import { MakepaymentComponent } from './makepayment/makepayment.component';
 import { TestsComponent } from './tests/tests.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { TestsComponent } from './tests/tests.component';
     LabtestComponent,
     HomeComponent,
     MakepaymentComponent,
-    TestsComponent
+    TestsComponent,
+    AboutusComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,

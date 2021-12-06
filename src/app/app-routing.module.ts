@@ -24,10 +24,14 @@ import { PatientappointmentsComponent } from './patientappointments/patientappoi
 import { LabtestComponent } from './labtest/labtest.component';
 import { HomeComponent } from './home/home.component';
 import { TestsComponent } from './tests/tests.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'contacts', component: ContactsComponent },
+  { path: 'aboutus', component: AboutusComponent },
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'payment', component: PaymentComponent },

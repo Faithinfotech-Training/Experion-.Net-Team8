@@ -74,7 +74,7 @@ import { AnnouncementlistComponent } from './announcementlist/announcementlist.c
     MakepaymentComponent,
     TestsComponent,
     AboutusComponent,
-    ContactsComponent
+    ContactsComponent,
     LabresultsComponent,
     AnnouncementComponent,
     AnnouncementlistComponent

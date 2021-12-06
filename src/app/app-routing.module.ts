@@ -97,7 +97,7 @@ const routes: Routes = [
   {
     path: 'testreport',
     component: TestreportComponent,
-  },
+  }
 ];
 
 @NgModule({

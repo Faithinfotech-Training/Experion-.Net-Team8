@@ -40,6 +40,7 @@ import { HomeComponent } from './home/home.component';
 import { MakepaymentComponent } from './makepayment/makepayment.component';
 import { TestsComponent } from './tests/tests.component';
 import { LabresultsComponent } from './labresults/labresults.component';
+import { AnnouncementComponent } from './announcement/announcement.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { LabresultsComponent } from './labresults/labresults.component';
     HomeComponent,
     MakepaymentComponent,
     TestsComponent,
-    LabresultsComponent
+    LabresultsComponent,
+    AnnouncementComponent
   ],
   imports: [
     BrowserModule,

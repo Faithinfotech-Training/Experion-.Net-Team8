@@ -39,7 +39,7 @@ export class TestReportService {
   // get test report by id
   getTestReport(id: number): Observable<any> {
     return this.httpClient.get(
-      environment.apiUrl + '/api/testreport/GetTestReportById?id=' + id
+      environment.apiUrl + '/api/testreport/byPatientId?id=' + id
     );
     // .toPromise()
     // .then((response) => {

@@ -46,14 +46,14 @@
             <td>{{ testReport.LabTechnicianName }}</td>
             <td>{{ testReport.DoctorName }}</td>
             <td>
-              <button
+              <!-- <button
                 class="btn btn-sm btn-outline-danger"
                 (click)="
                   testReportService.deleteTestReport(testReport.TestReportId)
                 "
               >
                 X</button
-              >&nbsp;
+              >&nbsp; -->
               <button
                 (click)="viewLabReport(empId, testReport.TestReportId)"
                 class="btn btn-info"

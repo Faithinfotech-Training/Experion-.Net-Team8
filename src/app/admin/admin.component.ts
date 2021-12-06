@@ -13,8 +13,9 @@ export class AdminComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.loggedUserName = localStorage.getItem('name');
+    
     this.empId = parseInt(localStorage.getItem('empId'));
+    
   }
 
   logout() {

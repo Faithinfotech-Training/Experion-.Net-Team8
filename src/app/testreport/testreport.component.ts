@@ -33,23 +33,23 @@ export class TestreportComponent implements OnInit {
     this.employeeId = this.route.snapshot.params['empId'];
     this.patientService.GetAllPatients();
     this.testReportService.getDoctors();
-    //   if (this.testReportId != 0 || this.testReportId != null) {
-    //     //get test report
-    //     this.testReportService.getTestReport(this.testReportId).subscribe(
-    //       (data) => {
-    //         console.log(data);
-    //         //date format
-    //         var datePipe = new DatePipe('en-UK');
-    //         let formatDate: any = datePipe.transform(
-    //           data.ReportGeneratedDate,
-    //           'yyyy-MM-dd'
-    //         );
-    //         data.ReportGeneratedDate = formatDate;
-    //         this.testReportService.newTestReport = data;
-    //       },
-    //       (error) => console.log(error)
-    //     );
-    //   }
+      if (this.testReportId != 0 || this.testReportId != null) {
+        //get test report
+        this.testReportService.getTestReport(this.testReportId).subscribe(
+          (data) => {
+            console.log(data);
+            //date format
+            var datePipe = new DatePipe('en-UK');
+            let formatDate: any = datePipe.transform(
+              data.ReportGeneratedDate,
+              'yyyy-MM-dd'
+            );
+            data.ReportGeneratedDate = formatDate;
+            this.testReportService.newTestReport = data;
+          },
+          (error) => console.log(error)
+        );
+      }
   }
 
   //onSubmit function

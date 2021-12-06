@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../shared/auth.service';
+import { PrescriptionService } from '../shared/prescription.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-doctor',
@@ -14,22 +16,45 @@ export class DoctorComponent implements OnInit {
   page: number = 1;
   filter: string;
   atId: number;
+  date: Date = new Date();
+  docId: number;
+  patientId: number;
+  prescriptionDate: Date = new Date();
+  preId: number;
+  appointmentId: number;
   constructor(
     private route: ActivatedRoute,
     public doctorService: DoctorService,
     public toastrservice: ToastrService,
     private router: Router,
-    public authService: AuthService
+    public authService: AuthService,
+    public preService: PrescriptionService
   ) {}
 
   ngOnInit(): void {
     //window.location.reload();
+    var datePipe = new DatePipe('en-UK');
+    let formatDate: any = datePipe.transform(this.date, 'yyyy-MM-dd');
+    this.date = formatDate;
     this.empId = this.route.snapshot.params['empId'];
     this.doctorService.GetAllPatientsOfDoctor(this.empId);
+    // this.preService.GetPrescriptionByDate(this.date).subscribe((data) => {
+    //   console.log(data);
+    //   var datePipe = new DatePipe('en-UK');
+    //   let formatDate: any = datePipe.transform(
+    //     data.PrescriptionDate,
+    //     'yyyy-MM-dd'
+    //   );
+    //   this.prescriptionDate = formatDate;
+    //   this.docId = this.empId;
+    //   this.patientId = data.PatientId;
+    //   this.preId = data.PrescriptionId;
+    // });
   }
 
   AddPrescription(id: number, appointmentId: number) {
     console.log(id, this.empId);
+    this.appointmentId = appointmentId;
     this.router.navigate(['prescription', id, this.empId, appointmentId, 2]);
   }
 
@@ -69,5 +94,10 @@ export class DoctorComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  ViewLabResults(patientId: number, appointmentId: number) {
+    console.log(patientId);
+    this.router.navigate(['labresults', patientId, this.empId, appointmentId]);
   }
 }

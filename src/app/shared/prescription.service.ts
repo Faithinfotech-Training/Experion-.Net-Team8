@@ -68,6 +68,13 @@ export class PrescriptionService {
     );
   }
 
+  //Get all prescription by patient by id
+  GetPrescriptionById(Id: number): Observable<any> {
+    return this.httpClient.get(
+      environment.apiUrl + '/api/prescription/reportById?id=' + Id
+    );
+  }
+
   //Get all prescription of patient by date
   GetPrescriptionByDate(patientDate: Date): Observable<any> {
     return this.httpClient.get(

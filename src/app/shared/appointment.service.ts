@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Appointment } from './appointment';
@@ -16,7 +17,7 @@ export class AppointmentService {
   appointments: Doctor[];
   employees: Employee[];
   patients: Patient[];
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private toastr: ToastrService) {}
 
   //Get all doctors
   GetAllDoctors(id: number) {
@@ -36,6 +37,18 @@ export class AppointmentService {
     console.log(this.patients);
   }
 
+  labAppoinment(id: number, date: Date, atId: number) {
+    console.log('app service');
+    this.formData.PatientId = id;
+    this.formData.EmployeeId = atId;
+    this.formData.AppointmentTypeId = atId;
+    this.formData.AppointmentStatus = true;
+    this.formData.AppointmentDate = date;
+    this.InsertAppoinment(this.formData).subscribe((data) => {
+      console.log(data);
+      this.toastr.success('Lab Appointment added', 'CMSApp v2021');
+    });
+  }
   //Add appointment i.e insert appointment
   InsertAppoinment(appointment: Appointment): Observable<any> {
     console.log(appointment);

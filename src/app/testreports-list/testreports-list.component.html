@@ -2,14 +2,14 @@
   <div class="container-fluid py-4">
     <h1 id="heading" class="mb-0 heading pt-4">VIEW</h1>
     <h1 id="green" class="mb-0 heading pt-4">&ensp;REPORTS</h1>
-    <button
+    <a
       id="button"
       class="btn btn-primary"
       style="float: right; margin: 10px"
-      (click)="logout()"
+      href="http://localhost:4200/labtechnician/2"
     >
-      Logout
-    </button>
+      Back
+    </a>
   </div>
   <br />
   <div class="card" id="manage_patient_card">
@@ -46,14 +46,14 @@
             <td>{{ testReport.LabTechnicianName }}</td>
             <td>{{ testReport.DoctorName }}</td>
             <td>
-              <button
+              <!-- <button
                 class="btn btn-sm btn-outline-danger"
                 (click)="
                   testReportService.deleteTestReport(testReport.TestReportId)
                 "
               >
                 X</button
-              >&nbsp;
+              >&nbsp; -->
               <button
                 (click)="viewLabReport(empId, testReport.TestReportId)"
                 class="btn btn-info"

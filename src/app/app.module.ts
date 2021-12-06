@@ -41,6 +41,8 @@ import { MakepaymentComponent } from './makepayment/makepayment.component';
 import { TestsComponent } from './tests/tests.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { LabresultsComponent } from './labresults/labresults.component';
+import { AnnouncementComponent } from './announcement/announcement.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,8 @@ import { ContactsComponent } from './contacts/contacts.component';
     TestsComponent,
     AboutusComponent,
     ContactsComponent
+    LabresultsComponent,
+    AnnouncementComponent
   ],
   imports: [
     BrowserModule,

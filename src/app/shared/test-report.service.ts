@@ -11,16 +11,14 @@ import { Observable } from 'rxjs';
 import { Testreportmodel } from './testreportmodel';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TestReportService {
-
-  constructor(private httpClient: HttpClient,
+  constructor(
+    private httpClient: HttpClient,
     public patientService: PatientService,
-    public empService: EmployeeService,
-  ) {
-
-  }
+    public empService: EmployeeService
+  ) {}
 
   // create an instance of TestReport
   testReports: Testreportmodel[];
@@ -29,20 +27,26 @@ export class TestReportService {
   doctors: Employee[];
   isReadOnly: boolean = false;
 
-
-  getTestReportsByEmployeeId(id: number) {
-
-  }
+  getTestReportsByEmployeeId(id: number) {}
 
   insertTestReport(testReport: TestReport): Observable<any> {
-    return this.httpClient.post(environment.apiUrl + '/api/testreport/add',
+    return this.httpClient.post(
+      environment.apiUrl + '/api/testreport/add',
       testReport
     );
   }
 
   // get test report by id
-  getTestReport(id: number) :Observable<any>{
-    return this.httpClient.get(environment.apiUrl + '/api/testreport/GetTestReportById/?id=' + id);
+  getTestReport(id: number): Observable<any> {
+    return this.httpClient.get(
+      environment.apiUrl + '/api/testreport/byPatientId?id=' + id
+    );
+    // .toPromise()
+    // .then((response) => {
+    //   //console.log(response);
+    //   this.testReports = response as Testreportmodel[];
+    //   //console.log(this.testReports[0]);
+    // });
   }
 
   //delete test report
@@ -50,11 +54,12 @@ export class TestReportService {
     return this.httpClient.delete(environment.apiUrl + '/api/testreport/' + id);
   }
 
-  // get doctors 
+  // get doctors
   getDoctors() {
-    return this.httpClient.get(environment.apiUrl + '/api/employee/' + 1)
-    .toPromise().
-    then((response) => (this.doctors = response as Employee[]));
+    return this.httpClient
+      .get(environment.apiUrl + '/api/employee/' + 1)
+      .toPromise()
+      .then((response) => (this.doctors = response as Employee[]));
   }
 
   //get all appointments for lab technician
@@ -67,11 +72,11 @@ export class TestReportService {
     console.log(this.testReports);
   }
 
-  toggleReadOnlyMode(value:boolean){
+  toggleReadOnlyMode(value: boolean) {
     this.isReadOnly = value;
   }
 
-  resetTestReport(){
+  resetTestReport() {
     this.newTestReport = new TestReport();
     this.toggleReadOnlyMode(false);
   }

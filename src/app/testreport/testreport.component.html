@@ -157,24 +157,23 @@
             </div>
           </div>
 
-          
-              <button
-                type="submit"
-                [disabled]="!(form.valid && form.dirty)"
-                class="btn btn-success form-control"
-              >
-                Register
-              </button>
-            
-              <button
-                type="button"
-                (click)="resetForm(form)"
-                class="btn btn-success form-control"
-                *ngIf="testReportService.isReadOnly == true"
-              >
-                Go Back
-              </button>
-            
+          <button
+            type="submit"
+            [disabled]="!(form.valid && form.dirty)"
+            *ngIf="testReportService.isReadOnly == false"
+            class="btn btn-success form-control"
+          >
+            Register
+          </button>
+
+          <button
+            type="button"
+            (click)="resetForm(form)"
+            class="btn btn-success form-control"
+            *ngIf="testReportService.isReadOnly == true"
+          >
+            Go Back
+          </button>
         </div>
       </form>
     </div>

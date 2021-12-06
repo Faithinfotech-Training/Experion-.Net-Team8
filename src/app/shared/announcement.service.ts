@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class AnnouncementService {
   formData : Announcement = new Announcement();
   announcements : Announcement[];
+  announcementform: any;
 
   constructor(private httpClient: HttpClient) { 
     
@@ -17,7 +18,7 @@ export class AnnouncementService {
 
   getAnnouncements(){
     this.httpClient
-      .get(environment.apiUrl + '/api/roles')
+      .get(environment.apiUrl + '/api/announcement')
       .toPromise()
       .then((response) => (this.announcements = response as Announcement[]));
   }
@@ -25,10 +26,11 @@ export class AnnouncementService {
   //insert announcement
   insertAnnouncement(announcement: Announcement): Observable<any> {
     return this.httpClient.post(
-      environment.apiUrl + '/api/employee/AddEmployee',
+      environment.apiUrl + '/api/announcement',
       announcement
     );
   }
 
   
 }
+

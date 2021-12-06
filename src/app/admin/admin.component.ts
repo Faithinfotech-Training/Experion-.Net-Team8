@@ -9,10 +9,12 @@ import { AuthService } from '../shared/auth.service';
 })
 export class AdminComponent implements OnInit {
   loggedUserName: string;
+  empId:number;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.loggedUserName = localStorage.getItem('name');
+    
+    this.empId = parseInt(localStorage.getItem('empId'));
     
   }
 
@@ -20,4 +22,8 @@ export class AdminComponent implements OnInit {
     this.authService.logout();
     this.router.navigateByUrl('login');
   }
+  addAnnouncement(){
+    this.router.navigate(['announcement', this.empId]);
+  }
+
 }

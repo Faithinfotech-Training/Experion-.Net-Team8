@@ -43,6 +43,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { LabresultsComponent } from './labresults/labresults.component';
 import { AnnouncementComponent } from './announcement/announcement.component';
+import { AnnouncementlistComponent } from './announcementlist/announcementlist.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { AnnouncementComponent } from './announcement/announcement.component';
     AppointmentsComponent,
     PatientComponent,
     SpecializationComponent,
-    PatientlistComponent,    
+    PatientlistComponent,
     SignupComponent,
     PrescriptionComponent,
     DoctorComponent,
@@ -75,7 +76,8 @@ import { AnnouncementComponent } from './announcement/announcement.component';
     AboutusComponent,
     ContactsComponent,
     LabresultsComponent,
-    AnnouncementComponent
+    AnnouncementComponent,
+    AnnouncementlistComponent,
   ],
   imports: [
     BrowserModule,

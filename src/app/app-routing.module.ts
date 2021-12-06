@@ -1,3 +1,4 @@
+import { AnnouncementlistComponent } from './announcementlist/announcementlist.component';
 import { TestreportsListComponent } from './testreports-list/testreports-list.component';
 import { AppointmentsListComponent } from './appointments-list/appointments-list.component';
 import { TestreportComponent } from './testreport/testreport.component';
@@ -27,6 +28,7 @@ import { TestsComponent } from './tests/tests.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { LabresultsComponent } from './labresults/labresults.component';
+import { AnnouncementComponent } from './announcement/announcement.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -102,6 +104,19 @@ const routes: Routes = [
     path: 'testreport',
     component: TestreportComponent,
   },
+  {
+    path: 'announcement',
+    component: AnnouncementComponent,
+  },
+  {
+    path: 'announcement/:empId',
+    component: AnnouncementComponent,
+  },
+  {
+    path: 'announcementlist',
+    component: AnnouncementlistComponent
+  }
+
 ];
 
 @NgModule({

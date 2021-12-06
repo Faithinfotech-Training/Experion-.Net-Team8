@@ -96,6 +96,33 @@ namespace Clinic_Management_System_8.Repository
         }
         #endregion
 
+
+        //get test reports by employee id
+        #region Get test reports by patient id
+        public async Task<List<LabReportModel>> GetTestReportsByPatientId(int id)
+        {
+            if (_db != null)
+            {
+                //LINQ
+                return await (from t in _db.TestReports
+                              from d in _db.Employees
+                              from l in _db.Employees
+                              from p in _db.Patients
+                              where t.DoctorId == d.EmployeeId && t.LabTechnicianId == l.EmployeeId && t.PatientId == p.PatientId && t.PatientId==id
+                              select new LabReportModel
+                              {
+                                  TestReportId = t.TestReportId,
+                                  TestReport = t.TestReport,
+                                  PatientName = p.PatientName,
+                                  DoctorName = d.EmployeeName,
+                                  LabTechnicianName = l.EmployeeName,
+                                  ReportGeneratedDate = t.ReportGeneratedDate
+                              }).ToListAsync();
+            }
+            return null;
+        }
+        #endregion
+
         //get test report by date
         #region Get test report by date
         public async Task<LabReportModel> GetTestReportByDate(DateTime date)
@@ -123,25 +150,12 @@ namespace Clinic_Management_System_8.Repository
         #endregion
         //get test report by using id
         #region get test report by id
-        public async Task<List<LabReportModel>> GetTestReportById(int id)
+        public async Task<TestReports> GetTestReportById(int id)
         {
             if (_db != null)
             {
                 //LINQ
-                return await (from t in _db.TestReports
-                              from d in _db.Employees
-                              from l in _db.Employees
-                              from p in _db.Patients
-                              where t.DoctorId == d.EmployeeId && t.LabTechnicianId == l.EmployeeId && t.PatientId == p.PatientId && t.PatientId==id
-                              select new LabReportModel
-                              {
-                                  TestReportId = t.TestReportId,
-                                  TestReport = t.TestReport,
-                                  PatientName = p.PatientName,
-                                  DoctorName = d.EmployeeName,
-                                  LabTechnicianName = l.EmployeeName,
-                                  ReportGeneratedDate = t.ReportGeneratedDate
-                              }).ToListAsync();
+                 return await _db.TestReports.FirstOrDefaultAsync(t => t.TestReportId == id);
             }
             return null;
         }

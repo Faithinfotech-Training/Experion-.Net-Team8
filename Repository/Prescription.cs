@@ -85,7 +85,7 @@ namespace Clinic_Management_System_8.Repository
                                   DoctorId = e.EmployeeId,
                                   DoctorName = e.EmployeeName,
                                   Tests = p.Tests
-                              }).LastOrDefaultAsync();
+                              }).OrderByDescending(o=>o.PrescriptionDate).FirstOrDefaultAsync();
             }
             return null;
 

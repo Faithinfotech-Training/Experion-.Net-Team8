@@ -13,57 +13,54 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-testreport',
   templateUrl: './testreport.component.html',
-  styleUrls: ['./testreport.component.scss']
+  styleUrls: ['./testreport.component.scss'],
 })
 export class TestreportComponent implements OnInit {
-  
-  employeeId : number;
+  employeeId: number;
   testReportId: number;
-  testReport : TestReport = new TestReport(); 
+  testReport: TestReport = new TestReport();
   constructor(
-    public testReportService : TestReportService,
+    public testReportService: TestReportService,
     private toastr: ToastrService,
     private router: Router,
     private route: ActivatedRoute,
-    public patientService : PatientService,
-    public empService:EmployeeService,
-    private location: Location
-  ) { }
+    public patientService: PatientService,
+    public empService: EmployeeService
+  ) {}
 
   ngOnInit(): void {
-  
-    this.testReportId =  this.route.snapshot.params['testReportId'];
-    this.employeeId =  this.route.snapshot.params['empId'];
+    this.testReportId = this.route.snapshot.params['testReportId'];
+    this.employeeId = this.route.snapshot.params['empId'];
     this.patientService.GetAllPatients();
     this.testReportService.getDoctors();
-    if (this.testReportId != 0 || this.testReportId != null) {
-      //get test report
-      this.testReportService.getTestReport(this.testReportId).subscribe(
-        (data) => {
-          console.log(data);
-          //date format
-          var datePipe = new DatePipe('en-UK');
-          let formatDate: any = datePipe.transform(
-            data.ReportGeneratedDate,
-            'yyyy-MM-dd'
-          );
-          data.ReportGeneratedDate = formatDate;
-          this.testReportService.newTestReport = data;
-        },
-        (error) => console.log(error)
-      );
-    }
+    //   if (this.testReportId != 0 || this.testReportId != null) {
+    //     //get test report
+    //     this.testReportService.getTestReport(this.testReportId).subscribe(
+    //       (data) => {
+    //         console.log(data);
+    //         //date format
+    //         var datePipe = new DatePipe('en-UK');
+    //         let formatDate: any = datePipe.transform(
+    //           data.ReportGeneratedDate,
+    //           'yyyy-MM-dd'
+    //         );
+    //         data.ReportGeneratedDate = formatDate;
+    //         this.testReportService.newTestReport = data;
+    //       },
+    //       (error) => console.log(error)
+    //     );
+    //   }
   }
 
-   //onSubmit function
-   onSubmit(form: NgForm) {
+  //onSubmit function
+  onSubmit(form: NgForm) {
     console.log(form.value);
     let addId = this.testReportService.newTestReport.TestReportId;
     //insert
     if (addId == 0 || addId == null) {
       form.value.LabtechnicianId = this.employeeId;
       this.insertTestReport(form);
-    } 
+    }
     // else {
     //   console.log('updating record');
     //   this.updateEmployee(form);
@@ -74,7 +71,7 @@ export class TestreportComponent implements OnInit {
   resetForm(from?: NgForm) {
     if (from != null) {
       from.reset();
-      this.router.navigate(['testreportlist',this.employeeId]);
+      this.router.navigate(['testreportlist', this.employeeId]);
     }
   }
 
@@ -86,7 +83,6 @@ export class TestreportComponent implements OnInit {
       this.toastr.success('Test Report added', 'CMSApp v2021');
       //this.resetForm(form);
       this.router.navigate(['labtechnician', this.employeeId]);
-
     });
   }
 
@@ -100,6 +96,4 @@ export class TestreportComponent implements OnInit {
   //     this.router.navigateByUrl('testreportlist');
   //   });
   // }
-
-  
 }

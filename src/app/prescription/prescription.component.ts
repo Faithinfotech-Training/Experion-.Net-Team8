@@ -23,11 +23,13 @@ export class PrescriptionComponent implements OnInit {
   patientId: number;
   currentDate: Date = new Date();
   appointmentId: number;
-  appointment: Appointment = new Appointment();
+  aId: number;
+  appointment: Appointment;
   form: FormGroup;
   data: any;
   addLabTests: boolean = false;
   id: number;
+  preId: number;
   CountryData: Array<any> = [
     { name: 1, value: 'ECG' },
     { name: 2, value: 'MRI' },
@@ -54,8 +56,32 @@ export class PrescriptionComponent implements OnInit {
     this.empId = this.route.snapshot.params['empId'];
     this.patientId = this.route.snapshot.params['patientId'];
     this.appointmentId = this.route.snapshot.params['atId'];
+    this.aId = this.route.snapshot.params['aId'];
+    this.preId = this.route.snapshot.params['preId'];
     this.id = this.route.snapshot.params['id'];
+
+    if (this.patientId != 0 || this.patientId != null) {
+      //get employee
+      this.preService.GetPrescriptionById(this.patientId).subscribe(
+        (data) => {
+          console.log(data);
+          data.PatientId = this.patientId;
+          data.EmployeeId = this.empId;
+          //date format
+          var datePipe = new DatePipe('en-UK');
+          let formatDate: any = datePipe.transform(
+            data.PrescriptionDate,
+            'yyyy-MM-dd'
+          );
+          data.PrescriptionDate = formatDate;
+          this.preService.prescriptionForm = data;
+        },
+        (error) => console.log(error)
+      );
+    }
+
     console.log(this.appointmentId);
+    console.log(this.patientId);
     //console.log(this.empId);
     //console.log(this.patientId);
     this.addLabTests = false;
@@ -124,7 +150,6 @@ export class PrescriptionComponent implements OnInit {
   updateStatus(id: number) {
     this.appService.UpdateStatus(id).subscribe(
       (data) => {
-        console.log(data);
         this.toastr.success('Appointment Status Updated', 'CMSApp v2021');
       },
       (error) => {
@@ -148,7 +173,8 @@ export class PrescriptionComponent implements OnInit {
           console.log(data);
           this.toastr.success('Prescription added', 'CMSApp v2021');
         });
-        this.updateStatus(this.appointmentId);
+        if (this.appointmentId == null) this.updateStatus(this.aId);
+        if (this.aId == null) this.updateStatus(this.appointmentId);
         this.router.navigate(['doctor', this.empId]);
       }
     } else {
@@ -156,22 +182,26 @@ export class PrescriptionComponent implements OnInit {
         console.log(data);
         this.toastr.success('Prescription added', 'CMSApp v2021');
       });
-      this.updateStatus(this.appointmentId);
-      this.takeLabTechnician();
+      //this.updateStatus(this.appointmentId);
+      this.appService.labAppoinment(this.patientId, formatDate, this.id);
+      //window.location.reload();
       this.router.navigate(['doctor', this.empId]);
     }
   }
 
-  takeLabTechnician() {
-    this.appointment.PatientId = this.patientId;
-    this.appointment.EmployeeId = this.id;
-    var datePipe = new DatePipe('en-UK');
-    let formatDate: any = datePipe.transform(this.currentDate, 'yyyy-MM-dd');
-    this.appointment.AppointmentDate = formatDate;
-    this.appointment.AppointmentTypeId = this.id;
-    this.appointment.AppointmentStatus = true;
-    this.appointment.AppointmentId = undefined;
-    console.log('hii' + this.appointment.EmployeeId);
-    this.appService.InsertAppoinment(this.appointment);
-  }
+  // takeLabTechnician() {
+  //   this.appointment.PatientId = this.patientId;
+  //   this.appointment.EmployeeId = this.id;
+  //   var datePipe = new DatePipe('en-UK');
+  //   let formatDate: any = datePipe.transform(this.currentDate, 'yyyy-MM-dd');
+  //   this.appointment.AppointmentDate = formatDate;
+  //   this.appointment.AppointmentTypeId = this.id;
+  //   this.appointment.AppointmentStatus = true;
+  //   console.log('hii' + this.appointment.EmployeeId);
+  //   this.appService.InsertAppoinment(this.appointment).subscribe((data) => {
+  //     console.log(data);
+  //     this.toastr.success('Appointment added', 'ClinicApp v2021');
+  //     this.router.navigateByUrl('/receptionist');
+  //   });
+  // }
 }

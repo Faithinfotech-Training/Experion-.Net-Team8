@@ -42,8 +42,8 @@ export class AppointmentsListComponent implements OnInit {
     }
   }
 
-  viewPrescribedTests(patientId: number) {
-    this.router.navigate(['tests', patientId]);
+  viewPrescribedTests(patientId: number, aId: number) {
+    this.router.navigate(['tests', patientId, aId]);
   }
 
   addLabReport() {

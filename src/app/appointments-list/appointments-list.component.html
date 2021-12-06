@@ -64,7 +64,12 @@
               </button>
               &nbsp;
               <button
-                (click)="viewPrescribedTests(appointment.PatientId)"
+                (click)="
+                  viewPrescribedTests(
+                    appointment.PatientId,
+                    appointment.AppointmentId
+                  )
+                "
                 class="btn btn-info"
                 style="margin-left: 10px"
                 [disabled]="!isDisabled(appointment.AppointmentStatus)"

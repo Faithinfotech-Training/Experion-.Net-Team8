@@ -8,6 +8,7 @@ import { TestReportService } from '../shared/test-report.service';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { PrescriptionService } from '../shared/prescription.service';
+import { AppointmentService } from '../shared/appointment.service';
 
 @Component({
   selector: 'app-tests',
@@ -16,21 +17,25 @@ import { PrescriptionService } from '../shared/prescription.service';
 })
 export class TestsComponent implements OnInit {
   patientId: number;
+  aId: number;
   prescribedTests: Array<string>;
   date: Date = new Date();
   tests: Tests = new Tests();
   constructor(
+    private toastr: ToastrService,
     private route: ActivatedRoute,
     public toastrservice: ToastrService,
     private router: Router,
     public authService: AuthService,
     public labTechnicianService: LabtechnicianService,
     public testReportService: TestReportService,
-    public preService: PrescriptionService
+    public preService: PrescriptionService,
+    public appService: AppointmentService
   ) {}
 
   ngOnInit(): void {
     this.patientId = this.route.snapshot.params['patientId'];
+    this.aId = this.route.snapshot.params['aId'];
     this.labTechnicianService.getTests(this.patientId);
     this.preService.GetPrescriptionByPatientId(this.patientId).subscribe(
       (data) => {
@@ -57,15 +62,32 @@ export class TestsComponent implements OnInit {
     //insert
     if (addId == 0 || addId == null) {
       this.insertTestReport(form);
-      this.router.navigate(['labtechnician', 2]);
     }
+  }
+
+  updateStatus(id: number) {
+    this.appService.UpdateStatus(id).subscribe(
+      (data) => {
+        this.toastr.success('Appointment Status Updated', 'CMSApp v2021');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   insertTestReport(form: NgForm) {
     form.value.ReportGeneratedDate = this.date;
     form.value.PatientId = this.patientId;
-    form.value.EmployeeId = this.tests.DoctorId;
+    form.value.DoctorId = this.tests.DoctorId;
     form.value.LabTechnicianId = 2;
-    this.labTechnicianService.insertTestReport(form.value);
+    console.log('form values');
+    console.log(form.value);
+    this.labTechnicianService.insertTestReport(form.value).subscribe((data) => {
+      console.log(data);
+      this.toastr.success('report added', 'CMSApp v2021');
+      this.updateStatus(this.aId);
+      this.router.navigate(['labtechnician', 2]);
+    });
   }
 }

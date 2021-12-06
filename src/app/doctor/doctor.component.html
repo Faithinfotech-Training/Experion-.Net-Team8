@@ -79,15 +79,17 @@
                 style="margin-left: 10px"
                 [disabled]="!isDisabled(patient.AppointmentStatus)"
               >
-                Add Prescription
-              </button>
-              <!-- <button
-                (click)="ViewLabResults(patient.AppointmentId)"
+                Add Prescription</button
+              >&nbsp;
+              <button
+                (click)="
+                  ViewLabResults(patient.PatientId, patient.AppointmentId)
+                "
                 class="btn btn-info"
                 style="margin-left: 10px"
               >
-                Lab Results
-              </button> -->
+                View Lab Report
+              </button>
             </td>
           </tr>
         </tbody>

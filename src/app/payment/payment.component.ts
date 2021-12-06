@@ -43,6 +43,7 @@ export class PaymentComponent implements OnInit {
           'yyyy-MM-dd'
         );
         data.PaymentDate = formatedDate;
+
         this.payService.formData = data;
         this.payService.formData = Object.assign({}, data);
       });
@@ -85,6 +86,7 @@ export class PaymentComponent implements OnInit {
     console.log('Inserting a record...');
     form.value.PatientId = this.patientId;
     form.value.EmployeeId = this.empId;
+    form.value.status = 'Paid';
     this.payService.insertPayment(form.value).subscribe((result) => {
       console.log(result);
 

@@ -13,12 +13,13 @@ namespace Clinic_Management_System_8.Repository
         Task<List<LabReportModel>> GetTestReport();
 
         Task<List<LabReportModel>> GetTestReportsByEmpId(int id);
+        Task<List<LabReportModel>> GetTestReportsByPatientId(int id);
 
         Task<int> AddTestReport(TestReports test);
         Task UpdateTestReport(TestReports test);
         
         Task DeleteTestReport(int id);
         Task<LabReportModel> GetTestReportByDate(DateTime date);
-        Task<List<LabReportModel>> GetTestReportById(int id);
+        Task<TestReports> GetTestReportById(int id);
     }
 }

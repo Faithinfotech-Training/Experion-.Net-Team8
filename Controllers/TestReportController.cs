@@ -68,6 +68,35 @@ namespace Clinic_Management_System_8.Controllers
         }
 
         #endregion
+
+        //Get test reports by patient Id
+        #region Get test report by patientid
+
+        [HttpGet]
+        [Route("byPatientId")]
+        //[Authorize]
+
+        public async Task<IActionResult> GetTestReportsByPatientId(int id)
+        {
+            try
+            {
+                var tests = await postRepository.GetTestReportsByPatientId(id);
+                if (tests == null)
+                {
+                    return NotFound();
+                }
+                return Ok(tests);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+        }
+
+        #endregion
+
+
         //add one test report 
         #region Add test report
         [HttpPost]

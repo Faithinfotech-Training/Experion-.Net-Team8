@@ -49,6 +49,12 @@ export class TestReportService {
     // });
   }
 
+  getTestReportById(id: number): Observable<any> {
+    return this.httpClient.get(
+      environment.apiUrl + '/api/testreport/GetTestReportById?id=' + id
+    );
+  }
+
   //delete test report
   deleteTestReport(id: number) {
     return this.httpClient.delete(environment.apiUrl + '/api/testreport/' + id);

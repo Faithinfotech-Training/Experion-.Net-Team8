@@ -58,7 +58,7 @@ import { AnnouncementlistComponent } from './announcementlist/announcementlist.c
     AppointmentsComponent,
     PatientComponent,
     SpecializationComponent,
-    PatientlistComponent,    
+    PatientlistComponent,
     SignupComponent,
     PrescriptionComponent,
     DoctorComponent,
@@ -74,10 +74,10 @@ import { AnnouncementlistComponent } from './announcementlist/announcementlist.c
     MakepaymentComponent,
     TestsComponent,
     AboutusComponent,
-    ContactsComponent
+    ContactsComponent,
     LabresultsComponent,
     AnnouncementComponent,
-    AnnouncementlistComponent
+    AnnouncementlistComponent,
   ],
   imports: [
     BrowserModule,

@@ -123,7 +123,7 @@ namespace Clinic_Management_System_8.Repository
         #endregion
         //get test report by using id
         #region get test report by id
-        public async Task<LabReportModel> GetTestReportById(int id)
+        public async Task<List<LabReportModel>> GetTestReportById(int id)
         {
             if (_db != null)
             {
@@ -132,7 +132,7 @@ namespace Clinic_Management_System_8.Repository
                               from d in _db.Employees
                               from l in _db.Employees
                               from p in _db.Patients
-                              where t.DoctorId == d.EmployeeId && t.LabTechnicianId == l.EmployeeId && t.PatientId == p.PatientId && t.TestReportId==id
+                              where t.DoctorId == d.EmployeeId && t.LabTechnicianId == l.EmployeeId && t.PatientId == p.PatientId && t.PatientId==id
                               select new LabReportModel
                               {
                                   TestReportId = t.TestReportId,
@@ -141,7 +141,7 @@ namespace Clinic_Management_System_8.Repository
                                   DoctorName = d.EmployeeName,
                                   LabTechnicianName = l.EmployeeName,
                                   ReportGeneratedDate = t.ReportGeneratedDate
-                              }).FirstOrDefaultAsync();
+                              }).ToListAsync();
             }
             return null;
         }

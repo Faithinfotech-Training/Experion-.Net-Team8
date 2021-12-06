@@ -19,6 +19,6 @@ namespace Clinic_Management_System_8.Repository
         
         Task DeleteTestReport(int id);
         Task<LabReportModel> GetTestReportByDate(DateTime date);
-        Task<LabReportModel> GetTestReportById(int id);
+        Task<List<LabReportModel>> GetTestReportById(int id);
     }
 }

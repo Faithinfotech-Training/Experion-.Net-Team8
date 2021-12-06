@@ -41,6 +41,7 @@ import { MakepaymentComponent } from './makepayment/makepayment.component';
 import { TestsComponent } from './tests/tests.component';
 import { LabresultsComponent } from './labresults/labresults.component';
 import { AnnouncementComponent } from './announcement/announcement.component';
+import { AnnouncementlistComponent } from './announcementlist/announcementlist.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { AnnouncementComponent } from './announcement/announcement.component';
     MakepaymentComponent,
     TestsComponent,
     LabresultsComponent,
-    AnnouncementComponent
+    AnnouncementComponent,
+    AnnouncementlistComponent
   ],
   imports: [
     BrowserModule,

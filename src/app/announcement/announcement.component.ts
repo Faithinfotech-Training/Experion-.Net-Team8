@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
+import { Announcement } from '../shared/announcement';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-announcement',
@@ -10,16 +12,18 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./announcement.component.scss']
 })
 export class AnnouncementComponent implements OnInit {
-  empId: number;
+  empId:number;
+  announcementId:number;
 
   constructor(
     public announcementService:AnnouncementService,
     private toastr: ToastrService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private location: Location) { }
 
   ngOnInit(): void {
-    this.empId = this.route.snapshot.params['empId'];
+   this.empId=this.route.snapshot.params['empId'];
   }
 
   //onSubmit function
@@ -41,11 +45,14 @@ export class AnnouncementComponent implements OnInit {
 
   //Insert
   insertAnnouncement(form?: NgForm) {
+    console.log(this.empId);
+    form.value.EmployeeId=this.empId;
     console.log('Inserting a record...');
     this.announcementService.insertAnnouncement(form.value).subscribe((data) => {
       console.log(data);
       this.toastr.success('Announcement added', 'CMSApp v2021');
-      console.log(form.value.RoleId);
+      this.location.back();
+      
       // direct to a route after adding
     });
   }

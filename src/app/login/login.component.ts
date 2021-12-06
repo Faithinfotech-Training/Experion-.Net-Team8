@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit {
               'ACCESS_ROLE',
               this.jwtResponse.RoleId.toString()
             );
+            localStorage.setItem('empId', this.jwtResponse.EmployeeId.toString());
             sessionStorage.setItem('username', this.jwtResponse.UserName);
             this.router.navigateByUrl('/admin');
           } else if (this.jwtResponse.RoleId === 2) {

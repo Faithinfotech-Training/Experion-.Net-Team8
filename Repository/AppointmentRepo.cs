@@ -69,9 +69,7 @@ namespace Clinic_Management_System_8.Repository
                               from e in dbContext.Employees
                               where a.AppointmentTypeId == at.AppointmentTypeId &&
                               a.PatientId == p.PatientId &&
-                              a.EmployeeId == e.EmployeeId &&
-                              a.AppointmentDate==date &&
-                              a.AppointmentStatus==false
+                              a.EmployeeId == e.EmployeeId
                               select new AppointmentViewModel
                               {
                                   AppointmentId = a.AppointmentId,

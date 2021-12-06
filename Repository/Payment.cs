@@ -46,7 +46,8 @@ namespace Clinic_Management_System_8.Models
                                  PaymentId=p.PaymentId,
                                  Amount=p.Amount,
                                  PatientName=t.PatientName,
-                                 PaymentDate=p.PaymentDate
+                                 PaymentDate=p.PaymentDate,
+                                 Status=p.Status
                              }).ToListAsync();
             }
             return null;

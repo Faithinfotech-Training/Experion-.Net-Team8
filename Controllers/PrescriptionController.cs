@@ -123,13 +123,38 @@ namespace Clinic_Management_System_8.Controllers
 
         //--- Get Prescription By PatientId  ---//
         #region Get Prescription By PatientId 
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("test")]
         //[Authorize]
         public async Task<IActionResult> GetPrescriptionByPatientId(int id)
         {
             try
             {
                 var patient = await preRepo.GetPrescriptionByPatientId(id); ;
+                if (patient != null)
+                {
+                    return Ok(patient);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+        #endregion
+
+
+        //--- Get Prescription By PatientId  ---//
+        #region Get Prescription By PatientId 
+        [HttpGet]
+        [Route("reportById")]
+        //[Authorize]
+        public async Task<IActionResult> GetPrescriptionById(int id)
+        {
+            try
+            {
+                var patient = await preRepo.GetPrescriptionById(id); ;
                 if (patient != null)
                 {
                     return Ok(patient);

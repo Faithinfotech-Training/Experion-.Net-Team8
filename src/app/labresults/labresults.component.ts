@@ -50,12 +50,6 @@ export class LabresultsComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('hello');
-    this.router.navigate([
-      'prescription',
-      this.patientId,
-      this.empId,
-      this.appointmentId,
-    ]);
+    this.router.navigate(['doctornotes', this.patientId, this.empId]);
   }
 }

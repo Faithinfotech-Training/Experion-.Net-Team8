@@ -41,7 +41,7 @@
             "
           >
             <td>{{ testReport.TestReportId }}</td>
-            <td>{{ testReport.ReportGeneratedDate }}</td>
+            <td>{{ testReport.ReportGeneratedDate | date: "dd-MM-yyyy" }}</td>
             <td>{{ testReport.PatientName }}</td>
             <td>{{ testReport.LabTechnicianName }}</td>
             <td>{{ testReport.DoctorName }}</td>

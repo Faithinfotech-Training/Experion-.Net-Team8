@@ -74,7 +74,7 @@ export class PrescriptionComponent implements OnInit {
             'yyyy-MM-dd'
           );
           data.PrescriptionDate = formatDate;
-          this.preService.prescriptionForm = data;
+          //this.preService.prescriptionForm = data;
         },
         (error) => console.log(error)
       );
@@ -188,20 +188,4 @@ export class PrescriptionComponent implements OnInit {
       this.router.navigate(['doctor', this.empId]);
     }
   }
-
-  // takeLabTechnician() {
-  //   this.appointment.PatientId = this.patientId;
-  //   this.appointment.EmployeeId = this.id;
-  //   var datePipe = new DatePipe('en-UK');
-  //   let formatDate: any = datePipe.transform(this.currentDate, 'yyyy-MM-dd');
-  //   this.appointment.AppointmentDate = formatDate;
-  //   this.appointment.AppointmentTypeId = this.id;
-  //   this.appointment.AppointmentStatus = true;
-  //   console.log('hii' + this.appointment.EmployeeId);
-  //   this.appService.InsertAppoinment(this.appointment).subscribe((data) => {
-  //     console.log(data);
-  //     this.toastr.success('Appointment added', 'ClinicApp v2021');
-  //     this.router.navigateByUrl('/receptionist');
-  //   });
-  // }
 }

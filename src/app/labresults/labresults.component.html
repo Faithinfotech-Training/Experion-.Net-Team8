@@ -20,7 +20,7 @@
               <label class="form-control-label" for="EmployeeName"
                 >Patient Name :</label
               >
-              <span>{{ report[0].PatientName }}</span>
+              <span>&ensp;{{ report[0].PatientName }}</span>
             </div>
           </div>
           <div class="col-md-6">
@@ -28,9 +28,11 @@
               <label class="form-control-label" for="EmployeeName"
                 >Report Generated Date :</label
               >
-              <span>{{
-                report[0].ReportGeneratedDate | date: "yyyy-MM-dd"
-              }}</span>
+              <span
+                >&ensp;{{
+                  report[0].ReportGeneratedDate | date: "yyyy-MM-dd"
+                }}</span
+              >
             </div>
           </div>
         </div>
@@ -41,7 +43,7 @@
               <label class="form-control-label" for="EmployeeName"
                 >Lab Technician Name:</label
               >
-              <span>{{ report[0].LabTechnicianName }}</span>
+              <span>&ensp;{{ report[0].LabTechnicianName }}</span>
             </div>
           </div>
 
@@ -50,7 +52,7 @@
               <label class="form-control-label" for="EmployeeName"
                 >Prescribed Doctor :</label
               >
-              <span>{{ report[0].DoctorName }}</span>
+              <span>&ensp;{{ report[0].DoctorName }}</span>
             </div>
           </div>
         </div>
@@ -58,13 +60,11 @@
           <label class="form-control-label" for="EmployeeName"
             >Test Results :</label
           >
-          <div *ngFor="let r of report">
-            {{ r.TestReport }}
-          </div>
+          <div *ngFor="let r of report">&ensp;{{ r.TestReport }}<br /></div>
         </div>
 
         <button type="submit" class="btn btn-success form-control">
-          Edit Prescription
+          Add Notes
         </button>
       </form>
     </div>

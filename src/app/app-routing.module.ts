@@ -1,3 +1,4 @@
+import { DoctornotesComponent } from './doctornotes/doctornotes.component';
 import { AnnouncementlistComponent } from './announcementlist/announcementlist.component';
 import { TestreportsListComponent } from './testreports-list/testreports-list.component';
 import { AppointmentsListComponent } from './appointments-list/appointments-list.component';
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'patient/:patientId', component: PatientComponent },
   { path: 'appointments', component: AppointmentsComponent },
   { path: 'appointments/:patientid', component: AppointmentsComponent },
+  { path: 'doctornotes/:patientId/:empId', component: DoctornotesComponent },
   { path: 'employee/:empId', component: EmployeeComponent },
   { path: 'employeelist', component: EmployeeListComponent },
   { path: 'specialization/:empId/:roleId', component: SpecializationComponent },
@@ -114,9 +116,8 @@ const routes: Routes = [
   },
   {
     path: 'announcementlist',
-    component: AnnouncementlistComponent
-  }
-
+    component: AnnouncementlistComponent,
+  },
 ];
 
 @NgModule({

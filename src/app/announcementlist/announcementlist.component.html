@@ -51,16 +51,13 @@
                   | paginate: { itemsPerPage: 5, currentPage: page }
               "
             >
-              <td (click)="populateForm(c)">{{ c.PaymentId }}</td>
+              <td (click)="populateForm(c)">{{ c.AnnId }}</td>
 
-              <td (click)="populateForm(c)">{{ c.Amount }}</td>
-
-              <td (click)="populateForm(c)">{{ c.PatientName }}</td>
+              <td (click)="populateForm(c)">{{ c.AnnText }}</td>
 
               <td (click)="populateForm(c)">
-                {{ c.PaymentDate | date: "dd-MM-yyyy" }}
+                {{ c.AnnDate | date: "dd-MM-yyyy" }}
               </td>
-              <td (click)="populateForm(c)">{{ c.Status }}</td>
             </tr>
           </tbody>
         </table>

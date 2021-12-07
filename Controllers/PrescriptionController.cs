@@ -145,7 +145,7 @@ namespace Clinic_Management_System_8.Controllers
         #endregion
 
 
-        //--- Get Prescription By PatientId  ---//
+        //--- Get Prescription By Id  ---//
         #region Get Prescription By PatientId 
         [HttpGet]
         [Route("reportById")]
@@ -177,6 +177,29 @@ namespace Clinic_Management_System_8.Controllers
             try
             {
                 var patient = await preRepo.GetPrescriptionByDate(date);
+                if (patient != null)
+                {
+                    return Ok(patient);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+        #endregion
+
+
+        #region GetAllPrescriptions
+        [HttpGet]
+        [Route("GetAllPrescriptions")]
+        //[Authorize]
+        public async Task<IActionResult> GetAllPrescriptions(int id)
+        {
+            try
+            {
+                var patient = await preRepo.GetAllPrescriptions(id); ;
                 if (patient != null)
                 {
                     return Ok(patient);

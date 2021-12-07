@@ -93,7 +93,7 @@ namespace Clinic_Management_System_8.Repository
         #endregion
 
 
-        //---  Get prescription by patient id  ---//
+        //---  Get prescription by  id  ---//
         #region GetPrescriptionById
         public async Task<PrescriptionViewModel> GetPrescriptionById(int id)
         {
@@ -178,6 +178,35 @@ namespace Clinic_Management_System_8.Repository
                 _db.Prescriptions.Update(note);
                 await _db.SaveChangesAsync();
             }
+        }
+        #endregion
+
+
+
+        #region GetAllPrescriptions
+        public async Task<List<PrescriptionViewModel>> GetAllPrescriptions(int id)
+        {
+            if (_db != null)
+            {
+                //LINQ
+                return await (from p in _db.Prescriptions
+                              from t in _db.Patients
+                              from e in _db.Employees
+                              where p.PatientId == t.PatientId && p.PatientId == id && p.EmployeeId == e.EmployeeId
+                              select new PrescriptionViewModel
+                              {
+                                  PrescriptionId = p.PrescriptionId,
+                                  Prescription = p.Prescription,
+                                  PrescriptionDate = p.PrescriptionDate,
+                                  PatientId = t.PatientId,
+                                  PatientName = t.PatientName,
+                                  DoctorId = e.EmployeeId,
+                                  DoctorName = e.EmployeeName,
+                                  Tests = p.Tests
+                              }).ToListAsync();
+            }
+            return null;
+
         }
         #endregion
 

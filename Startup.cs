@@ -51,6 +51,7 @@ namespace Clinic_Management_System_8
             services.AddScoped<IDepartment, Department>();
             services.AddScoped<ILogin, LoginRepo>();
             services.AddScoped<IAnnouncement, Repository.Announcement>();
+            services.AddScoped<IDoctorNotesRepo, DoctorNotesRepo>();
 
 
             services.AddControllers().AddNewtonsoftJson(

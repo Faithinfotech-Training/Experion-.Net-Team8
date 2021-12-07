@@ -19,6 +19,7 @@ namespace Clinic_Management_System_8.Models
         public virtual DbSet<AppointmentTypes> AppointmentTypes { get; set; }
         public virtual DbSet<Appointments> Appointments { get; set; }
         public virtual DbSet<Departments> Departments { get; set; }
+        public virtual DbSet<DoctorNotes> DoctorNotes { get; set; }
         public virtual DbSet<EmployeeSpecializations> EmployeeSpecializations { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<LabHasTechnician> LabHasTechnician { get; set; }
@@ -36,7 +37,8 @@ namespace Clinic_Management_System_8.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("ConStr");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=JITHUMOLS\\SQLEXPRESS; Initial Catalog=CMS; Integrated security=True");
             }
         }
 
@@ -106,6 +108,30 @@ namespace Clinic_Management_System_8.Models
                     .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<DoctorNotes>(entity =>
+            {
+                entity.HasKey(e => e.NoteId)
+                    .HasName("PK__DoctorNo__EACE355FB5B3AE9A");
+
+                entity.Property(e => e.Note)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NoteDate).HasColumnType("date");
+
+                entity.HasOne(d => d.Doctor)
+                    .WithMany(p => p.DoctorNotes)
+                    .HasForeignKey(d => d.DoctorId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_emp_note");
+
+                entity.HasOne(d => d.Patient)
+                    .WithMany(p => p.DoctorNotes)
+                    .HasForeignKey(d => d.PatientId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_patient_note");
             });
 
             modelBuilder.Entity<EmployeeSpecializations>(entity =>

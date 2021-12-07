@@ -8,6 +8,7 @@ namespace Clinic_Management_System_8.Models
         public Patients()
         {
             Appointments = new HashSet<Appointments>();
+            DoctorNotes = new HashSet<DoctorNotes>();
             Payments = new HashSet<Payments>();
             Prescriptions = new HashSet<Prescriptions>();
             TestReports = new HashSet<TestReports>();
@@ -22,6 +23,7 @@ namespace Clinic_Management_System_8.Models
         public bool IsActive { get; set; }
 
         public virtual ICollection<Appointments> Appointments { get; set; }
+        public virtual ICollection<DoctorNotes> DoctorNotes { get; set; }
         public virtual ICollection<Payments> Payments { get; set; }
         public virtual ICollection<Prescriptions> Prescriptions { get; set; }
         public virtual ICollection<TestReports> TestReports { get; set; }

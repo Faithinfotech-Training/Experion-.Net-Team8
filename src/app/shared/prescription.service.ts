@@ -16,6 +16,7 @@ export class PrescriptionService {
   patients: Patient[];
   employees: Employee[];
   prescriptionForm: Prescription = new Prescription();
+  
 
   constructor(private httpClient: HttpClient) {}
 
@@ -72,6 +73,14 @@ export class PrescriptionService {
   GetPrescriptionById(Id: number): Observable<any> {
     return this.httpClient.get(
       environment.apiUrl + '/api/prescription/reportById?id=' + Id
+    );
+
+  }
+
+  // Get all the prescription
+  GetAllPrescription(id: number): Observable<any> {
+    return this.httpClient.get(
+      environment.apiUrl + '/api/prescription/GetAllPrescriptions?id=' + id
     );
   }
 

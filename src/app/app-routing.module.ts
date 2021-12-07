@@ -29,11 +29,13 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { LabresultsComponent } from './labresults/labresults.component';
 import { AnnouncementComponent } from './announcement/announcement.component';
+import { PrescriptionHistoryComponent } from './prescription-history/prescription-history.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'contacts', component: ContactsComponent },
+  { path: 'prescriptionhistory/:patientId', component: PrescriptionHistoryComponent },
   { path: 'aboutus', component: AboutusComponent },
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },

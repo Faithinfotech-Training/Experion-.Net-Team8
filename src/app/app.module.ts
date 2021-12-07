@@ -45,6 +45,7 @@ import { LabresultsComponent } from './labresults/labresults.component';
 import { AnnouncementComponent } from './announcement/announcement.component';
 import { AnnouncementlistComponent } from './announcementlist/announcementlist.component';
 import { DoctornotesComponent } from './doctornotes/doctornotes.component';
+import { PrescriptionHistoryComponent } from './prescription-history/prescription-history.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { DoctornotesComponent } from './doctornotes/doctornotes.component';
     AnnouncementComponent,
     AnnouncementlistComponent,
     DoctornotesComponent,
+    PrescriptionHistoryComponent,
   ],
   imports: [
     BrowserModule,

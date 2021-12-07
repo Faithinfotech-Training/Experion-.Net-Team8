@@ -95,6 +95,10 @@ export class DoctorComponent implements OnInit {
       return false;
     }
   }
+  ViewHistory(patientId: number){
+    this.router.navigate(['prescription-history', patientId]);
+
+  }
 
   ViewLabResults(patientId: number, appointmentId: number) {
     console.log(patientId);

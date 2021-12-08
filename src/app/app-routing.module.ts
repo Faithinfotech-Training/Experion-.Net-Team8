@@ -36,7 +36,10 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'contacts', component: ContactsComponent },
-  { path: 'prescriptionhistory/:patientId', component: PrescriptionHistoryComponent },
+  {
+    path: 'prescription-history/:patientId',
+    component: PrescriptionHistoryComponent,
+  },
   { path: 'aboutus', component: AboutusComponent },
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -50,7 +53,10 @@ const routes: Routes = [
   { path: 'patient/:patientId', component: PatientComponent },
   { path: 'appointments', component: AppointmentsComponent },
   { path: 'appointments/:patientid', component: AppointmentsComponent },
-  { path: 'doctornotes/:patientId/:empId', component: DoctornotesComponent },
+  {
+    path: 'doctornotes/:patientId/:empId/:apId',
+    component: DoctornotesComponent,
+  },
   { path: 'employee/:empId', component: EmployeeComponent },
   { path: 'employeelist', component: EmployeeListComponent },
   { path: 'specialization/:empId/:roleId', component: SpecializationComponent },

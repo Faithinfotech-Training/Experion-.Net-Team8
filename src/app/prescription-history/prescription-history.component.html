@@ -1,83 +1,67 @@
 <div class="container-fluid bg-default" id="image_specs">
-    <div class="card my-2 mx-auto" id="signup_card">
-      <div class="card-header text-center">
-        <h1 id="heading" class="mb-0 heading">PRESCRIPTION</h1>
-        <h1 id="green" class="mb-0 heading">&ensp;LIST</h1>
-      </div>
-  
-      <div class="card-body">
-        <form
-          name="prescriptionform"
-          #form="ngForm"
-          autocomplete="off"
+  <div class="card my-2 mx-auto" id="signup_card">
+    <div class="card-header text-center">
+      <h1 id="heading" class="mb-0 heading">PRESCRIPTION</h1>
+      <h1 id="green" class="mb-0 heading">&ensp;LIST</h1>
+    </div>
 
+    <div class="card-body">
+      <form name="prescriptionform" #form="ngForm" autocomplete="off">
+        <!--Emloyee Name-->
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="form-control-label" for="Prescription"
+                >Patient Name:</label
+              >
+              <span>&ensp;{{ patientName }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-flush align-items-center">
+            <thead class="thead-light">
+              <tr>
+                <th>Prescription Date</th>
+                <th>Prescription</th>
+                <th>Doctor Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--Depends on where we read here we used view model to display-->
+              <tr
+                *ngFor="
+                  let r of prescriptionService.prescriptions
+                    | filter: filter
+                    | paginate: { itemsPerPage: 5, currentPage: page }
+                "
+              >
+                <td>{{ r.PrescriptionDate | date: "yyyy-MM-dd" }}</td>
+                <td>{{ r.Prescription }}</td>
+                <td>{{ r.DoctorName }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="footer">
+            <!--pagenation-->
+            <pagination-controls
+              (pageChange)="page = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="btn btn-success form-control"
+          (click)="goBack()"
         >
-          <!--Emloyee Name-->
-  
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-control-label" for="Prescription"
-                  >Prescription Id :</label
-                >
-                <span>{{ prescriptionList[0].PrescriptionId }}</span>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-control-label" for="Prescription"
-                  >Prescription Date :</label
-                >
-                <span>{{
-                  prescriptionList[0].PrescriptionDate | date: "yyyy-MM-dd"
-                }}</span>
-              </div>
-            </div>
-          </div>
+          Go Back
+        </button>
+      </form>
+    </div>
 
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-control-label" for="Prescription"
-                  >Doctor Id :</label
-                >
-                <span>{{ prescriptionList[0].DoctorId }}</span>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-control-label" for="Prescription"
-                  >Doctor Name:</label
-                >
-                <span>{{
-                  prescriptionList[0].DoctorName
-                }}</span>
-              </div>
-            </div>
-          </div>
-  
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-control-label" for="Prescription"
-                  >Patient Id :</label
-                >
-                <span>{{ prescriptionList[0].PatientId }}</span>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-control-label" for="Prescription"
-                  >Patient Name:</label
-                >
-                <span>{{
-                  prescriptionList[0].PatientName
-                }}</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- <div class="row">
+    <!-- <div class="row">
             <div class="col-md-6">
               <div class="form-group">
                 <label class="form-control-label" for="Prescription"
@@ -98,30 +82,20 @@
             </div>
           </div> -->
 
-
-          <div class="form-group">
-            <label class="form-control-label" for="Prescription"
-              >Prescription :</label
-            >
-            <div *ngFor="let r of prescriptionList">
-              {{ r.Prescription }}
-            </div>
+    <!-- <div class="form-group">
+          <label class="form-control-label" for="Prescription"
+            >Prescriptions :</label
+          >
+          <div *ngFor="let r of prescriptionService.prescriptions">
+            &ensp;{{ r.Prescription }}
           </div>
+        </div> -->
 
-          <div class="form-group">
-            <label class="form-control-label" for="Prescription"
-              >Tests :</label
-            >
-            <div *ngFor="let r of prescriptionList">
-              {{ r.Tests }}
-            </div>
+    <!-- <div class="form-group">
+          <label class="form-control-label" for="Prescription">Tests :</label>
+          <div *ngFor="let r of prescriptionList">
+            {{ r.Tests }}
           </div>
-  
-          <!-- <button type="submit" class="btn btn-success form-control">
-            Edit Prescription
-          </button> -->
-        </form>
-      </div>
-    </div>
+        </div> -->
   </div>
-  
+</div>

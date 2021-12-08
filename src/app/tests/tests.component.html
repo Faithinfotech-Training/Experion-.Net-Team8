@@ -26,14 +26,16 @@
             <div class="form-group">
               <label class="form-control-label" for="EmployeeName"
                 >Patient Name :</label
-              ><span>{{ tests.PatientName }}</span>
+              ><span>&ensp;{{ tests.PatientName }}</span>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="EmployeeName"
                 >Prescription Date :</label
-              ><span>{{ tests.PrescriptionDate | date: "yyyy-MM-dd" }}</span>
+              ><span
+                >&ensp;{{ tests.PrescriptionDate | date: "yyyy-MM-dd" }}</span
+              >
             </div>
           </div>
         </div>
@@ -43,7 +45,7 @@
             <div class="form-group">
               <label class="form-control-label" for="EmployeeName"
                 >TestReport Date :</label
-              ><span>{{ date | date: "yyyy-MM-dd" }}</span>
+              ><span>&ensp;{{ date | date: "yyyy-MM-dd" }}</span>
             </div>
           </div>
 
@@ -52,7 +54,7 @@
               <label class="form-control-label" for="EmployeeName"
                 >Prescribed Tests :</label
               >
-              <div *ngFor="let t of prescribedTests">{{ t }}</div>
+              <div *ngFor="let t of prescribedTests">&ensp;{{ t }}</div>
             </div>
           </div>
         </div>

@@ -16,7 +16,6 @@ export class PrescriptionService {
   patients: Patient[];
   employees: Employee[];
   prescriptionForm: Prescription = new Prescription();
-  
 
   constructor(private httpClient: HttpClient) {}
 
@@ -74,14 +73,16 @@ export class PrescriptionService {
     return this.httpClient.get(
       environment.apiUrl + '/api/prescription/reportById?id=' + Id
     );
-
   }
 
   // Get all the prescription
-  GetAllPrescription(id: number): Observable<any> {
-    return this.httpClient.get(
-      environment.apiUrl + '/api/prescription/GetAllPrescriptions?id=' + id
-    );
+  GetAllPrescription(id: number) {
+    this.httpClient
+      .get(
+        environment.apiUrl + '/api/prescription/GetAllPrescriptions?id=' + id
+      )
+      .toPromise()
+      .then((response) => (this.prescriptions = response as Prescription[]));
   }
 
   //Get all prescription of patient by date

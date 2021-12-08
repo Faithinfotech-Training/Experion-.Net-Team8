@@ -155,6 +155,7 @@
                 [(ngModel)]="empService.formData.DepartmentId"
                 required
               >
+                <option value="0" disabled>Choose a Department</option>
                 <option
                   *ngFor="let dept of empService.departments"
                   value="{{ dept.DepartmentId }}"
@@ -184,6 +185,7 @@
                 [(ngModel)]="empService.formData.RoleId"
                 required
               >
+                <option value="0" disabled>Choose a Role</option>
                 <option
                   *ngFor="let role of empService.roles"
                   value="{{ role.RoleId }}"

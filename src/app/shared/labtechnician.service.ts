@@ -57,9 +57,9 @@ export class LabtechnicianService {
   }
 
   //getAllPatientsFor All doctors
-  getAllPaetients(date: Date) {
+  getAllPatients() {
     this.httpClient
-      .get(environment.apiUrl + '/api/appointment/' + date)
+      .get(environment.apiUrl + '/api/appointment/doctor?id=' + 1)
       .toPromise()
       .then((response) => (this.appointments = response as Appoinmentmodel[]));
     console.log(this.appointments);

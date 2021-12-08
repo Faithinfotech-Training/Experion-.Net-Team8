@@ -10,6 +10,7 @@ import { PrescriptionService } from '../shared/prescription.service';
 import { TestReportService } from '../shared/test-report.service';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { AppointmentService } from '../shared/appointment.service';
 
 @Component({
   selector: 'app-doctornotes',
@@ -19,6 +20,7 @@ import { DatePipe } from '@angular/common';
 export class DoctornotesComponent implements OnInit {
   doctorId: number;
   patientId: number;
+  apId: number;
   currentDate: Date = new Date();
   page: number = 1;
   filter: string;
@@ -29,11 +31,13 @@ export class DoctornotesComponent implements OnInit {
     public patientService: PatientService,
     public toastrservice: ToastrService,
     private router: Router,
-    public authService: AuthService
+    public authService: AuthService,
+    public appService: AppointmentService
   ) {}
 
   ngOnInit(): void {
     this.doctorId = this.route.snapshot.params['empId'];
+    this.apId = this.route.snapshot.params['apId'];
     this.patientId = this.route.snapshot.params['patientId'];
     this.doctornoteService.GetNotesById(this.patientId);
     this.doctornoteService.GetPatientById(this.patientId).subscribe((data) => {
@@ -62,6 +66,21 @@ export class DoctornotesComponent implements OnInit {
       console.log(data);
       this.toastrservice.success('Note added', 'CMSApp v2021');
     });
+    this.updateStatus(this.apId);
     this.router.navigate(['doctor', this.doctorId]);
+  }
+
+  updateStatus(id: number) {
+    this.appService.UpdateStatus(id).subscribe(
+      (data) => {
+        this.toastrservice.success(
+          'Appointment Status Updated',
+          'CMSApp v2021'
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

@@ -35,6 +35,7 @@ export class LabresultsComponent implements OnInit {
     this.appointmentId = this.route.snapshot.params['appointmentId'];
     console.log('appointment :' + this.appointmentId);
     console.log('test :' + this.patientId);
+    
     //this.preId = this.route.snapshot.params['preId'];
     this.testService.getTestReport(this.patientId).subscribe((data) => {
       this.report = data;
@@ -50,6 +51,11 @@ export class LabresultsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(['doctornotes', this.patientId, this.empId]);
+    this.router.navigate([
+      'doctornotes',
+      this.patientId,
+      this.empId,
+      this.appointmentId,
+    ]);
   }
 }

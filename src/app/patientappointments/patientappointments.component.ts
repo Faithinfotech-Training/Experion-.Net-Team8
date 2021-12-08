@@ -28,7 +28,7 @@ export class PatientappointmentsComponent implements OnInit {
   ngOnInit(): void {
     var datePipe = new DatePipe('en-UK');
     let formatDate: any = datePipe.transform(this.date, 'yyyy-MM-dd');
-    this.labTechnicianService.getAllPaetients(formatDate);
+    this.labTechnicianService.getAllPatients();
   }
 
   addPayment(patientId: number, empId: number) {

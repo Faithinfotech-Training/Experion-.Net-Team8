@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-appointments',
@@ -11,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AppointmentsComponent implements OnInit {
   patientid: number;
+  Currentdate: Date = new Date();
   constructor(
     public appointmentService: AppointmentService,
     private toastr: ToastrService,
@@ -21,6 +23,9 @@ export class AppointmentsComponent implements OnInit {
   ngOnInit(): void {
     this.patientid = this.route.snapshot.params['patientid'];
     this.appointmentService.GetAllDoctors(1);
+    var datePipe = new DatePipe('en-UK');
+    let formatDate: any = datePipe.transform(this.Currentdate, 'yyyy-MM-dd');
+    this.Currentdate = formatDate;
     //this.appointmentService.GetAllPatients();
   }
 

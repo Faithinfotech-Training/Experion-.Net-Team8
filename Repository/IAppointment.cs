@@ -23,6 +23,7 @@ namespace Clinic_Management_System_8.Repository
 
         //--- View Appointments for a particular doctor ---//
         Task<List<AppointmentViewModel>> ViewAppointmentForDoctor(int id);
+        Task<List<AppointmentViewModel>> ViewAppointmentByDoctor(int id);
 
         //--- update Appointment status---/
         Task UpdateStatus(int id);

@@ -164,6 +164,33 @@ namespace Clinic_Management_System_8.Controllers
 
         #endregion
 
+
+        //--- View Appointment For Doctor ---//
+        #region ViewAppointmentForDoctor
+
+        [HttpGet]
+        [Route("doctor")]
+        //[Authorize]
+
+        public async Task<IActionResult> ViewAppointmentByDoctor(int id)
+        {
+            try
+            {
+                var appointments = await appointmentRepo.ViewAppointmentByDoctor(id);
+                if (appointments != null)
+                {
+                    return Ok(appointments);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        #endregion
+
         //--- update appointment status---//
         #region UpdateStatus
 

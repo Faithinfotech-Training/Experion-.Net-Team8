@@ -178,6 +178,48 @@ namespace Clinic_Management_System_8.Repository
 
         #endregion
 
+
+        //--- View Appointments for a particular doctor ---//
+        #region ViewAppointmentbyDoctor
+
+        public async Task<List<AppointmentViewModel>> ViewAppointmentByDoctor(int id)
+        {
+            DateTime date = DateTime.Now;
+            //--- get appointment by Doctorid ---//
+            if (dbContext != null)
+            {
+                //-- LINQ --//
+                //-- joining Appointments, AppointmentTypes, Patients and Employees  --//
+                return await (from a in dbContext.Appointments
+                              from at in dbContext.AppointmentTypes
+                              from p in dbContext.Patients
+                              from e in dbContext.Employees
+                              where a.AppointmentTypeId == at.AppointmentTypeId &&
+                              a.PatientId == p.PatientId &&
+                              a.EmployeeId == e.EmployeeId &&
+                              e.RoleId == id
+
+                              select new AppointmentViewModel
+                              {
+                                  AppointmentId = a.AppointmentId,
+                                  PatientId = p.PatientId,
+                                  AppointmentType = at.AppointmentType,
+                                  PatientName = p.PatientName,
+                                  Age = p.Age,
+                                  MobileNo = p.MobileNo,
+                                  Gender = p.Gender,
+                                  Address = p.Address,
+                                  EmployeeName = e.EmployeeName,
+                                  AppointmentStatus = a.AppointmentStatus,
+                                  AppointmentDate = a.AppointmentDate
+                              }).ToListAsync();
+            }
+            return null;
+        }
+
+
+        #endregion
+
         //--- Delete the appointment ---//
 
         #region UpdateStatus
